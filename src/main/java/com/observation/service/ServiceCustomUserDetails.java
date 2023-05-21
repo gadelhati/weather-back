@@ -33,18 +33,6 @@ public class ServiceCustomUserDetails implements UserDetailsService {
     private Collection<GrantedAuthority> mapRolesToAuthorities(List<Role> roles) {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
-
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        Optional<UserEntity> user = repositoryUserEntity.findByUsername(username);
-//        if (user == null) {
-//            return new org.springframework.security.core.userdetails.User(
-//                    " ", " ", true, true, true, true,
-//                    getAuthorities(Arrays.asList(repositoryRole.findByName("ROLE_USER"))));
-//        }
-//        return new UserEntity(
-//                user.get().getUsername(), user.get().getEmail(), user.get().getPassword(), user.get().getActive(), getAuthorities(user.get().getRoles()));
-//    }
     private Collection<? extends GrantedAuthority> getAuthorities(Collection<Role> roles) {
         return getGrantedAuthorities(getPrivileges(roles));
     }

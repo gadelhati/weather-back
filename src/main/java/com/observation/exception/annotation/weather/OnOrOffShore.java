@@ -1,6 +1,6 @@
 package com.observation.exception.annotation.weather;
 
-import com.observation.exception.validator.synopticObservation.ValidatorOnOrOffShore;
+import com.observation.exception.validator.weather.ValidatorOnOrOffShore;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 

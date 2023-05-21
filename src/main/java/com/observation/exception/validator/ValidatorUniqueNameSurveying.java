@@ -3,9 +3,10 @@ package com.observation.exception.validator;
 import com.observation.exception.annotation.UniqueNameSurveying;
 import com.observation.persistence.payload.request.DTORequestSurveying;
 import com.observation.service.ServiceSurveying;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class ValidatorUniqueNameSurveying implements ConstraintValidator<UniqueNameSurveying, DTORequestSurveying> {
 
@@ -17,8 +18,8 @@ public class ValidatorUniqueNameSurveying implements ConstraintValidator<UniqueN
     }
     @Override
     public boolean isValid(DTORequestSurveying value, ConstraintValidatorContext context) {
-        if (!Validator.isNull(value.getName()) && !serviceSurveying.existsByNameIgnoreCase(value.getName()) ||
-                !Validator.isNull(value.getName()) && !Validator.isNull(value.getId()) && !serviceSurveying.existsByNameIgnoreCaseAndIdNot(value.getName(), value.getId()) ) {
+        if (!Validator.isNull(value.getName()) && !serviceSurveying.existsByName(value.getName()) ||
+                !Validator.isNull(value.getName()) && !Validator.isNull(value.getId()) && !serviceSurveying.existsByNameAndIdNot(value.getName(), value.getId()) ) {
             return true;
         } else {
             return false;

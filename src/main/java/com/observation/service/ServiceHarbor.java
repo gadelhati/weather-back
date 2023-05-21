@@ -5,53 +5,32 @@ import com.observation.persistence.model.Harbor;
 import com.observation.persistence.payload.request.DTORequestHarbor;
 import com.observation.persistence.payload.response.DTOResponseHarbor;
 import com.observation.persistence.repository.RepositoryHarbor;
+import com.observation.persistence.repository.RepositoryHarborPage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Service @RequiredArgsConstructor
-public class ServiceHarbor implements ServiceInterface<DTOResponseHarbor, DTORequestHarbor, Harbor> {
+public class ServiceHarbor implements ServiceInterface<DTOResponseHarbor, DTORequestHarbor> {
 
     private final RepositoryHarbor repositoryHarbor;
+    private final RepositoryHarborPage repositoryHarborPage;
 
     public DTOResponseHarbor create(DTORequestHarbor created){
         return MapStruct.MAPPER.toDTO(repositoryHarbor.save(MapStruct.MAPPER.toObject(created)));
     }
-    public DTOResponseHarbor retrieve(UUID id) {
-        return MapStruct.MAPPER.toDTO(repositoryHarbor.findById(id).orElse(null));
-    }
-    public List<DTOResponseHarbor> retrieve(){
-        List<DTOResponseHarbor> list = new ArrayList<>();
-        for(Harbor harbor: repositoryHarbor.findAll()) {
-            list.add(MapStruct.MAPPER.toDTO(harbor));
-        }
-        return list;
-    }
-    public Page<DTOResponseHarbor> retrieve(Pageable pageable){
-        List<DTOResponseHarbor> list = new ArrayList<>();
-        for(Harbor harbor: repositoryHarbor.findAll()) {
-            list.add(MapStruct.MAPPER.toDTO(harbor));
-        }
-        return new PageImpl<DTOResponseHarbor>(list, pageable, list.size());
-    }
-    public Page<DTOResponseHarbor> retrieve(Pageable pageable, String source){
-        final List<DTOResponseHarbor> list = new ArrayList<>();
-        if (source == null) {
-            for (Harbor harbor : repositoryHarbor.findAll()) {
-                list.add(MapStruct.MAPPER.toDTO(harbor));
+    public Page<DTOResponseHarbor> retrieve(Pageable pageable, String filter){
+        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+            case "id": {
+                return repositoryHarborPage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
             }
-        } else {
-            for (Harbor harbor : repositoryHarbor.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
-                list.add(MapStruct.MAPPER.toDTO(harbor));
+            default: {
+                return repositoryHarborPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
-        return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseHarbor update(UUID id, DTORequestHarbor updated){
         return MapStruct.MAPPER.toDTO(repositoryHarbor.save(MapStruct.MAPPER.toObject(updated)));
@@ -64,8 +43,7 @@ public class ServiceHarbor implements ServiceInterface<DTOResponseHarbor, DTOReq
     public void delete() {
         repositoryHarbor.deleteAll();
     }
-    public Harbor findByName(String harbor) { return  repositoryHarbor.findByName(harbor); }
-    public boolean existsByNameIgnoreCase(String value) {
+    public boolean existsByName(String value) {
         return repositoryHarbor.existsByNameIgnoreCase(value);
     }
     public boolean existsByNameAndIdNot(String value, UUID id) {

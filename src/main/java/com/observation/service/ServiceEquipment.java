@@ -5,53 +5,32 @@ import com.observation.persistence.model.Equipment;
 import com.observation.persistence.payload.request.DTORequestEquipment;
 import com.observation.persistence.payload.response.DTOResponseEquipment;
 import com.observation.persistence.repository.RepositoryEquipment;
+import com.observation.persistence.repository.RepositoryEquipmentPage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Service @RequiredArgsConstructor
-public class ServiceEquipment implements ServiceInterface<DTOResponseEquipment, DTORequestEquipment, Equipment> {
+public class ServiceEquipment implements ServiceInterface<DTOResponseEquipment, DTORequestEquipment> {
 
     private final RepositoryEquipment repositoryEquipment;
+    private final RepositoryEquipmentPage repositoryEquipmentPage;
 
     public DTOResponseEquipment create(DTORequestEquipment created){
         return MapStruct.MAPPER.toDTO(repositoryEquipment.save(MapStruct.MAPPER.toObject(created)));
     }
-    public DTOResponseEquipment retrieve(UUID id){
-        return MapStruct.MAPPER.toDTO(repositoryEquipment.findById(id).orElse(null));
-    }
-    public List<DTOResponseEquipment> retrieve(){
-        List<DTOResponseEquipment> list = new ArrayList<>();
-        for(Equipment object: repositoryEquipment.findAll()) {
-            list.add(MapStruct.MAPPER.toDTO(object));
-        }
-        return list;
-    }
-    public Page<DTOResponseEquipment> retrieve(Pageable pageable){
-        List<DTOResponseEquipment> list = new ArrayList<>();
-        for(Equipment object: repositoryEquipment.findAll()) {
-            list.add(MapStruct.MAPPER.toDTO(object));
-        }
-        return new PageImpl<DTOResponseEquipment>(list, pageable, list.size());
-    }
-    public Page<DTOResponseEquipment> retrieve(Pageable pageable, String source){
-        final List<DTOResponseEquipment> list = new ArrayList<>();
-        if (source == null) {
-            for (Equipment object : repositoryEquipment.findAll()) {
-                list.add(MapStruct.MAPPER.toDTO(object));
+    public Page<DTOResponseEquipment> retrieve(Pageable pageable, String filter){
+        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+            case "id": {
+                return repositoryEquipmentPage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
             }
-        } else {
-            for (Equipment object : repositoryEquipment.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
-                list.add(MapStruct.MAPPER.toDTO(object));
+            default: {
+                return repositoryEquipmentPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
-        return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseEquipment update(UUID id, DTORequestEquipment updated){
         return MapStruct.MAPPER.toDTO(repositoryEquipment.save(MapStruct.MAPPER.toObject(updated)));
@@ -64,8 +43,7 @@ public class ServiceEquipment implements ServiceInterface<DTOResponseEquipment, 
     public void delete() {
         repositoryEquipment.deleteAll();
     }
-    public Equipment findByName(String value) { return  repositoryEquipment.findByName(value); }
-    public boolean existsByNameIgnoreCase(String value) {
+    public boolean existsByName(String value) {
         return repositoryEquipment.existsByNameIgnoreCase(value);
     }
     public boolean existsByNameAndIdNot(String value, UUID id) {

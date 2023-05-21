@@ -1,6 +1,6 @@
 package com.observation.persistence.payload.response;
 
-import com.observation.exception.enumeration.EGender;
+import com.observation.persistence.enumeration.EGender;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

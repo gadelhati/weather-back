@@ -7,6 +7,6 @@ import java.util.UUID;
 
 public interface RepositoryStationOffShore extends JpaRepository<StationOffShore, UUID> {
 
-    boolean existsByTelegraphicCallsignIgnoreCase(String name);
-    boolean existsByTelegraphicCallsignIgnoreCaseAndIdNot(String name, UUID id);
+    boolean existsByTelegraphicCallSignIgnoreCaseAndIdNot(String telegraphicCallSign, UUID id);
+    boolean existsByTelegraphicCallSignIgnoreCase(String value);
 }

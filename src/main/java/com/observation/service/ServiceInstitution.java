@@ -5,53 +5,32 @@ import com.observation.persistence.model.Institution;
 import com.observation.persistence.payload.request.DTORequestInstitution;
 import com.observation.persistence.payload.response.DTOResponseInstitution;
 import com.observation.persistence.repository.RepositoryInstitution;
+import com.observation.persistence.repository.RepositoryInstitutionPage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Service @RequiredArgsConstructor
-public class ServiceInstitution implements ServiceInterface<DTOResponseInstitution, DTORequestInstitution, Institution> {
+public class ServiceInstitution implements ServiceInterface<DTOResponseInstitution, DTORequestInstitution> {
 
     private final RepositoryInstitution repositoryInstitution;
+    private final RepositoryInstitutionPage repositoryInstitutionPage;
 
     public DTOResponseInstitution create(DTORequestInstitution created){
         return MapStruct.MAPPER.toDTO(repositoryInstitution.save(MapStruct.MAPPER.toObject(created)));
     }
-    public DTOResponseInstitution retrieve(UUID id){
-        return MapStruct.MAPPER.toDTO(repositoryInstitution.findById(id).orElse(null));
-    }
-    public List<DTOResponseInstitution> retrieve(){
-        List<DTOResponseInstitution> list = new ArrayList<>();
-        for(Institution object: repositoryInstitution.findAll()) {
-            list.add(MapStruct.MAPPER.toDTO(object));
-        }
-        return list;
-    }
-    public Page<DTOResponseInstitution> retrieve(Pageable pageable){
-        List<DTOResponseInstitution> list = new ArrayList<>();
-        for(Institution object: repositoryInstitution.findAll()) {
-            list.add(MapStruct.MAPPER.toDTO(object));
-        }
-        return new PageImpl<DTOResponseInstitution>(list, pageable, list.size());
-    }
-    public Page<DTOResponseInstitution> retrieve(Pageable pageable, String source){
-        final List<DTOResponseInstitution> list = new ArrayList<>();
-        if (source == null) {
-            for (Institution object : repositoryInstitution.findAll()) {
-                list.add(MapStruct.MAPPER.toDTO(object));
+    public Page<DTOResponseInstitution> retrieve(Pageable pageable, String filter){
+        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+            case "id": {
+                return repositoryInstitutionPage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
             }
-        } else {
-            for (Institution object : repositoryInstitution.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
-                list.add(MapStruct.MAPPER.toDTO(object));
+            default: {
+                return repositoryInstitutionPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
-        return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseInstitution update(UUID id, DTORequestInstitution updated){
         return MapStruct.MAPPER.toDTO(repositoryInstitution.save(MapStruct.MAPPER.toObject(updated)));
@@ -64,8 +43,7 @@ public class ServiceInstitution implements ServiceInterface<DTOResponseInstituti
     public void delete() {
         repositoryInstitution.deleteAll();
     }
-    public Institution findByName(String value) { return  repositoryInstitution.findByName(value); }
-    public boolean existsByNameIgnoreCase(String value) {
+    public boolean existsByName(String value) {
         return repositoryInstitution.existsByNameIgnoreCase(value);
     }
     public boolean existsByNameAndIdNot(String value, UUID id) {

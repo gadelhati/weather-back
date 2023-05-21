@@ -1,6 +1,6 @@
 package com.observation.persistence.payload.request;
 
-import com.observation.exception.annotation.UniqueObserverNip;
+import com.observation.exception.annotation.UniqueNIPObserver;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -8,7 +8,7 @@ import lombok.Getter;
 
 import java.util.UUID;
 
-@Getter @UniqueObserverNip
+@Getter @UniqueNIPObserver
 public class DTORequestObserver {
 
     private UUID id;

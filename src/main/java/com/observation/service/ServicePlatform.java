@@ -5,53 +5,32 @@ import com.observation.persistence.model.Platform;
 import com.observation.persistence.payload.request.DTORequestPlatform;
 import com.observation.persistence.payload.response.DTOResponsePlatform;
 import com.observation.persistence.repository.RepositoryPlatform;
+import com.observation.persistence.repository.RepositoryPlatformPage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Service @RequiredArgsConstructor
-public class ServicePlatform implements ServiceInterface<DTOResponsePlatform, DTORequestPlatform, Platform> {
+public class ServicePlatform implements ServiceInterface<DTOResponsePlatform, DTORequestPlatform> {
 
     private final RepositoryPlatform repositoryPlatform;
+    private final RepositoryPlatformPage repositoryPlatformPage;
 
     public DTOResponsePlatform create(DTORequestPlatform created){
         return MapStruct.MAPPER.toDTO(repositoryPlatform.save(MapStruct.MAPPER.toObject(created)));
     }
-    public DTOResponsePlatform retrieve(UUID id){
-        return MapStruct.MAPPER.toDTO(repositoryPlatform.findById(id).orElse(null));
-    }
-    public List<DTOResponsePlatform> retrieve(){
-        List<DTOResponsePlatform> list = new ArrayList<>();
-        for(Platform object: repositoryPlatform.findAll()) {
-            list.add(MapStruct.MAPPER.toDTO(object));
-        }
-        return list;
-    }
-    public Page<DTOResponsePlatform> retrieve(Pageable pageable){
-        List<DTOResponsePlatform> list = new ArrayList<>();
-        for(Platform object: repositoryPlatform.findAll()) {
-            list.add(MapStruct.MAPPER.toDTO(object));
-        }
-        return new PageImpl<DTOResponsePlatform>(list, pageable, list.size());
-    }
-    public Page<DTOResponsePlatform> retrieve(Pageable pageable, String source){
-        final List<DTOResponsePlatform> list = new ArrayList<>();
-        if (source == null) {
-            for (Platform object : repositoryPlatform.findAll()) {
-                list.add(MapStruct.MAPPER.toDTO(object));
+    public Page<DTOResponsePlatform> retrieve(Pageable pageable, String filter){
+        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+            case "id": {
+                return repositoryPlatformPage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
             }
-        } else {
-            for (Platform object : repositoryPlatform.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
-                list.add(MapStruct.MAPPER.toDTO(object));
+            default: {
+                return repositoryPlatformPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
-        return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponsePlatform update(UUID id, DTORequestPlatform updated){
         return MapStruct.MAPPER.toDTO(repositoryPlatform.save(MapStruct.MAPPER.toObject(updated)));
@@ -64,14 +43,16 @@ public class ServicePlatform implements ServiceInterface<DTOResponsePlatform, DT
     public void delete() {
         repositoryPlatform.deleteAll();
     }
-    public Platform findByName(String value) { return  repositoryPlatform.findByName(value); }
-    public boolean existsByNameIgnoreCase(String value) {
+    public boolean existsByName(String value) {
         return repositoryPlatform.existsByNameIgnoreCase(value);
     }
-    public boolean existsByTelegraphicCallsignIgnoreCase(String value) {
+    public boolean existsByNameAndIdNot(String value, UUID id) {
+        return repositoryPlatform.existsByNameIgnoreCaseAndIdNot(value, id);
+    }
+    public boolean existsByTelegraphicCallsign(String value) {
         return repositoryPlatform.existsByTelegraphicCallsignIgnoreCase(value);
     }
-    public boolean existsByTelegraphicCallsign(String value, UUID id) {
+    public boolean existsByTelegraphicCallsignAndIdNot(String value, UUID id) {
         return repositoryPlatform.existsByTelegraphicCallsignIgnoreCaseAndIdNot(value, id);
     }
 }

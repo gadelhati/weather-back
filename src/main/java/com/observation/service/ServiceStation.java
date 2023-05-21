@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service @RequiredArgsConstructor
-public class ServiceStation implements ServiceInterface<DTOResponseStation, DTORequestStation, Station> {
+public class ServiceStation implements ServiceInterface<DTOResponseStation, DTORequestStation> {
 
     private final RepositoryStation repositoryStation;
     private final RepositoryStationPage repositoryStationPage;
@@ -39,7 +39,6 @@ public class ServiceStation implements ServiceInterface<DTOResponseStation, DTOR
         return list;
     }
 
-    @Override
     public Page<DTOResponseStation> retrieve(Pageable pageable) {
         return null;
     }

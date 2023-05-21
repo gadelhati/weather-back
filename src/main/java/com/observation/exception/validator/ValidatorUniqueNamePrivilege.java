@@ -3,11 +3,10 @@ package com.observation.exception.validator;
 import com.observation.exception.annotation.UniqueNamePrivilege;
 import com.observation.persistence.payload.request.DTORequestPrivilege;
 import com.observation.service.ServicePrivilege;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static com.observation.exception.validator.Validator.isNull;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class ValidatorUniqueNamePrivilege implements ConstraintValidator<UniqueNamePrivilege, DTORequestPrivilege> {
 
@@ -19,8 +18,8 @@ public class ValidatorUniqueNamePrivilege implements ConstraintValidator<UniqueN
     }
     @Override
     public boolean isValid(DTORequestPrivilege value, ConstraintValidatorContext context) {
-        if (!isNull(value.getName()) && !servicePrivilege.existsByName(value.getName()) ||
-                !isNull(value.getName()) && !isNull(value.getId()) && !servicePrivilege.existsByNameAndIdNot(value.getName(), value.getId()) ) {
+        if (!Validator.isNull(value.getName()) && !servicePrivilege.existsByName(value.getName()) ||
+                !Validator.isNull(value.getName()) && !Validator.isNull(value.getId()) && !servicePrivilege.existsByNameAndIdNot(value.getName(), value.getId()) ) {
             return true;
         } else {
             return false;

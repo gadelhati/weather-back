@@ -1,6 +1,6 @@
 package com.observation.exception.annotation.weather;
 
-import com.observation.exception.validator.synopticObservation.ValidTTTValidator;
+import com.observation.exception.validator.weather.ValidatorValidTTT;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 
 @Target({ ElementType.TYPE, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = { ValidTTTValidator.class })
+@Constraint(validatedBy = { ValidatorValidTTT.class })
 @Documented
 public @interface ValidTTT {
 

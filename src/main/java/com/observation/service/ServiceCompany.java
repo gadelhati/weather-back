@@ -5,60 +5,32 @@ import com.observation.persistence.model.Company;
 import com.observation.persistence.payload.request.DTORequestCompany;
 import com.observation.persistence.payload.response.DTOResponseCompany;
 import com.observation.persistence.repository.RepositoryCompany;
+import com.observation.persistence.repository.RepositoryCompanyPage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Service @RequiredArgsConstructor
-public class ServiceCompany implements ServiceInterface<DTOResponseCompany, DTORequestCompany, Company> {
+public class ServiceCompany implements ServiceInterface<DTOResponseCompany, DTORequestCompany> {
 
     private final RepositoryCompany repositoryCompany;
+    private final RepositoryCompanyPage repositoryCompanyPage;
 
     public DTOResponseCompany create(DTORequestCompany created){
         return MapStruct.MAPPER.toDTO(repositoryCompany.save(MapStruct.MAPPER.toObject(created)));
     }
-    public List<DTOResponseCompany> retrieve(){
-        List<DTOResponseCompany> list = new ArrayList<>();
-        for(Company om: repositoryCompany.findAll()) {
-            list.add(MapStruct.MAPPER.toDTO(om));
-        }
-        return list;
-    }
-    public Page<DTOResponseCompany> retrieve(Pageable pageable){
-        List<DTOResponseCompany> list = new ArrayList<>();
-        for(Company role: repositoryCompany.findAll()) {
-            list.add(MapStruct.MAPPER.toDTO(role));
-        }
-        return new PageImpl<DTOResponseCompany>(list, pageable, list.size());
-    }
-    public Page<DTOResponseCompany> retrieve(Pageable pageable, String source) {
-        List<DTOResponseCompany> list = new ArrayList<>();
-        for(Company object: repositoryCompany.findAll()) {
-            list.add(MapStruct.MAPPER.toDTO(object));
-        }
-        return new PageImpl<DTOResponseCompany>(list, pageable, list.size());
-    }
-    public DTOResponseCompany retrieve(UUID id){
-        return MapStruct.MAPPER.toDTO(repositoryCompany.findById(id).orElse(null));
-    }
-    public Page<DTOResponseCompany> retrieveSource(Pageable pageable, String source){
-        final List<DTOResponseCompany> list = new ArrayList<>();
-        if (source == null) {
-            for (Company role : repositoryCompany.findAll()) {
-                list.add(MapStruct.MAPPER.toDTO(role));
+    public Page<DTOResponseCompany> retrieve(Pageable pageable, String filter){
+        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+            case "id": {
+                return repositoryCompanyPage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
             }
-        } else {
-            for (Company role : repositoryCompany.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
-                list.add(MapStruct.MAPPER.toDTO(role));
+            default: {
+                return repositoryCompanyPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
-        return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseCompany update(UUID id, DTORequestCompany updated){
         return MapStruct.MAPPER.toDTO(repositoryCompany.save(MapStruct.MAPPER.toObject(updated)));
@@ -71,8 +43,10 @@ public class ServiceCompany implements ServiceInterface<DTOResponseCompany, DTOR
     public void delete() {
         repositoryCompany.deleteAll();
     }
-    public Company findByName(String value) { return  repositoryCompany.findByName(value); }
-    public boolean existsByNameIgnoreCase(String value) {
+    public boolean existsByName(String value) {
         return repositoryCompany.existsByNameIgnoreCase(value);
+    }
+    public boolean existsByNameAndIdNot(String value, UUID id) {
+        return repositoryCompany.existsByNameIgnoreCaseAndIdNot(value, id);
     }
 }

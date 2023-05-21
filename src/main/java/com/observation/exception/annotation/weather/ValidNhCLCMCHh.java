@@ -1,6 +1,6 @@
 package com.observation.exception.annotation.weather;
 
-import com.observation.exception.validator.synopticObservation.ValidNhCLCMCHhValidator;
+import com.observation.exception.validator.weather.ValidatorValidNhCLCMCHh;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 
 @Target({ ElementType.TYPE, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = { ValidNhCLCMCHhValidator.class })
+@Constraint(validatedBy = { ValidatorValidNhCLCMCHh.class })
 @Documented
 public @interface ValidNhCLCMCHh {
 

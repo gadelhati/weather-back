@@ -3,11 +3,10 @@ package com.observation.exception.validator;
 import com.observation.exception.annotation.UniqueEmailResearcher;
 import com.observation.persistence.payload.request.DTORequestResearcher;
 import com.observation.service.ServiceResearcher;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static com.observation.exception.validator.Validator.isNull;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class ValidatorUniqueEmailResearcher implements ConstraintValidator<UniqueEmailResearcher, DTORequestResearcher> {
 
@@ -19,8 +18,8 @@ public class ValidatorUniqueEmailResearcher implements ConstraintValidator<Uniqu
     }
     @Override
     public boolean isValid(DTORequestResearcher value, ConstraintValidatorContext context) {
-        if (!isNull(value.getEmail()) && !serviceResearcher.existsByEmailIgnoreCase(value.getEmail()) ||
-                !isNull(value.getEmail()) && !isNull(value.getId()) && !serviceResearcher.existsByEmailAndIdNot(value.getEmail(), value.getId()) ) {
+        if (!Validator.isNull(value.getName()) && !serviceResearcher.existsByName(value.getName()) ||
+                !Validator.isNull(value.getName()) && !Validator.isNull(value.getId()) && !serviceResearcher.existsByNameAndIdNot(value.getName(), value.getId()) ) {
             return true;
         } else {
             return false;

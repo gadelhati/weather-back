@@ -5,60 +5,32 @@ import com.observation.persistence.model.FederativeUnit;
 import com.observation.persistence.payload.request.DTORequestFederativeUnit;
 import com.observation.persistence.payload.response.DTOResponseFederativeUnit;
 import com.observation.persistence.repository.RepositoryFederativeUnit;
+import com.observation.persistence.repository.RepositoryFederativeUnitPage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Service @RequiredArgsConstructor
-public class ServiceFederativeUnit implements ServiceInterface<DTOResponseFederativeUnit, DTORequestFederativeUnit, FederativeUnit> {
+public class ServiceFederativeUnit implements ServiceInterface<DTOResponseFederativeUnit, DTORequestFederativeUnit> {
 
     private final RepositoryFederativeUnit repositoryFederativeUnit;
+    private final RepositoryFederativeUnitPage repositoryFederativeUnitPage;
 
     public DTOResponseFederativeUnit create(DTORequestFederativeUnit created){
         return MapStruct.MAPPER.toDTO(repositoryFederativeUnit.save(MapStruct.MAPPER.toObject(created)));
     }
-    public List<DTOResponseFederativeUnit> retrieve(){
-        List<DTOResponseFederativeUnit> list = new ArrayList<>();
-        for(FederativeUnit om: repositoryFederativeUnit.findAll()) {
-            list.add(MapStruct.MAPPER.toDTO(om));
-        }
-        return list;
-    }
-    public Page<DTOResponseFederativeUnit> retrieve(Pageable pageable){
-        List<DTOResponseFederativeUnit> list = new ArrayList<>();
-        for(FederativeUnit role: repositoryFederativeUnit.findAll()) {
-            list.add(MapStruct.MAPPER.toDTO(role));
-        }
-        return new PageImpl<DTOResponseFederativeUnit>(list, pageable, list.size());
-    }
-    public Page<DTOResponseFederativeUnit> retrieve(Pageable pageable, String source) {
-        List<DTOResponseFederativeUnit> list = new ArrayList<>();
-        for(FederativeUnit object: repositoryFederativeUnit.findAll()) {
-            list.add(MapStruct.MAPPER.toDTO(object));
-        }
-        return new PageImpl<DTOResponseFederativeUnit>(list, pageable, list.size());
-    }
-    public DTOResponseFederativeUnit retrieve(UUID id){
-        return MapStruct.MAPPER.toDTO(repositoryFederativeUnit.findById(id).orElse(null));
-    }
-    public Page<DTOResponseFederativeUnit> retrieveSource(Pageable pageable, String source){
-        final List<DTOResponseFederativeUnit> list = new ArrayList<>();
-        if (source == null) {
-            for (FederativeUnit role : repositoryFederativeUnit.findAll()) {
-                list.add(MapStruct.MAPPER.toDTO(role));
+    public Page<DTOResponseFederativeUnit> retrieve(Pageable pageable, String filter){
+        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+            case "id": {
+                return repositoryFederativeUnitPage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
             }
-        } else {
-            for (FederativeUnit role : repositoryFederativeUnit.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
-                list.add(MapStruct.MAPPER.toDTO(role));
+            default: {
+                return repositoryFederativeUnitPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
-        return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseFederativeUnit update(UUID id, DTORequestFederativeUnit updated){
         return MapStruct.MAPPER.toDTO(repositoryFederativeUnit.save(MapStruct.MAPPER.toObject(updated)));
@@ -71,11 +43,10 @@ public class ServiceFederativeUnit implements ServiceInterface<DTOResponseFedera
     public void delete() {
         repositoryFederativeUnit.deleteAll();
     }
-    public FederativeUnit findByName(String value) { return  repositoryFederativeUnit.findByName(value); }
-    public boolean existsByNameIgnoreCase(String value) {
+    public boolean existsByName(String value) {
         return repositoryFederativeUnit.existsByNameIgnoreCase(value);
     }
-    public boolean existsByInitials(String value) {
-        return repositoryFederativeUnit.existsByInitialsIgnoreCase(value);
+    public boolean existsByNameAndIdNot(String value, UUID id) {
+        return repositoryFederativeUnit.existsByNameIgnoreCaseAndIdNot(value, id);
     }
 }

@@ -18,8 +18,6 @@ public interface MapStruct {
     DTOResponseFederativeUnit toDTO(FederativeUnit federativeUnit);
     DTOResponseIndividual toDTO(Individual individual);
     DTOResponseInstitution toDTO(Institution institution);
-//    DTOResponseJwt toDTO(Jwt jwt);
-//    DTOResponseLogOut toDTO(Company company);
     DTOResponseManufacturer toDTO(Manufacturer manufacturer);
     DTOResponseObserver toDTO(Observer observer);
     DTOResponseOM toDTO(OM om);
@@ -38,8 +36,6 @@ public interface MapStruct {
     DTOResponseSynopticObservationHistoric toDTO(SynopticObservationHistoric synopticObservationHistoric);
     DTOResponseSynopticObservationHistoricOffShore toDTO(SynopticObservationHistoricOffShore synopticObservationHistoricOffShore);
     DTOResponseSynopticObservationHistoricOnShore toDTO(SynopticObservationHistoricOnShore synopticObservationHistoricOnShore);
-//    DTOResponseTokenRefresh toDTO(TokenRef);
-    DTOResponseUser toDTO(User user);
     DTOResponseUserEntity toDTO(UserEntity userEntity);
     DTOResponsePrivilege toDTO(Privilege privilege);
 
@@ -53,8 +49,6 @@ public interface MapStruct {
     Institution toObject(DTORequestInstitution dtoRequestInstitution);
     Manufacturer toObject(DTORequestManufacturer dtoRequestManufacturer);
     Observer toObject(DTORequestObserver dtoRequestObserver);
-//    Jwt toObject(DTORequestJwt dtoRequestJwt);
-//    LogOut toObject(DTORequestLogOut dtoRequestLogOut);
     OM toObject(DTORequestOM dtoRequestOM);
     Person toObject(DTORequestPerson dtoRequestPerson);
     Platform toObject(DTORequestPlatform dtoRequestPlatform);
@@ -71,8 +65,6 @@ public interface MapStruct {
     SynopticObservationHistoric toObject(DTORequestSynopticObservationHistoric dtoRequestSynopticObservationHistoric);
     SynopticObservationHistoricOffShore toObject(DTORequestSynopticObservationHistoricOffShore dtoRequestSynopticObservationHistoricOffShore);
     SynopticObservationHistoricOnShore toObject(DTORequestSynopticObservationHistoricOnShore dtoRequestSynopticObservationHistoricOnShore);
-//    TokenRefresh toObject(DTORequestTokenRefresh tokenRefresh);
-    User toObject(DTORequestUser dtoRequestUser);
     UserEntity toObject(DTORequestUserEntity dtoRequestUserEntity);
     Privilege toObject(DTORequestPrivilege dtoRequestPrivilege);
 }

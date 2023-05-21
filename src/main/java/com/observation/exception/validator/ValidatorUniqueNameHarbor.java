@@ -3,11 +3,10 @@ package com.observation.exception.validator;
 import com.observation.exception.annotation.UniqueNameHarbor;
 import com.observation.persistence.payload.request.DTORequestHarbor;
 import com.observation.service.ServiceHarbor;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static com.observation.exception.validator.Validator.isNull;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class ValidatorUniqueNameHarbor implements ConstraintValidator<UniqueNameHarbor, DTORequestHarbor> {
 
@@ -19,8 +18,8 @@ public class ValidatorUniqueNameHarbor implements ConstraintValidator<UniqueName
     }
     @Override
     public boolean isValid(DTORequestHarbor value, ConstraintValidatorContext context) {
-        if (!isNull(value.getName()) && !serviceHarbor.existsByNameIgnoreCase(value.getName()) ||
-                !isNull(value.getName()) && !isNull(value.getId()) && !serviceHarbor.existsByNameAndIdNot(value.getName(), value.getId()) ) {
+        if (!Validator.isNull(value.getName()) && !serviceHarbor.existsByName(value.getName()) ||
+                !Validator.isNull(value.getName()) && !Validator.isNull(value.getId()) && !serviceHarbor.existsByNameAndIdNot(value.getName(), value.getId()) ) {
             return true;
         } else {
             return false;

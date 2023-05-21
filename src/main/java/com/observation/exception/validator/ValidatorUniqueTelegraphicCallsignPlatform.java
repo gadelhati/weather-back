@@ -3,11 +3,10 @@ package com.observation.exception.validator;
 import com.observation.exception.annotation.UniqueTelegraphicCallsignPlatform;
 import com.observation.persistence.payload.request.DTORequestPlatform;
 import com.observation.service.ServicePlatform;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static com.observation.exception.validator.Validator.isNull;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class ValidatorUniqueTelegraphicCallsignPlatform implements ConstraintValidator<UniqueTelegraphicCallsignPlatform, DTORequestPlatform> {
 
@@ -19,8 +18,8 @@ public class ValidatorUniqueTelegraphicCallsignPlatform implements ConstraintVal
     }
     @Override
     public boolean isValid(DTORequestPlatform value, ConstraintValidatorContext context) {
-        if (!isNull(value.getTelegraphicCallsign()) && !servicePlatform.existsByTelegraphicCallsignIgnoreCase(value.getTelegraphicCallsign()) ||
-                !isNull(value.getTelegraphicCallsign()) && !isNull(value.getId()) && !servicePlatform.existsByTelegraphicCallsign(value.getTelegraphicCallsign(), value.getId()) ) {
+        if (!Validator.isNull(value.getTelegraphicCallsign()) && !servicePlatform.existsByTelegraphicCallsign(value.getTelegraphicCallsign()) ||
+                !Validator.isNull(value.getTelegraphicCallsign()) && !Validator.isNull(value.getId()) && !servicePlatform.existsByTelegraphicCallsignAndIdNot(value.getTelegraphicCallsign(), value.getId()) ) {
             return true;
         } else {
             return false;

@@ -7,8 +7,6 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static com.observation.exception.validator.Validator.isNull;
-
 public class ValidatorUniqueNameStationOnShore implements ConstraintValidator<UniqueNameStationOnShore, DTORequestStationOnShore> {
 
     @Autowired
@@ -19,8 +17,8 @@ public class ValidatorUniqueNameStationOnShore implements ConstraintValidator<Un
     }
     @Override
     public boolean isValid(DTORequestStationOnShore value, ConstraintValidatorContext context) {
-        if (!isNull(value.getName()) && !serviceStationOnShore.existsByNameIgnoreCase(value.getName()) ||
-                !isNull(value.getName()) && !isNull(value.getId()) && !serviceStationOnShore.existsByNameIgnoreCaseAndIdNot(value.getName(), value.getId()) ) {
+        if (!Validator.isNull(value.getName()) && !serviceStationOnShore.existsByName(value.getName()) ||
+                !Validator.isNull(value.getName()) && !Validator.isNull(value.getId()) && !serviceStationOnShore.existsByNameAndIdNot(value.getName(), value.getId()) ) {
             return true;
         } else {
             return false;

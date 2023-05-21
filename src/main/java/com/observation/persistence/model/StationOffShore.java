@@ -10,7 +10,7 @@ import org.hibernate.envers.Audited;
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class StationOffShore extends Station {
 
-    private String telegraphicCallsign;
+    private String telegraphicCallSign;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "commission")
