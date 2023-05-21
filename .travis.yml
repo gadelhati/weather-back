@@ -1,0 +1,11 @@
+sudo: false
+language: java
+jdk: openjdk20
+install: true
+cache:
+  directories:
+    - $HOME/.m2
+notifications:
+  email: gadelha.ti@gmail.com
+before_install:
+  - chmod +x mvnw
