@@ -26,13 +26,11 @@ public class ConfigurationSecurity {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .cors().and().csrf().disable()
-                .exceptionHandling().authenticationEntryPoint(authEntryPoint).and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeHttpRequests()
-                    .requestMatchers(HttpMethod.POST, "/auth").permitAll()
-    //                .requestMatchers(HttpMethod.POST, "/user").hasAnyRole("ADMIN", "MODERATOR")
-                .anyRequest().authenticated();
+                .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("/auth").permitAll()
+                        .anyRequest().authenticated()
+                        //                .requestMatchers(HttpMethod.POST, "/user").hasAnyRole("ADMIN", "MODERATOR")
+                );
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
