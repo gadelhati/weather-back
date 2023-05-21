@@ -6,7 +6,7 @@ import com.observation.persistence.payload.response.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel="spring")
+@Mapper
 public interface MapStruct {
 
     MapStruct MAPPER = Mappers.getMapper(MapStruct.class);

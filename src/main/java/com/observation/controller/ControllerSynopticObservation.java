@@ -24,12 +24,12 @@ public class ControllerSynopticObservation {
 
     private final ServiceSynopticObservation serviceSynopticObservation;
 
-    @PostMapping("") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
+    @PostMapping("") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseSynopticObservation> create(@RequestBody @Valid DTORequestSynopticObservation created){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/synopticObservation").toUriString());
         return ResponseEntity.created(uri).body(serviceSynopticObservation.create(created));
     }
-    @PostMapping("/createAll") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
+    @PostMapping("/createAll") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
     public ResponseEntity<List<DTOResponseSynopticObservation>> create(@RequestBody @Valid List<DTORequestSynopticObservation> createds){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/synopticObservation/createAll").toUriString());
         return ResponseEntity.created(uri).body(serviceSynopticObservation.create(createds));
@@ -50,23 +50,23 @@ public class ControllerSynopticObservation {
 //            return new ResponseEntity<>(dtoResponseSynopticObservationsFailed, HttpStatus.INTERNAL_SERVER_ERROR);
 //        }
     }
-    @GetMapping("")
+    @GetMapping("") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<Page<DTOResponseSynopticObservation>> retrieve(@RequestParam(value = "filter", required = false) String filter, Pageable pageable){
-        return ResponseEntity.ok().body(serviceSynopticObservation.retrieve(pageable, null));
+        return ResponseEntity.ok().body(serviceSynopticObservation.retrieve(pageable, filter));
     }
-    @GetMapping(value = {"/{dateObservation}/{ii}/{iii}", "/{dateObservation}/{ddddddd}"}) @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
-    public ResponseEntity<DTOResponseSynopticObservation> retrieve(@PathVariable("dateObservation") LocalDateTime dateObservation, @PathVariable("ddddddd") String ddddddd, @PathVariable("ii") String ii, @PathVariable("iii") String iii){
-        return ResponseEntity.ok().body(serviceSynopticObservation.retrieve(new SynopticObservationId(dateObservation, ddddddd, ii, iii)));
-    }
+//    @GetMapping(value = {"/{dateObservation}/{ii}/{iii}", "/{dateObservation}/{ddddddd}"}) @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
+//    public ResponseEntity<DTOResponseSynopticObservation> retrieve(@PathVariable("dateObservation") LocalDateTime dateObservation, @PathVariable("ddddddd") String ddddddd, @PathVariable("ii") String ii, @PathVariable("iii") String iii){
+//        return ResponseEntity.ok().body(serviceSynopticObservation.retrieve(new SynopticObservationId(dateObservation, ddddddd, ii, iii)));
+//    }
     @PutMapping("") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseSynopticObservation> update(@RequestBody @Valid DTORequestSynopticObservation updated){
-        return ResponseEntity.accepted().body(serviceSynopticObservation.update(updated));
+        return ResponseEntity.accepted().body(serviceSynopticObservation.update(new SynopticObservationId(updated.getDateObservation(), updated.getDdddddd(), updated.getIi(), updated.getIii()), updated));
     }
     @DeleteMapping(value = {"/{dateObservation}/{ii}/{iii}", "/{dateObservation}/{ddddddd}"}) @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
-    public ResponseEntity<DTOResponseSynopticObservation> delete(@PathVariable LocalDateTime dateObservation, @PathVariable String ddddddd, @PathVariable String ii, @PathVariable String iii){
+    public ResponseEntity<DTOResponseSynopticObservation> delete(@PathVariable("dateObservation") LocalDateTime dateObservation, @PathVariable("ddddddd") String ddddddd, @PathVariable("ii") String ii, @PathVariable("iii") String iii){
         return ResponseEntity.accepted().body(serviceSynopticObservation.delete(new SynopticObservationId(dateObservation, ddddddd, ii, iii)));
     }
-    @DeleteMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN', 'RECTIFIER')")
+    @DeleteMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<HttpStatus> delete(){
         try {
             serviceSynopticObservation.delete();

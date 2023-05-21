@@ -1,7 +1,6 @@
 package com.observation.service;
 
 import com.observation.persistence.MapStruct;
-import com.observation.persistence.model.SynopticObservation;
 import com.observation.persistence.model.SynopticObservationId;
 import com.observation.persistence.payload.request.DTORequestSynopticObservation;
 import com.observation.persistence.payload.response.DTOResponseSynopticObservation;
@@ -16,11 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.*;
 
 @Service @RequiredArgsConstructor
 public class ServiceSynopticObservation {
@@ -50,27 +45,12 @@ public class ServiceSynopticObservation {
         }
         return list;
     }
-    public List<DTOResponseSynopticObservation> retrieve(List<SynopticObservation> list){
-        return list.stream().map(value -> MapStruct.MAPPER.toDTO(value)).collect(Collectors.toList());
-    }
-    public DTOResponseSynopticObservation retrieve(SynopticObservationId source){
-        return MapStruct.MAPPER.toDTO(repositorySynopticObservation.findById(source).orElseGet(null));
-    }
-    public List<DTOResponseSynopticObservation> retrieve(){
-        return retrieve(repositorySynopticObservation.findAll());
-    }
     public Page<DTOResponseSynopticObservation> retrieve(Pageable pageable, String filter){
-//        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
-//            case "id": {
-//                return repositorySynopticObservationPage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
-//            }
-//            case "name": {
-//                return repositorySynopticObservationPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, filter).map(MapStruct.MAPPER::toDTO);
-//            }
-//            default: {
+        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+            default: {
                 return repositorySynopticObservationPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
-//            }
-//        }
+            }
+        }
     }
     public Page<DTOResponseSynopticObservationHistoric> retrieveHistoric(Pageable pageable, String filter){
         return repositorySynopticObservationHistoricPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
@@ -81,30 +61,20 @@ public class ServiceSynopticObservation {
     public Page<DTOResponseSynopticObservationHistoricOnShore> retrieveHistoricOnShore(Pageable pageable, String filter){
         return repositorySynopticObservationHistoricPageOnShore.findAll(pageable).map(MapStruct.MAPPER::toDTO);
     }
-//    public Geometry wktToGeometry(String wellKnownText) throws ParseException {
-//        return new WKTReader().read(wellKnownText);
-//    }
-    public DTOResponseSynopticObservation update(DTORequestSynopticObservation updated) {
+    public DTOResponseSynopticObservation update(SynopticObservationId id, DTORequestSynopticObservation updated) {
         updated.setDateObservation(updated.getDataObservacao().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().withHour(Integer.parseInt(updated.getGg())));
         updated.setDdddddd(updated.getEstacao());
         return MapStruct.MAPPER.toDTO(repositorySynopticObservation.save(MapStruct.MAPPER.toObject(updated)));
     }
     public DTOResponseSynopticObservation delete(SynopticObservationId synopticObservationId){
+//        DTOResponseSynopticObservation dtoResponseSynopticObservation = MapStruct.MAPPER.toDTO(repositorySynopticObservation.findById(id).orElse(null));
+//        repositorySynopticObservation.deleteById(id);
+//        return dtoResponseSynopticObservation;
+
         repositorySynopticObservation.deleteById(synopticObservationId);
         return MapStruct.MAPPER.toDTO(repositorySynopticObservation.findById(synopticObservationId).orElse(null));
     }
     public void delete() {
         repositorySynopticObservation.deleteAll();
     };
-
-//    public boolean isEstacaoValid(String value) {
-//        return repository.existsByEstacao(value);
-//    }
-//    public List<DTOResponseObservation> retrieveByEstacao(String source){
-//        final List<DTOResponseObservation> list = new ArrayList<>();
-//        for (Observation observation : repository.findByEstacaoContainingIgnoreCaseOrderByEstacaoAsc(source)) {
-//            list.add(DTOResponseObservation.toDTO(observation));
-//        }
-//        return list;
-//    }
 }
