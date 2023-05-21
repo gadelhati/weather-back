@@ -4,7 +4,7 @@ import com.observation.persistence.model.Observer;
 import com.observation.persistence.model.Station;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.observation.exception.annotation.synopticObservation.*;
+import com.observation.exception.annotation.weather.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

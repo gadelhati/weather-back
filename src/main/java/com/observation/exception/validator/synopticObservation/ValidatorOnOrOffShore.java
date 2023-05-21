@@ -1,6 +1,6 @@
 package com.observation.exception.validator.synopticObservation;
 
-import com.observation.exception.annotation.synopticObservation.OnOrOffShore;
+import com.observation.exception.annotation.weather.OnOrOffShore;
 import com.observation.persistence.payload.request.DTORequestSynopticObservation;
 import com.observation.service.ServiceSynopticObservation;
 import jakarta.validation.ConstraintValidator;

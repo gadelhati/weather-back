@@ -1,6 +1,6 @@
 package com.observation.exception.validator.synopticObservation;
 
-import com.observation.exception.annotation.synopticObservation.ValidNddff;
+import com.observation.exception.annotation.weather.ValidNddff;
 import com.observation.persistence.payload.request.DTORequestSynopticObservation;
 import com.observation.exception.validator.GlobalValidation;
 import jakarta.validation.ConstraintValidator;

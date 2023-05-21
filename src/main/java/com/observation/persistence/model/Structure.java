@@ -1,6 +1,6 @@
 package com.observation.persistence.model;
 
-import com.observation.persistence.model.enumeration.EnumFormat;
+import com.observation.persistence.enumeration.EnumFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;

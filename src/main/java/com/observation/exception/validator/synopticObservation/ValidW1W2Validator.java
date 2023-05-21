@@ -1,6 +1,6 @@
 package com.observation.exception.validator.synopticObservation;
 
-import com.observation.exception.annotation.synopticObservation.ValidW1W2;
+import com.observation.exception.annotation.weather.ValidW1W2;
 import com.observation.persistence.payload.request.DTORequestSynopticObservation;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
