@@ -69,7 +69,7 @@ The initiative to create a program in which the code is typed instead of being f
 Type in intellij terminal tab
 
 ### how to create this project
-> [https://start.spring.io/](https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.0.2&packaging=war&jvmVersion=19&groupId=br.eti.gadelha&artifactId=nutrition&name=nutrition&description=Gadelha's%20Spring%20Boot%20Project&packageName=br.eti.gadelha.nutrition&dependencies=lombok,h2,security,data-jpa,postgresql,actuator,validation)
+> [https://start.spring.io/](https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.1.0&packaging=war&jvmVersion=20&groupId=com.observation&artifactId=weather&name=weather&description=weather%20observation&packageName=com.observation.weather)
 
 ### how to clone the project and build locally
 ```
