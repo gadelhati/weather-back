@@ -1,6 +1,6 @@
 # Weather _Back_
 
-![github](https://img.shields.io/github/stars/gadelhati/nutrition?style=social "Github")
+![github](https://img.shields.io/github/stars/gadelhati/weather-back?style=social "Github")
 ![java](https://img.shields.io/badge/java-19-2145E8 "Java")
 ![postgresql](https://img.shields.io/badge/postgresql-15.1.1-6495ED "PostgreSQL")
 ![springboot](https://img.shields.io/badge/springboot-3.0.1-53D05D "Spring Boot")
