@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @Getter @AllArgsConstructor
 public class DTOResponseHarbor {
+
     private UUID id;
     private String name;
     private Institution institution;

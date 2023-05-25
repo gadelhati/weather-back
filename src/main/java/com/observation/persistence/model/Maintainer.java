@@ -9,5 +9,6 @@ import org.hibernate.envers.Audited;
 
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Maintainer extends GenericEntity {
+
     private String name;
 }

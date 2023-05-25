@@ -32,10 +32,10 @@ public interface MapStruct {
     DTOResponseStationOffShore toDTO(StationOffShore stationOffShore);
     DTOResponseStationOnShore toDTO(StationOnShore stationOnShore);
     DTOResponseSurveying toDTO(Surveying surveying);
-    DTOResponseSynopticObservation toDTO(SynopticObservation synopticObservation);
-    DTOResponseSynopticObservationHistoric toDTO(SynopticObservationHistoric synopticObservationHistoric);
-    DTOResponseSynopticObservationHistoricOffShore toDTO(SynopticObservationHistoricOffShore synopticObservationHistoricOffShore);
-    DTOResponseSynopticObservationHistoricOnShore toDTO(SynopticObservationHistoricOnShore synopticObservationHistoricOnShore);
+    DTOResponseWeather toDTO(Weather weather);
+    DTOResponseWeatherHistoric toDTO(WeatherHistoric weatherHistoric);
+    DTOResponseWeatherHistoricOffShore toDTO(WeatherHistoricOffShore weatherHistoricOffShore);
+    DTOResponseWeatherHistoricOnShore toDTO(WeatherHistoricOnShore weatherHistoricOnShore);
     DTOResponseUserEntity toDTO(UserEntity userEntity);
     DTOResponsePrivilege toDTO(Privilege privilege);
 
@@ -61,10 +61,10 @@ public interface MapStruct {
     StationOffShore toObject(DTORequestStationOffShore dtoRequestStationOffShore);
     StationOnShore toObject(DTORequestStationOnShore dtoRequestStationOnShore);
     Surveying toObject(DTORequestSurveying dtoRequestSurveying);
-    SynopticObservation toObject(DTORequestSynopticObservation dtoRequestSynopticObservation);
-    SynopticObservationHistoric toObject(DTORequestSynopticObservationHistoric dtoRequestSynopticObservationHistoric);
-    SynopticObservationHistoricOffShore toObject(DTORequestSynopticObservationHistoricOffShore dtoRequestSynopticObservationHistoricOffShore);
-    SynopticObservationHistoricOnShore toObject(DTORequestSynopticObservationHistoricOnShore dtoRequestSynopticObservationHistoricOnShore);
+    Weather toObject(DTORequestWeather dtoRequestWeather);
+    WeatherHistoric toObject(DTORequestWeatherHistoric dtoRequestWeatherHistoric);
+    WeatherHistoricOffShore toObject(DTORequestWeatherHistoricOffShore dtoRequestWeatherHistoricOffShore);
+    WeatherHistoricOnShore toObject(DTORequestWeatherHistoricOnShore dtoRequestWeatherHistoricOnShore);
     UserEntity toObject(DTORequestUserEntity dtoRequestUserEntity);
     Privilege toObject(DTORequestPrivilege dtoRequestPrivilege);
 }

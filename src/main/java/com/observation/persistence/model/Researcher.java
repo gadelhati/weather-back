@@ -11,6 +11,7 @@ import org.hibernate.envers.Audited;
 
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"email"}))
 public class Researcher extends GenericEntity {
+
     private String name;
     private String email;
     private String address;

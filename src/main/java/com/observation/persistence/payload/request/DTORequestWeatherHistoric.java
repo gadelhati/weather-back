@@ -1,10 +1,10 @@
 package com.observation.persistence.payload.request;
 
+import com.observation.persistence.model.Observer;
+import com.observation.persistence.model.Station;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.observation.exception.annotation.weather.*;
-import com.observation.persistence.model.Observer;
-import com.observation.persistence.model.Station;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -16,27 +16,28 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.UUID;
 
 @Setter @Getter @AllArgsConstructor @NoArgsConstructor @JsonIgnoreProperties(ignoreUnknown = true) @OnOrOffShore
-@ValidNhCLCM @ValidTTTTdTdTd @ValidAppp @ValidCLCM @ValidCMCH
-@ValidNCLCMCH
-@ValidNCLCMCHh @ValidNddff @ValidNh @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh
-@ValidNW2 @ValidTTTTnTnTn @ValidTTT
-@ValidTxTxTx
-@ValidVVh @ValidVVWW @ValidW1W2
-public class DTORequestSynopticObservation {
+@ValidNhCLCM
+@ValidTTTTdTdTd
+@ValidAppp
+@ValidCLCM
+@ValidCMCH @ValidNCLCMCH @ValidNCLCMCHh @ValidNddff @ValidNh @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh @ValidNW2 @ValidTTTTnTnTn @ValidTTT @ValidTxTxTx @ValidVVh @ValidVVWW @ValidW1W2
+public class DTORequestWeatherHistoric {
 
+    private UUID id;
     //SECTION 0
 
     //AABB
-private String aabbxx;
+    private String aabbxx;
     @Pattern(regexp = "AA||BB", message = "{mimi.valid}")
     private String mimi;
     @Pattern(regexp = "XX", message = "{mjmj.valid}")
     private String mjmj;
     //DDDDDDD
-private String estacao;
-//    @NotNull(message = "{ddddddd.not.null}") @NotBlank(message = "{ddddddd.not.blank}")
+    private String estacao;
+    //    @NotNull(message = "{ddddddd.not.null}") @NotBlank(message = "{ddddddd.not.blank}")
     private String ddddddd;
     //A1bwnbnbnb
 
@@ -55,7 +56,7 @@ private String estacao;
     //IIiii
     @Pattern(regexp = "82||83", message = "{ii.valid}")
     private String ii;
-//    @Pattern(regexp = "[0-9][0-9][0-9]", message = "{iii.valid}")
+    //    @Pattern(regexp = "[0-9][0-9][0-9]", message = "{iii.valid}")
     private String iii;
     //99LaLaLa
     @Pattern(regexp = "[0-8][0-9][0-9]||900", message = "{lalala.valid}")
@@ -250,7 +251,7 @@ private String estacao;
     private Date dataObservacao;
     @NotNull(message = "{dateObservation.not.null}")
     private LocalDateTime dateObservation;
-private String observador;
+    private String observador;
     @NotNull(message = "{observerName.not.null}") @NotBlank(message = "{observerName.not.blank}")
     private String observerName;
 

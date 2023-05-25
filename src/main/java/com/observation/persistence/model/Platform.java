@@ -9,6 +9,7 @@ import org.hibernate.envers.Audited;
 
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Platform extends GenericEntity {
+
 	private String visualCallsign;
 	private String telegraphicCallsign;
 	private String internationalCallsign;

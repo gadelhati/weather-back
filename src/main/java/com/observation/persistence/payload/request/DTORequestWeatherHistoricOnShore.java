@@ -16,6 +16,7 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.UUID;
 
 @Setter @Getter @AllArgsConstructor @NoArgsConstructor @JsonIgnoreProperties(ignoreUnknown = true) @OnOrOffShore
 @ValidNhCLCM
@@ -24,8 +25,9 @@ import java.util.Date;
 @ValidCMCH @ValidNCLCMCH @ValidNCLCMCHh
 @ValidNddff
 @ValidNh @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh @ValidNW2 @ValidTTTTnTnTn @ValidTTT @ValidTxTxTx @ValidVVh @ValidVVWW @ValidW1W2
-public class DTORequestSynopticObservationHistoricOnShore {
+public class DTORequestWeatherHistoricOnShore {
 
+    private UUID id;
     //SECTION 0
 
     //AABB
@@ -96,6 +98,7 @@ public class DTORequestSynopticObservationHistoricOnShore {
     private String sn2_1;
     @Pattern(regexp = "[0-4][0-9][0-9]||500||\\/\\/\\/", message = "{tdtdtd.valid}") @JsonProperty("tdTdTd_UUU")
     private String tdtdtd;
+    private String uuu;
     //3P0P0P0P0
     @Pattern(regexp = "0[0-9][0-9][0-9]||1000||8[7-9][0-9][0-9]||9[0-9][0-9][0-9]", message = "{p0p0p0p0.valid}")
     private String p0p0p0p0;

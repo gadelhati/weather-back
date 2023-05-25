@@ -21,6 +21,9 @@ public class StationHistoric extends GenericEntity {
     private Integer marsdenSubSquare_1;
     private Integer wmoSquare;
     private Integer marsdenSubSquare_5;
+    private String platformCode;
+    private String collectionDepth;
+    private String commissionCode;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "stationCategory")
@@ -34,7 +37,13 @@ public class StationHistoric extends GenericEntity {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "responsible")
     private Institution responsible;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "country")
     private Country country;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "commission")
+    private Commission commission;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "platformCategory")
+    private PlatformCategory platformCategory;
 }

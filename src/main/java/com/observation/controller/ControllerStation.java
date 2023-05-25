@@ -2,6 +2,7 @@ package com.observation.controller;
 
 import com.observation.persistence.payload.request.DTORequestStation;
 import com.observation.persistence.payload.response.DTOResponseStation;
+import com.observation.persistence.payload.response.DTOResponseStationHistoric;
 import com.observation.service.ServiceStation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -27,9 +28,13 @@ public class ControllerStation implements ControllerInterface<DTOResponseStation
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/station").toUriString());
         return ResponseEntity.created(uri).body(serviceStation.create(created));
     }
-    @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @GetMapping("") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseStation>> retrieve(@RequestParam(required = false) String filter, Pageable pageable){
         return ResponseEntity.ok().body(serviceStation.retrieve(pageable, filter));
+    }
+    @GetMapping("/historic") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
+    public ResponseEntity<Page<DTOResponseStationHistoric>> retrieveHistoric(@RequestParam(value = "filter", required = false) String filter, Pageable pageable){
+        return ResponseEntity.ok().body(serviceStation.retrieveHistoric(pageable, filter));
     }
     @PutMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseStation> update(@RequestBody @Valid DTORequestStation updated){

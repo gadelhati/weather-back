@@ -28,59 +28,19 @@ public class ServiceStation implements ServiceInterface<DTOResponseStation, DTOR
     public DTOResponseStation create(DTORequestStation created){
         return MapStruct.MAPPER.toDTO(repositoryStation.save(MapStruct.MAPPER.toObject(created)));
     }
-    public DTOResponseStation retrieve(UUID id){
-        return MapStruct.MAPPER.toDTO(repositoryStation.findById(id).orElse(null));
-    }
-    public List<DTOResponseStation> retrieve(){
-        List<DTOResponseStation> list = new ArrayList<>();
-        for(Station object: repositoryStation.findAll()) {
-            list.add(MapStruct.MAPPER.toDTO(object));
+    public Page<DTOResponseStation> retrieve(Pageable pageable, String filter) {
+        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+            case "id": {
+                return repositoryStationPage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
+            }
+            default: {
+                return repositoryStationPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+            }
         }
-        return list;
-    }
-
-    public Page<DTOResponseStation> retrieve(Pageable pageable) {
-        return null;
-    }
-
-    //    public Page<DTOResponseStation> retrieve(Pageable pageable){
-//        List<DTOResponseStation> list = new ArrayList<>();
-//        for(Station object: repositoryStation.findAll()) {
-//            list.add(MapStruct.MAPPER.toDTO(object));
-//        }
-//        return new PageImpl<DTOResponseStation>(list, pageable, list.size());
-//    }
-    public Page<DTOResponseStation> retrieve(Pageable pageable, String filter){
-//        List<DTOResponseStation> list = repositoryStationPage.findAll(pageable).stream().map(object -> MapStruct.MAPPER.toDTO(object)).collect(Collectors.toList());
-//        return new PageImpl<DTOResponseStation>(list, pageable, list.size());
-        return repositoryStationPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
     }
     public Page<DTOResponseStationHistoric> retrieveHistoric(Pageable pageable, String filter){
         return repositoryStationHistoricPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
     }
-//    @Override
-    public Page<DTOResponseStation> retrievePage(Integer page, Integer size,/* String sort,*/ String value, String order){
-        Pageable pageable = pageable = PageRequest.of(page, size);
-//        if(order != null && order.equals("asc")) pageable = PageRequest.of(page, size, Sort.by(sort).ascending());
-        if (value == null) {
-            return repositoryStationPage.findAll(pageable).map(object -> MapStruct.MAPPER.toDTO(object));
-        } else {
-            return repositoryStationPage.findAll(pageable).map(object -> MapStruct.MAPPER.toDTO(object));
-        }
-    }
-//    public Page<DTOResponseStation> retrieve(Pageable pageable, String source){
-//        final List<DTOResponseStation> list = new ArrayList<>();
-//        if (source == null) {
-//            for (Station object : repositoryStation.findAll()) {
-//                list.add(MapStruct.MAPPER.toDTO(object));
-//            }
-//        } else {
-////            for (Station object : repositoryStation.findByComContainingIgnoreCaseOrderByComAsc(source)) {
-////                list.add(DTOResponseStation.toDTO(object));
-////            }
-//        }
-//        return new PageImpl<>(list, pageable, list.size());
-//    }
     public DTOResponseStation update(UUID id, DTORequestStation updated){
         return MapStruct.MAPPER.toDTO(repositoryStation.save(MapStruct.MAPPER.toObject(updated)));
     }
@@ -92,7 +52,7 @@ public class ServiceStation implements ServiceInterface<DTOResponseStation, DTOR
     public void delete() {
         repositoryStation.deleteAll();
     }
-    public Station findByName(String value) { return  null; }
+    //    public Station findByName(String value) { return  null; }
     public boolean existsByNameIgnoreCase(String value) {
         return false;
     }

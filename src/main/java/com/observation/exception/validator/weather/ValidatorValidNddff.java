@@ -1,18 +1,18 @@
 package com.observation.exception.validator.weather;
 
 import com.observation.exception.annotation.weather.ValidNddff;
-import com.observation.persistence.payload.request.DTORequestSynopticObservation;
+import com.observation.persistence.payload.request.DTORequestWeather;
 import com.observation.exception.validator.GlobalValidation;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class ValidatorValidNddff implements ConstraintValidator<ValidNddff, DTORequestSynopticObservation> {
+public class ValidatorValidNddff implements ConstraintValidator<ValidNddff, DTORequestWeather> {
 
     @Override
     public void initialize(ValidNddff constraintAnnotation) {
     }
     @Override
-    public boolean isValid(DTORequestSynopticObservation value, ConstraintValidatorContext context) {
+    public boolean isValid(DTORequestWeather value, ConstraintValidatorContext context) {
         if( GlobalValidation.isValidWithNumber(value.getDd()) && GlobalValidation.isValidWithNumber(value.getFf())) {
             if (Integer.parseInt(value.getDd()) == 0 && Integer.parseInt(value.getFf()) != 0 ||
                     Integer.parseInt(value.getDd()) >= 0 && Integer.parseInt(value.getDd()) <= 36 && Integer.parseInt(value.getFf()) == 0 ||

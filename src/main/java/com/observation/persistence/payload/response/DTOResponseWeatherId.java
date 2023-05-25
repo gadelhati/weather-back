@@ -1,15 +1,14 @@
-package com.observation.persistence.model;
+package com.observation.persistence.payload.response;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-@Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
-public class SynopticObservationId implements Serializable {
+@AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode
+public class DTOResponseWeatherId implements Serializable {
 
     private LocalDateTime dateObservation;
     private String ddddddd;

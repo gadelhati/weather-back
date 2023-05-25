@@ -13,6 +13,7 @@ import org.hibernate.envers.Audited;
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Structure extends GenericEntity {
+
     private float altitude;
     private float height;
     private float calado;//sem tradução conhecida

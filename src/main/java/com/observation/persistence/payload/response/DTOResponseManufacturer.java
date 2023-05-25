@@ -7,6 +7,7 @@ import java.util.UUID;
 
 @Getter @AllArgsConstructor
 public class DTOResponseManufacturer {
+
     private UUID id;
     private String name;
 }

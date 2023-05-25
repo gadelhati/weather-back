@@ -7,18 +7,20 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.UUID;
 
 @Getter @AllArgsConstructor
-public class DTOResponseSynopticObservation {
+public class DTOResponseWeatherHistoricOnShore {
 
+    private UUID id;
     //SECTION 0
 
     //AABB
-private String aabbxx;
+    private String aabbxx;
     private String mimi;
     private String mjmj;
     //DDDDDDD
-private String estacao;
+    private String estacao;
     private String ddddddd;
     //A1bwnbnbnb
     private String a1;
@@ -55,6 +57,7 @@ private String estacao;
     //2snTdTdTd (ou 29UUU)
     private String sn2_1;
     private String tdtdtd;
+    private String uuu;
     //3P0P0P0P0
     private String p0p0p0p0;
     //4PPPP
@@ -71,7 +74,7 @@ private String estacao;
     //7wwW1W2
     private String ww;
     private String w1w2;
-//    private String w1;
+    //    private String w1;
 //    private String w2;
     //7wawaWa1Wa2
     private String wawa;
@@ -150,7 +153,7 @@ private String estacao;
 
     private Date dataObservacao;
     private LocalDateTime dateObservation;
-private String observador;
+    private String observador;
     private String observerName;
 
     private Station station;

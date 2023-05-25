@@ -9,7 +9,9 @@ import org.hibernate.envers.Audited;
 
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Harbor extends GenericEntity {
+
     private String name;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "institution", nullable = true)
     private Institution institution;

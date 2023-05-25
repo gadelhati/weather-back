@@ -7,23 +7,21 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-@IdClass(SynopticObservationId.class)
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
-public class SynopticObservation implements Serializable {
+public class WeatherHistoricOnShore extends GenericEntity {
 
     //SECTION 0
 
     //AABB
-private String aabbxx;
+    private String aabbxx;
     private String mimi;
     private String mjmj;
-private String estacao;
+    private String estacao;
     //DDDDDDD
-    @Id
+
     private String ddddddd;
     //A1bwnbnbnb
     private String a1;
@@ -34,9 +32,9 @@ private String estacao;
     private String gg;
     private String iw;
     //IIiii
-    @Id
+
     private String ii;
-    @Id
+
     private String iii;
     //99LaLaLa
     private String lalala;
@@ -62,6 +60,7 @@ private String estacao;
     //2snTdTdTd (ou 29UUU)
     private String sn2_1;
     private String tdtdtd;
+    private String uuu;
     //3P0P0P0P0
     private String p0p0p0p0;
     //4PPPP
@@ -155,12 +154,12 @@ private String estacao;
     private String icp;
     private String icq;
 
-@Temporal(TemporalType.TIMESTAMP)
-private Date dataObservacao;
-    @Id
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataObservacao;
+
     private LocalDateTime dateObservation;
-private String observador;
-//    @Transient
+    private String observador;
+    //    @Transient
     private String observerName;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)

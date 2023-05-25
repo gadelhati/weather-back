@@ -11,6 +11,7 @@ import org.hibernate.envers.Audited;
 public class Equipment extends GenericEntity {
 
     private String name;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "manufacturer")
     private Manufacturer manufacturer;

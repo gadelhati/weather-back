@@ -11,6 +11,7 @@ import org.hibernate.envers.Audited;
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 @PrimaryKeyJoinColumn(name="id")
 public class Instalation extends Structure {
+
     private String orderNumber;
     private Maintainer maintainer;
 }

@@ -7,6 +7,7 @@ import java.util.UUID;
 
 @Getter @AllArgsConstructor
 public class DTOResponseObserver {
+
     private UUID id;
     private String name;
     private String nip;

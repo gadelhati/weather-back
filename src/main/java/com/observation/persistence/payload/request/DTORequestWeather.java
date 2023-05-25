@@ -1,10 +1,10 @@
 package com.observation.persistence.payload.request;
 
-import com.observation.persistence.model.Observer;
-import com.observation.persistence.model.Station;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.observation.exception.annotation.weather.*;
+import com.observation.persistence.model.Observer;
+import com.observation.persistence.model.Station;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -18,12 +18,13 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Setter @Getter @AllArgsConstructor @NoArgsConstructor @JsonIgnoreProperties(ignoreUnknown = true) @OnOrOffShore
-@ValidNhCLCM
-@ValidTTTTdTdTd
-@ValidAppp
-@ValidCLCM
-@ValidCMCH @ValidNCLCMCH @ValidNCLCMCHh @ValidNddff @ValidNh @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh @ValidNW2 @ValidTTTTnTnTn @ValidTTT @ValidTxTxTx @ValidVVh @ValidVVWW @ValidW1W2
-public class DTORequestSynopticObservationHistoric {
+@ValidNhCLCM @ValidTTTTdTdTd @ValidAppp @ValidCLCM @ValidCMCH
+@ValidNCLCMCH
+@ValidNCLCMCHh @ValidNddff @ValidNh @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh
+@ValidNW2 @ValidTTTTnTnTn @ValidTTT
+@ValidTxTxTx
+@ValidVVh @ValidVVWW @ValidW1W2
+public class DTORequestWeather {
 
     //SECTION 0
 

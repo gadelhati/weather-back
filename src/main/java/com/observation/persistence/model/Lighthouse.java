@@ -9,6 +9,7 @@ import org.hibernate.envers.Audited;
 
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Lighthouse extends Instalation {
+
     private float intenationalNumber;
     private boolean garnished;
     private String description;

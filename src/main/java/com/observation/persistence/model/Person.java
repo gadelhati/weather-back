@@ -15,6 +15,7 @@ import java.util.Date;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Person extends GenericEntity {
+
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)

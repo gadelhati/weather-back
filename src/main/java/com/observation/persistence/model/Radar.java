@@ -9,6 +9,7 @@ import org.hibernate.envers.Audited;
 
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Radar extends GenericEntity {
+
     private String morse;
     private Structure structure;
 }

@@ -1,15 +1,19 @@
-package com.observation.persistence.payload.response;
+package com.observation.persistence.model;
 
-import com.observation.persistence.model.Observer;
-import com.observation.persistence.model.Station;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import org.hibernate.envers.Audited;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-@Getter @AllArgsConstructor
-public class DTOResponseSynopticObservationHistoricOnShore {
+@IdClass(WeatherId.class)
+@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
+public class Weather implements Serializable {
 
     //SECTION 0
 
@@ -17,8 +21,9 @@ public class DTOResponseSynopticObservationHistoricOnShore {
     private String aabbxx;
     private String mimi;
     private String mjmj;
-    //DDDDDDD
     private String estacao;
+    //DDDDDDD
+    @Id
     private String ddddddd;
     //A1bwnbnbnb
     private String a1;
@@ -29,7 +34,9 @@ public class DTOResponseSynopticObservationHistoricOnShore {
     private String gg;
     private String iw;
     //IIiii
+    @Id
     private String ii;
+    @Id
     private String iii;
     //99LaLaLa
     private String lalala;
@@ -71,8 +78,8 @@ public class DTOResponseSynopticObservationHistoricOnShore {
     //7wwW1W2
     private String ww;
     private String w1w2;
-    //    private String w1;
-//    private String w2;
+    private String w1;
+    private String w2;
     //7wawaWa1Wa2
     private String wawa;
     private String wa1;
@@ -148,11 +155,18 @@ public class DTOResponseSynopticObservationHistoricOnShore {
     private String icp;
     private String icq;
 
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataObservacao;
+    @Id
     private LocalDateTime dateObservation;
     private String observador;
+    //    @Transient
     private String observerName;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "station")
     private Station station;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "observer")
     private Observer observer;
 }

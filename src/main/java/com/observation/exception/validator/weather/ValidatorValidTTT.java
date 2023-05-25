@@ -1,19 +1,19 @@
 package com.observation.exception.validator.weather;
 
 import com.observation.exception.annotation.weather.ValidTTT;
-import com.observation.persistence.payload.request.DTORequestSynopticObservation;
+import com.observation.persistence.payload.request.DTORequestWeather;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
 import static com.observation.exception.validator.GlobalValidation.isValidWithNumber;
 
-public class ValidatorValidTTT implements ConstraintValidator<ValidTTT, DTORequestSynopticObservation> {
+public class ValidatorValidTTT implements ConstraintValidator<ValidTTT, DTORequestWeather> {
 
     @Override
     public void initialize(ValidTTT constraintAnnotation) {
     }
     @Override
-    public boolean isValid(DTORequestSynopticObservation value, ConstraintValidatorContext context) {
+    public boolean isValid(DTORequestWeather value, ConstraintValidatorContext context) {
         if (isValidWithNumber(value.getTtt()) && isValidWithNumber(value.getWw())) {
             if(value.getSn1_1().equals("0")){
                 if (Integer.parseInt(value.getTtt()) > 50 && Integer.parseInt(value.getWw()) >= 70 && Integer.parseInt(value.getWw()) >= 79 ||

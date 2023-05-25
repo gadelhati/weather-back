@@ -1,19 +1,19 @@
 package com.observation.exception.validator.weather;
 
 import com.observation.exception.annotation.weather.ValidAppp;
-import com.observation.persistence.payload.request.DTORequestSynopticObservation;
+import com.observation.persistence.payload.request.DTORequestWeather;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
 import static com.observation.exception.validator.GlobalValidation.isValidWithNumber;
 
-public class ValidatorValidAppp implements ConstraintValidator<ValidAppp, DTORequestSynopticObservation> {
+public class ValidatorValidAppp implements ConstraintValidator<ValidAppp, DTORequestWeather> {
 
     @Override
     public void initialize(ValidAppp constraintAnnotation) {
     }
     @Override
-    public boolean isValid(DTORequestSynopticObservation value, ConstraintValidatorContext context) {
+    public boolean isValid(DTORequestWeather value, ConstraintValidatorContext context) {
         if(isValidWithNumber(value.getA()) && value.getPpp() != null) {
             if(Integer.parseInt(value.getA()) >= 1 && Integer.parseInt(value.getA()) <= 8 && value.getPpp().equals("///") &&
                     Integer.parseInt(value.getA()) >= 1 && Integer.parseInt(value.getA()) <= 3 && value.getPpp().equals("000") &&
