@@ -30,7 +30,7 @@ public class ConfigurationSecurity {
                 .exceptionHandling().authenticationEntryPoint(authEntryPoint).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeHttpRequests()
-                    .requestMatchers(HttpMethod.POST, "/auth").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
 //                    .requestMatchers("/synopticObservation/**", "/om/**", "/researcher/**", "/platform/**", "/country/**", "/equipment/**", "/manufacturer/**", "/institution/**", "/platformCategory/**", "/station/**", "/stationOnShore/**", "/stationOffShore/**", "/observer/**").permitAll()
                 //                .requestMatchers(HttpMethod.POST, "/user").hasAnyRole("ADMIN", "MODERATOR")
                 .anyRequest().authenticated();
