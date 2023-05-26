@@ -31,4 +31,8 @@ public class ServiceAuth {
         List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority()).collect(Collectors.toList());
         return new DTOResponseAuth(token, "Bearer ", roles);
     }
+
+    public void logout(DTORequestAuth value) {
+//        serviceRefreshToken.deleteByUserId(value.getUserId());
+    }
 }

@@ -1,6 +1,7 @@
 package com.observation.service;
 
 import com.observation.persistence.MapStruct;
+import com.observation.persistence.model.UserEntity;
 import com.observation.persistence.payload.request.DTORequestUserEntity;
 import com.observation.persistence.payload.response.DTOResponseUserEntity;
 import com.observation.persistence.repository.RepositoryRole;
@@ -69,5 +70,11 @@ public class ServiceUserEntity implements ServiceInterface<DTOResponseUserEntity
     }
     public boolean existsByEmailAndIdNot(String value, UUID id) {
         return repositoryUserEntity.existsByEmailIgnoreCaseAndIdNot(value, id);
+    }
+
+    public DTOResponseUserEntity changePassword(DTORequestUserEntity updated){
+        UserEntity user = repositoryUserEntity.findById(updated.getId()).orElse(null);
+        user.setPassword(passwordEncoder.encode(updated.getPassword()));
+        return MapStruct.MAPPER.toDTO(repositoryUserEntity.save(user));
     }
 }

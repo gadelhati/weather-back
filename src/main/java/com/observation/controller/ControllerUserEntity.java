@@ -47,4 +47,13 @@ public class ControllerUserEntity implements ControllerInterface<DTOResponseUser
             return ResponseEntity.badRequest().body(HttpStatus.BAD_REQUEST);
         }
     }
+
+    @PutMapping("/changePassword")
+    public ResponseEntity<DTOResponseUserEntity> changePassword(@RequestBody @Valid DTORequestUserEntity updated){
+        try {
+            return new ResponseEntity<>(serviceUserEntity.changePassword(updated), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
