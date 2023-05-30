@@ -26,7 +26,7 @@ public class DTOResponseStationHistoric {
     private StationCategory stationCategory;
     private Equipment equipment;
     private Surveying surveying;
-    private Institution responsible;
+    private Institution institution;
     private Country country;
     private Commission commission;
     private PlatformCategory platformCategory;

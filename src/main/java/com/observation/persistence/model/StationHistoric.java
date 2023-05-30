@@ -35,8 +35,8 @@ public class StationHistoric extends GenericEntity {
     @JoinColumn(name = "surveying")
     private Surveying surveying;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "responsible")
-    private Institution responsible;
+    @JoinColumn(name = "institution")
+    private Institution institution;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "country")
     private Country country;

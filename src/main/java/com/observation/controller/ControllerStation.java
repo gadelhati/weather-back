@@ -36,7 +36,7 @@ public class ControllerStation implements ControllerInterface<DTOResponseStation
     public ResponseEntity<Page<DTOResponseStationHistoric>> retrieveHistoric(@RequestParam(value = "filter", required = false) String filter, Pageable pageable){
         return ResponseEntity.ok().body(serviceStation.retrieveHistoric(pageable, filter));
     }
-    @PutMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @PutMapping("") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseStation> update(@RequestBody @Valid DTORequestStation updated){
         return ResponseEntity.accepted().body(serviceStation.update(updated.getId(), updated));
     }
