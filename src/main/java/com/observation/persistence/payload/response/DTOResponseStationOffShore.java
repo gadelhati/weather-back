@@ -24,7 +24,7 @@ public class DTOResponseStationOffShore /*extends DTOResponseStation*/ {
     private StationCategory stationCategory;
     private Equipment equipment;
     private Surveying surveying;
-    private Institution responsible;
+    private Institution institution;
     private Country country;
 
     private String telegraphicCallsign;
