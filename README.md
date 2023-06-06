@@ -26,12 +26,12 @@ Stations on board ships (SHIP).
 The initiative to create a program in which the code is typed instead of being filled out on paper. Automating the exchange and its consequent inclusion in historical database.
 
 ### Required downloads:
-|     name     | source |                 file name version | link for download                                                                   |
-|:------------:|:------:|----------------------------------:|:------------------------------------------------------------------------------------|
-|  `intellij`  |  IDE   |               idealC-2022.3.1.exe | https://download-cdn.jetbrains.com/idea/ideaIC-2022.3.1.exe                         |
-|    `java`    |  JDK   |        jdk-19_windows-x64_bin.exe | https://download.oracle.com/java/19/latest/jdk-19_windows-x64_bin.exe               |
-| `postgresql` |  SGBD  | postgresql-15.1.1-windows-x64.exe | https://get.enterprisedb.com/postgresql/postgresql-15.1-1-windows-x64.exe           |
-|  `pgadmin4`  |        |             pgadmin4-6.19-x64.exe | https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v6.19/windows/pgadmin4-6.19-x64.exe |
+|     name     | source |                 file name version | link for download                                                                       |
+|:------------:|:------:|----------------------------------:|:----------------------------------------------------------------------------------------|
+|  `intellij`  |  IDE   |               idealC-2023.1.2.exe | https://www.jetbrains.com/idea/download/download-thanks.html?platform=windows&code=IIC  |
+|    `java`    |  JDK   |        jdk-20_windows-x64_bin.exe | https://download.oracle.com/java/20/latest/jdk-20_windows-x64_bin.exe                   |
+| `postgresql` |  SGBD  | postgresql-15.3.1-windows-x64.exe | https://sbp.enterprisedb.com/getfile.jsp?fileid=1258478                                 |
+|  `pgadmin4`  |        |              pgadmin4-7.2-x64.exe | https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v7.2/windows/pgadmin4-7.2-x64.exe       |
 
 ### Roadmap
 #### in development
