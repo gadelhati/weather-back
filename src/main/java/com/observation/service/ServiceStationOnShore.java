@@ -3,7 +3,9 @@ package com.observation.service;
 import com.observation.persistence.MapStruct;
 import com.observation.persistence.model.StationOnShore;
 import com.observation.persistence.payload.request.DTORequestStationOnShore;
+import com.observation.persistence.payload.response.DTOResponseStationHistoricOnShore;
 import com.observation.persistence.payload.response.DTOResponseStationOnShore;
+import com.observation.persistence.repository.RepositoryStationHistoricOnShorePage;
 import com.observation.persistence.repository.RepositoryStationOnShore;
 import com.observation.persistence.repository.RepositoryStationOnShorePage;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ public class ServiceStationOnShore implements ServiceInterface<DTOResponseStatio
 
     private final RepositoryStationOnShore repositoryStationOnShore;
     private final RepositoryStationOnShorePage repositoryStationOnShorePage;
+    private final RepositoryStationHistoricOnShorePage repositoryStationHistoricOnShorePage;
 
     public DTOResponseStationOnShore create(DTORequestStationOnShore created){
         return MapStruct.MAPPER.toDTO(repositoryStationOnShore.save(MapStruct.MAPPER.toObject(created)));
@@ -29,6 +32,16 @@ public class ServiceStationOnShore implements ServiceInterface<DTOResponseStatio
             }
             default: {
                 return repositoryStationOnShorePage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+            }
+        }
+    }
+    public Page<DTOResponseStationHistoricOnShore> retrieveHistoric(Pageable pageable, String filter){
+        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+            case "id": {
+                return repositoryStationHistoricOnShorePage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
+            }
+            default: {
+                return repositoryStationHistoricOnShorePage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
     }

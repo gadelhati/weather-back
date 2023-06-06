@@ -2,6 +2,7 @@ package com.observation.persistence.payload.response;
 
 import com.observation.persistence.model.Observer;
 import com.observation.persistence.model.Station;
+import com.observation.persistence.model.StationHistoricOnShore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -156,6 +157,6 @@ public class DTOResponseWeatherHistoricOnShore {
     private String observador;
     private String observerName;
 
-    private Station station;
+    private StationHistoricOnShore stationHistoricOnShore;
     private Observer observer;
 }

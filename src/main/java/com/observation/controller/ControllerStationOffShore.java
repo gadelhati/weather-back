@@ -1,6 +1,8 @@
 package com.observation.controller;
 
 import com.observation.persistence.payload.request.DTORequestStationOffShore;
+import com.observation.persistence.payload.response.DTOResponseStationHistoricOffShore;
+import com.observation.persistence.payload.response.DTOResponseStationHistoricOnShore;
 import com.observation.persistence.payload.response.DTOResponseStationOffShore;
 import com.observation.service.ServiceStationOffShore;
 import jakarta.validation.Valid;
@@ -30,6 +32,10 @@ public class ControllerStationOffShore implements ControllerInterface<DTORespons
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseStationOffShore>> retrieve(@RequestParam(required = false) String filter, Pageable pageable){
         return ResponseEntity.ok().body(serviceStationOffShore.retrieve(pageable, filter));
+    }
+    @GetMapping("/historic") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
+    public ResponseEntity<Page<DTOResponseStationHistoricOffShore>> retrieveHistoric(@RequestParam(value = "filter", required = false) String filter, Pageable pageable){
+        return ResponseEntity.ok().body(serviceStationOffShore.retrieveHistoric(pageable, filter));
     }
     @PutMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseStationOffShore> update(@RequestBody @Valid DTORequestStationOffShore updated){

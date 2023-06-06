@@ -3,7 +3,9 @@ package com.observation.service;
 import com.observation.persistence.MapStruct;
 import com.observation.persistence.model.StationOffShore;
 import com.observation.persistence.payload.request.DTORequestStationOffShore;
+import com.observation.persistence.payload.response.DTOResponseStationHistoricOffShore;
 import com.observation.persistence.payload.response.DTOResponseStationOffShore;
+import com.observation.persistence.repository.RepositoryStationHistoricOffShorePage;
 import com.observation.persistence.repository.RepositoryStationOffShore;
 import com.observation.persistence.repository.RepositoryStationOffShorePage;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ public class ServiceStationOffShore implements ServiceInterface<DTOResponseStati
 
     private final RepositoryStationOffShore repositoryStationOffShore;
     private final RepositoryStationOffShorePage repositoryStationOffShorePage;
+    private final RepositoryStationHistoricOffShorePage repositoryStationHistoricOffShorePage;
 
     public DTOResponseStationOffShore create(DTORequestStationOffShore created){
         return MapStruct.MAPPER.toDTO(repositoryStationOffShore.save(MapStruct.MAPPER.toObject(created)));
@@ -29,6 +32,16 @@ public class ServiceStationOffShore implements ServiceInterface<DTOResponseStati
             }
             default: {
                 return repositoryStationOffShorePage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+            }
+        }
+    }
+    public Page<DTOResponseStationHistoricOffShore> retrieveHistoric(Pageable pageable, String filter){
+        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+            case "id": {
+                return repositoryStationHistoricOffShorePage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
+            }
+            default: {
+                return repositoryStationHistoricOffShorePage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
     }

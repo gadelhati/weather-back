@@ -28,6 +28,8 @@ public interface MapStruct {
     DTOResponseRole toDTO(Role role);
     DTOResponseStation toDTO(Station station);
     DTOResponseStationHistoric toDTO(StationHistoric stationHistoric);
+    DTOResponseStationHistoricOffShore toDTO(StationHistoricOffShore stationHistoricOffShore);
+    DTOResponseStationHistoricOnShore toDTO(StationHistoricOnShore stationHistoricOnShore);
     DTOResponseStationCategory toDTO(StationCategory stationCategory);
     DTOResponseStationOffShore toDTO(StationOffShore stationOffShore);
     DTOResponseStationOnShore toDTO(StationOnShore stationOnShore);
@@ -57,6 +59,8 @@ public interface MapStruct {
     Role toObject(DTORequestRole dtoRequestRole);
     Station toObject(DTORequestStation dtoRequestStation);
     StationHistoric toObject(DTORequestStationHistoric dtoRequestStationHistoric);
+    StationHistoricOffShore toObject(DTORequestStationHistoricOffShore dtoRequestStationHistoricOffShore);
+    StationHistoricOnShore toObject(DTORequestStationHistoricOnShore dtoRequestStationHistoricOnShore);
     StationCategory toObject(DTORequestStationCategory dtoRequestStationCategory);
     StationOffShore toObject(DTORequestStationOffShore dtoRequestStationOffShore);
     StationOnShore toObject(DTORequestStationOnShore dtoRequestStationOnShore);

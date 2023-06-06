@@ -1,10 +1,10 @@
 package com.observation.persistence.payload.request;
 
 import com.observation.persistence.model.Observer;
-import com.observation.persistence.model.Station;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.observation.exception.annotation.weather.*;
+import com.observation.persistence.model.StationHistoric;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -257,7 +257,7 @@ public class DTORequestWeatherHistoric {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "station")
-    private Station station;
+    private StationHistoric stationHistoric;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "observer")
     private Observer observer;

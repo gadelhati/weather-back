@@ -163,8 +163,8 @@ public class WeatherHistoricOnShore extends GenericEntity {
     private String observerName;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "station")
-    private Station station;
+    @JoinColumn(name = "stationHistoricOnShore")
+    private StationHistoricOnShore stationHistoricOnShore;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "observer")
     private Observer observer;
