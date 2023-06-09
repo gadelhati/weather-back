@@ -18,7 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.UUID;
 
-@RestController @RequestMapping("/stationOffShore") @RequiredArgsConstructor
+@RestController @RequestMapping("/station_off_shore") @RequiredArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class ControllerStationOffShore implements ControllerInterface<DTOResponseStationOffShore, DTORequestStationOffShore> {
 

@@ -16,7 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.UUID;
 
-@RestController @RequestMapping("/platformCategory") @RequiredArgsConstructor
+@RestController @RequestMapping("/platform_category") @RequiredArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class ControllerPlatformCategory implements ControllerInterface<DTOResponsePlatformCategory, DTORequestPlatformCategory> {
 
