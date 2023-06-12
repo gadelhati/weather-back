@@ -16,7 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.UUID;
 
-@RestController @RequestMapping("/user_entity") @RequiredArgsConstructor
+@RestController @RequestMapping("/userEntity") @RequiredArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class ControllerUserEntity implements ControllerInterface<DTOResponseUserEntity, DTORequestUserEntity> {
 
