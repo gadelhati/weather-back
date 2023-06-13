@@ -46,6 +46,7 @@ public class ServiceUserEntity implements ServiceInterface<DTOResponseUserEntity
     }
     @Override
     public DTOResponseUserEntity update(UUID id, DTORequestUserEntity updated){
+        updated.setPassword(passwordEncoder.encode(updated.getPassword()));
         return MapStruct.MAPPER.toDTO(repositoryUserEntity.save(MapStruct.MAPPER.toObject(updated)));
     }
     @Override
