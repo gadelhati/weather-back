@@ -45,6 +45,9 @@ public class ServiceWeather {
         }
         return list;
     }
+    public DTOResponseWeather retrieve(WeatherId weatherId){
+        return MapStruct.MAPPER.toDTO(repositoryWeather.findById(weatherId).orElseGet(null));
+    }
     public Page<DTOResponseWeather> retrieve(Pageable pageable, String filter){
         switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
             default: {
