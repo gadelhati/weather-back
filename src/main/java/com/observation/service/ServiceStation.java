@@ -28,17 +28,17 @@ public class ServiceStation implements ServiceInterface<DTOResponseStation, DTOR
     public DTOResponseStation create(DTORequestStation created){
         return MapStruct.MAPPER.toDTO(repositoryStation.save(MapStruct.MAPPER.toObject(created)));
     }
-    public Page<DTOResponseStation> retrieve(Pageable pageable, String filter) {
-        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+    public Page<DTOResponseStation> retrieve(Pageable pageable, String key, String value) {
+        switch (key) {
             case "id": {
-                return repositoryStationPage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
+                return repositoryStationPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             default: {
                 return repositoryStationPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
     }
-    public Page<DTOResponseStationHistoric> retrieveHistoric(Pageable pageable, String filter){
+    public Page<DTOResponseStationHistoric> retrieveHistoric(Pageable pageable){
         return repositoryStationHistoricPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
     }
     public DTOResponseStation update(UUID id, DTORequestStation updated){

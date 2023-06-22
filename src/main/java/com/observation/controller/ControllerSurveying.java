@@ -28,8 +28,8 @@ public class ControllerSurveying implements ControllerInterface<DTOResponseSurve
         return ResponseEntity.created(uri).body(serviceSurveying.create(created));
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<Page<DTOResponseSurveying>> retrieve(@RequestParam(required = false) String filter, Pageable pageable){
-        return ResponseEntity.ok().body(serviceSurveying.retrieve(pageable, filter));
+    public ResponseEntity<Page<DTOResponseSurveying>> retrieve(@RequestParam(value = "key", required = false) String key, @RequestParam(value = "value", required = false) String value, Pageable pageable){
+        return ResponseEntity.ok().body(serviceSurveying.retrieve(pageable, key, value));
     }
     @PutMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseSurveying> update(@RequestBody @Valid DTORequestSurveying updated){

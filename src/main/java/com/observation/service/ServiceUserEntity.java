@@ -30,19 +30,22 @@ public class ServiceUserEntity implements ServiceInterface<DTOResponseUserEntity
         created.setRole(Collections.singletonList(repositoryRole.findByName("ROLE_USER")));
         return MapStruct.MAPPER.toDTO(repositoryUserEntity.save(MapStruct.MAPPER.toObject(created)));
     }
-    @Override
-    public Page<DTOResponseUserEntity> retrieve(Pageable pageable, String filter) {
-        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+//    @Override
+    public Page<DTOResponseUserEntity> retrieve(Pageable pageable, String key, String value) {
+        switch (key) {
             case "id": {
-                return repositoryUserEntityPage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
+                return repositoryUserEntityPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             case "username": {
-                return repositoryUserEntityPage.findByUsernameContainingIgnoreCaseOrderByUsernameAsc(pageable, filter).map(MapStruct.MAPPER::toDTO);
+                return repositoryUserEntityPage.findByUsernameContainingIgnoreCaseOrderByUsernameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
             }
             default: {
                 return repositoryUserEntityPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
+    }
+    public Page<DTOResponseUserEntity> retrieve(Pageable pageable, String filte) {
+        return null;
     }
     @Override
     public DTOResponseUserEntity update(UUID id, DTORequestUserEntity updated){

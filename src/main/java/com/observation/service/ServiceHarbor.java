@@ -22,10 +22,10 @@ public class ServiceHarbor implements ServiceInterface<DTOResponseHarbor, DTOReq
     public DTOResponseHarbor create(DTORequestHarbor created){
         return MapStruct.MAPPER.toDTO(repositoryHarbor.save(MapStruct.MAPPER.toObject(created)));
     }
-    public Page<DTOResponseHarbor> retrieve(Pageable pageable, String filter){
-        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+    public Page<DTOResponseHarbor> retrieve(Pageable pageable, String key, String value){
+        switch (key) {
             case "id": {
-                return repositoryHarborPage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
+                return repositoryHarborPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             default: {
                 return repositoryHarborPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);

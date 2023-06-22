@@ -28,8 +28,8 @@ public class ControllerCountry implements ControllerInterface<DTOResponseCountry
         return ResponseEntity.created(uri).body(serviceCountry.create(created));
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<Page<DTOResponseCountry>> retrieve(@RequestParam(required = false) String filter, Pageable pageable){
-        return ResponseEntity.ok().body(serviceCountry.retrieve(pageable, filter));
+    public ResponseEntity<Page<DTOResponseCountry>> retrieve(@RequestParam(value = "key", required = false) String key, @RequestParam(value = "value", required = false) String value, Pageable pageable){
+        return ResponseEntity.ok().body(serviceCountry.retrieve(pageable, key, value));
     }
     @PutMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseCountry> update(@RequestBody @Valid DTORequestCountry updated){

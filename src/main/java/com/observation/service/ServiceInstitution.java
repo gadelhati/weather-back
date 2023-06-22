@@ -22,10 +22,10 @@ public class ServiceInstitution implements ServiceInterface<DTOResponseInstituti
     public DTOResponseInstitution create(DTORequestInstitution created){
         return MapStruct.MAPPER.toDTO(repositoryInstitution.save(MapStruct.MAPPER.toObject(created)));
     }
-    public Page<DTOResponseInstitution> retrieve(Pageable pageable, String filter){
-        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+    public Page<DTOResponseInstitution> retrieve(Pageable pageable, String key, String value){
+        switch (key) {
             case "id": {
-                return repositoryInstitutionPage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
+                return repositoryInstitutionPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             default: {
                 return repositoryInstitutionPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);

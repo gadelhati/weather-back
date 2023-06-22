@@ -22,10 +22,10 @@ public class ServiceIndividual implements ServiceInterface<DTOResponseIndividual
     public DTOResponseIndividual create(DTORequestIndividual created){
         return MapStruct.MAPPER.toDTO(repositoryIndividual.save(MapStruct.MAPPER.toObject(created)));
     }
-    public Page<DTOResponseIndividual> retrieve(Pageable pageable, String filter){
-        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+    public Page<DTOResponseIndividual> retrieve(Pageable pageable, String key, String value){
+        switch (key) {
             case "id": {
-                return repositoryIndividualPage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
+                return repositoryIndividualPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             default: {
                 return repositoryIndividualPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);

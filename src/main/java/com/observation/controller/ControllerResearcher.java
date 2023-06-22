@@ -28,8 +28,8 @@ public class ControllerResearcher implements ControllerInterface<DTOResponseRese
         return ResponseEntity.created(uri).body(serviceResearcher.create(created));
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<Page<DTOResponseResearcher>> retrieve(@RequestParam(required = false) String filter, Pageable pageable){
-        return ResponseEntity.ok().body(serviceResearcher.retrieve(pageable, filter));
+    public ResponseEntity<Page<DTOResponseResearcher>> retrieve(@RequestParam(value = "key", required = false) String key, @RequestParam(value = "value", required = false) String value, Pageable pageable){
+        return ResponseEntity.ok().body(serviceResearcher.retrieve(pageable, key, value));
     }
     @PutMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseResearcher> update(@RequestBody @Valid DTORequestResearcher updated){

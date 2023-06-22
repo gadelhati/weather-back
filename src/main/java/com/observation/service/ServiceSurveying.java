@@ -22,10 +22,10 @@ public class ServiceSurveying implements ServiceInterface<DTOResponseSurveying, 
     public DTOResponseSurveying create(DTORequestSurveying created){
         return MapStruct.MAPPER.toDTO(repositorySurveying.save(MapStruct.MAPPER.toObject(created)));
     }
-    public Page<DTOResponseSurveying> retrieve(Pageable pageable, String filter){
-        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+    public Page<DTOResponseSurveying> retrieve(Pageable pageable, String key, String value){
+        switch (key) {
             case "id": {
-                return repositorySurveyingPage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
+                return repositorySurveyingPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             default: {
                 return repositorySurveyingPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);

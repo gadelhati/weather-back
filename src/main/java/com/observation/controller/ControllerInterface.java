@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public interface ControllerInterface<T, S> {
     ResponseEntity<T> create(@RequestBody @Valid S created);
-    ResponseEntity<Page<T>> retrieve(@RequestParam("filter") String filter, Pageable pageable);
+    ResponseEntity<Page<T>> retrieve(@RequestParam("key") String key, @RequestParam("value") String value, Pageable pageable);
     ResponseEntity<T> update(@RequestBody @Valid S updated);
     ResponseEntity<T> delete(@PathVariable("id") UUID id);
     ResponseEntity<HttpStatus> delete();

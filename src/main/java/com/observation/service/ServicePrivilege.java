@@ -22,10 +22,10 @@ public class ServicePrivilege implements ServiceInterface<DTOResponsePrivilege, 
     public DTOResponsePrivilege create(DTORequestPrivilege created){
         return MapStruct.MAPPER.toDTO(repositoryPrivilege.save(MapStruct.MAPPER.toObject(created)));
     }
-    public Page<DTOResponsePrivilege> retrieve(Pageable pageable, String filter){
-        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+    public Page<DTOResponsePrivilege> retrieve(Pageable pageable, String key, String value){
+        switch (key) {
             case "id": {
-                return repositoryPrivilegePage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
+                return repositoryPrivilegePage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             default: {
                 return repositoryPrivilegePage.findAll(pageable).map(MapStruct.MAPPER::toDTO);

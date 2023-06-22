@@ -28,8 +28,8 @@ public class ControllerOM implements ControllerInterface<DTOResponseOM, DTOReque
         return ResponseEntity.created(uri).body(serviceOm.create(created));
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<Page<DTOResponseOM>> retrieve(@RequestParam(required = false) String filter, Pageable pageable){
-        return ResponseEntity.ok().body(serviceOm.retrieve(pageable, filter));
+    public ResponseEntity<Page<DTOResponseOM>> retrieve(@RequestParam(value = "key", required = false) String key, @RequestParam(value = "value", required = false) String value, Pageable pageable){
+        return ResponseEntity.ok().body(serviceOm.retrieve(pageable, key, value));
     }
     @PutMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseOM> update(@RequestBody @Valid DTORequestOM updated){

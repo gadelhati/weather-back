@@ -22,10 +22,10 @@ public class ServiceCompany implements ServiceInterface<DTOResponseCompany, DTOR
     public DTOResponseCompany create(DTORequestCompany created){
         return MapStruct.MAPPER.toDTO(repositoryCompany.save(MapStruct.MAPPER.toObject(created)));
     }
-    public Page<DTOResponseCompany> retrieve(Pageable pageable, String filter){
-        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+    public Page<DTOResponseCompany> retrieve(Pageable pageable, String key, String value){
+        switch (key) {
             case "id": {
-                return repositoryCompanyPage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
+                return repositoryCompanyPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             default: {
                 return repositoryCompanyPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);

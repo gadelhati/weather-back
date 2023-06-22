@@ -22,10 +22,10 @@ public class ServicePlatformCategory implements ServiceInterface<DTOResponsePlat
     public DTOResponsePlatformCategory create(DTORequestPlatformCategory created){
         return MapStruct.MAPPER.toDTO(repositoryPlatformCategory.save(MapStruct.MAPPER.toObject(created)));
     }
-    public Page<DTOResponsePlatformCategory> retrieve(Pageable pageable, String filter){
-        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+    public Page<DTOResponsePlatformCategory> retrieve(Pageable pageable, String key, String value){
+        switch (key) {
             case "id": {
-                return repositoryPlatformCategoryPage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
+                return repositoryPlatformCategoryPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             default: {
                 return repositoryPlatformCategoryPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);

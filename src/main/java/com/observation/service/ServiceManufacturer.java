@@ -22,10 +22,10 @@ public class ServiceManufacturer implements ServiceInterface<DTOResponseManufact
     public DTOResponseManufacturer create(DTORequestManufacturer created){
         return MapStruct.MAPPER.toDTO(repositoryManufacturer.save(MapStruct.MAPPER.toObject(created)));
     }
-    public Page<DTOResponseManufacturer> retrieve(Pageable pageable, String filter){
-        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+    public Page<DTOResponseManufacturer> retrieve(Pageable pageable, String key, String value){
+        switch (key) {
             case "id": {
-                return repositoryManufacturerPage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
+                return repositoryManufacturerPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             default: {
                 return repositoryManufacturerPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);

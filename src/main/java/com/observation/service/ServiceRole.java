@@ -21,13 +21,13 @@ public class ServiceRole implements ServiceInterface<DTOResponseRole, DTORequest
     public DTOResponseRole create(DTORequestRole created){
         return MapStruct.MAPPER.toDTO(repositoryRole.save(MapStruct.MAPPER.toObject(created)));
     }
-    public Page<DTOResponseRole> retrieve(Pageable pageable, String filter) {
-        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+    public Page<DTOResponseRole> retrieve(Pageable pageable, String key, String value) {
+        switch (key) {
             case "id": {
-                return repositoryRolePage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
+                return repositoryRolePage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             case "name": {
-                return repositoryRolePage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, filter).map(MapStruct.MAPPER::toDTO);
+                return repositoryRolePage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
             }
             default: {
                 return repositoryRolePage.findAll(pageable).map(MapStruct.MAPPER::toDTO);

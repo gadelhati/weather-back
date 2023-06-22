@@ -28,8 +28,8 @@ public class ControllerHarbor implements ControllerInterface<DTOResponseHarbor, 
         return ResponseEntity.created(uri).body(serviceHarbor.create(created));
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<Page<DTOResponseHarbor>> retrieve(@RequestParam(required = false) String filter, Pageable pageable){
-        return ResponseEntity.ok().body(serviceHarbor.retrieve(pageable, filter));
+    public ResponseEntity<Page<DTOResponseHarbor>> retrieve(@RequestParam(value = "key", required = false) String key, @RequestParam(value = "value", required = false) String value, Pageable pageable){
+        return ResponseEntity.ok().body(serviceHarbor.retrieve(pageable, key, value));
     }
     @PutMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseHarbor> update(@RequestBody @Valid DTORequestHarbor updated){

@@ -69,10 +69,10 @@ public class ControllerWeather {
     public ResponseEntity<Page<DTOResponseWeatherHistoricOnShore>> retrieveHistoricOnShore(@RequestParam(value = "filter", required = false) String filter, Pageable pageable){
         return ResponseEntity.ok().body(serviceWeather.retrieveHistoricOnShore(pageable, filter));
     }
-    //    @GetMapping(value = {"/{dateObservation}/{ii}/{iii}", "/{dateObservation}/{ddddddd}"}) @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
-//    public ResponseEntity<DTOResponseSynopticObservation> retrieve(@PathVariable("dateObservation") LocalDateTime dateObservation, @PathVariable("ddddddd") String ddddddd, @PathVariable("ii") String ii, @PathVariable("iii") String iii){
-//        return ResponseEntity.ok().body(serviceSynopticObservation.retrieve(new SynopticObservationId(dateObservation, ddddddd, ii, iii)));
-//    }
+    @GetMapping(value = {"/{dateObservation}/{ii}/{iii}", "/{dateObservation}/{ddddddd}"}) @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
+    public ResponseEntity<DTOResponseWeather> retrieve(@PathVariable("dateObservation") LocalDateTime dateObservation, @PathVariable("ddddddd") String ddddddd, @PathVariable("ii") String ii, @PathVariable("iii") String iii){
+        return ResponseEntity.ok().body(serviceWeather.retrieve(new WeatherId(dateObservation, ddddddd, ii, iii)));
+    }
     @PutMapping("") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseWeather> update(@RequestBody @Valid DTORequestWeather updated){
         return ResponseEntity.accepted().body(serviceWeather.update(new WeatherId(updated.getDateObservation(), updated.getDdddddd(), updated.getIi(), updated.getIii()), updated));

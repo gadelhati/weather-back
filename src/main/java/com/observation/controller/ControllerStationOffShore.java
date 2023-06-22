@@ -30,8 +30,8 @@ public class ControllerStationOffShore implements ControllerInterface<DTORespons
         return ResponseEntity.created(uri).body(serviceStationOffShore.create(created));
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<Page<DTOResponseStationOffShore>> retrieve(@RequestParam(required = false) String filter, Pageable pageable){
-        return ResponseEntity.ok().body(serviceStationOffShore.retrieve(pageable, filter));
+    public ResponseEntity<Page<DTOResponseStationOffShore>> retrieve(@RequestParam(value = "key", required = false) String key, @RequestParam(value = "value", required = false) String value, Pageable pageable){
+        return ResponseEntity.ok().body(serviceStationOffShore.retrieve(pageable, key, value));
     }
     @GetMapping("/historic") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseStationHistoricOffShore>> retrieveHistoric(@RequestParam(value = "filter", required = false) String filter, Pageable pageable){

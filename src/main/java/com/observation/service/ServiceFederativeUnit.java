@@ -22,10 +22,10 @@ public class ServiceFederativeUnit implements ServiceInterface<DTOResponseFedera
     public DTOResponseFederativeUnit create(DTORequestFederativeUnit created){
         return MapStruct.MAPPER.toDTO(repositoryFederativeUnit.save(MapStruct.MAPPER.toObject(created)));
     }
-    public Page<DTOResponseFederativeUnit> retrieve(Pageable pageable, String filter){
-        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+    public Page<DTOResponseFederativeUnit> retrieve(Pageable pageable, String key, String value){
+        switch (key) {
             case "id": {
-                return repositoryFederativeUnitPage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
+                return repositoryFederativeUnitPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             default: {
                 return repositoryFederativeUnitPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);

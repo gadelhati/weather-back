@@ -28,8 +28,8 @@ public class ControllerObserver implements ControllerInterface<DTOResponseObserv
         return ResponseEntity.created(uri).body(serviceObserver.create(created));
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<Page<DTOResponseObserver>> retrieve(@RequestParam(required = false) String filter, Pageable pageable){
-        return ResponseEntity.ok().body(serviceObserver.retrieve(pageable, filter));
+    public ResponseEntity<Page<DTOResponseObserver>> retrieve(@RequestParam(value = "key", required = false) String key, @RequestParam(value = "value", required = false) String value, Pageable pageable){
+        return ResponseEntity.ok().body(serviceObserver.retrieve(pageable, key, value));
     }
     @PutMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseObserver> update(@RequestBody @Valid DTORequestObserver updated){

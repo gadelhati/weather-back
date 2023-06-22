@@ -28,8 +28,8 @@ public class ControllerEquipment implements ControllerInterface<DTOResponseEquip
         return ResponseEntity.created(uri).body(serviceEquipment.create(created));
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<Page<DTOResponseEquipment>> retrieve(@RequestParam(required = false) String filter, Pageable pageable){
-        return ResponseEntity.ok().body(serviceEquipment.retrieve(pageable, filter));
+    public ResponseEntity<Page<DTOResponseEquipment>> retrieve(@RequestParam(value = "key", required = false) String key, @RequestParam(value = "value", required = false) String value, Pageable pageable){
+        return ResponseEntity.ok().body(serviceEquipment.retrieve(pageable, key, value));
     }
     @PutMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseEquipment> update(@RequestBody @Valid DTORequestEquipment updated){

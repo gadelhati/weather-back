@@ -25,10 +25,10 @@ public class ServiceStationOffShore implements ServiceInterface<DTOResponseStati
     public DTOResponseStationOffShore create(DTORequestStationOffShore created){
         return MapStruct.MAPPER.toDTO(repositoryStationOffShore.save(MapStruct.MAPPER.toObject(created)));
     }
-    public Page<DTOResponseStationOffShore> retrieve(Pageable pageable, String filter){
-        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+    public Page<DTOResponseStationOffShore> retrieve(Pageable pageable, String key, String value){
+        switch (key) {
             case "id": {
-                return repositoryStationOffShorePage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
+                return repositoryStationOffShorePage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             default: {
                 return repositoryStationOffShorePage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
