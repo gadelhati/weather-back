@@ -7,5 +7,5 @@ import lombok.Data;
 public class ErrorObject {
 
     private final String field;
-    private final String defaultMessage;
+    private final String message;
 }
