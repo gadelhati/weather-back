@@ -1,6 +1,6 @@
 package com.observation.exception.annotation;
 
-import com.observation.exception.validator.ValidatorUniqueUsername;
+import com.observation.exception.validator.ValidatorUniqueNameUser;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -8,11 +8,11 @@ import java.lang.annotation.*;
 
 @Target({ ElementType.TYPE, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = { ValidatorUniqueUsername.class })
+@Constraint(validatedBy = { ValidatorUniqueNameUser.class })
 @Documented
-public @interface UniqueUsername {
+public @interface UniqueNameUser {
 
-    String message() default "{unique.user.name}";
+    String message() default "{unique.name.user}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }

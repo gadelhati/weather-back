@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface UniqueTelegraphicCallsignStationOffShore {
 
-    String message() default "{unique.telegraphic.callsign.station.off.shore}";
+    String message() default "{unique.name.telegraphicCallsign.station}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }

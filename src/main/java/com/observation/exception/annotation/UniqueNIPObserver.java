@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface UniqueNIPObserver {
 
-    String message() default "{unique.observer.nip}";
+    String message() default "{unique.nip.observer}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }

@@ -7,10 +7,10 @@ import lombok.Getter;
 
 import java.util.UUID;
 
-@Getter
+@Getter @UniqueNameOM
 public class DTORequestOM {
 
     private UUID id;
-    @NotNull(message = "{name.not.null}") @NotBlank(message = "{name.not.blank}")  @UniqueNameOM
+    @NotNull(message = "{name.not.null}") @NotBlank(message = "{name.not.blank}")
     private String name;
 }

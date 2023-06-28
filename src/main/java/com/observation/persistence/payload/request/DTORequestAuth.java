@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 public class DTORequestAuth {
 
-    @NotNull(message = "{auth.username.not.null}") @NotBlank(message = "{auth.username.not.blank}")
+    @NotNull(message = "{user.name.not.null}") @NotBlank(message = "{user.name.not.blank}")
     private String username;
-    @NotNull(message = "{auth.password.not.null}") @NotBlank(message = "{auth.password.not.blank}")
+    @NotNull(message = "{user.password.not.null}") @NotBlank(message = "{user.password.not.blank}")
     private String password;
 }

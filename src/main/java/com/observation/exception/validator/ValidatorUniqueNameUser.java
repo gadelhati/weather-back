@@ -1,6 +1,6 @@
 package com.observation.exception.validator;
 
-import com.observation.exception.annotation.UniqueUsername;
+import com.observation.exception.annotation.UniqueNameUser;
 import com.observation.persistence.payload.request.DTORequestUserEntity;
 import com.observation.service.ServiceUserEntity;
 import jakarta.validation.ConstraintValidator;
@@ -9,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import static com.observation.exception.validator.Validator.isNull;
 
-public class ValidatorUniqueUsername implements ConstraintValidator<UniqueUsername, DTORequestUserEntity> {
+public class ValidatorUniqueNameUser implements ConstraintValidator<UniqueNameUser, DTORequestUserEntity> {
 
     @Autowired
     private ServiceUserEntity serviceUserEntity;
 
     @Override
-    public void initialize(UniqueUsername constraintAnnotation) {
+    public void initialize(UniqueNameUser constraintAnnotation) {
     }
     @Override
     public boolean isValid(DTORequestUserEntity value, ConstraintValidatorContext context) {
