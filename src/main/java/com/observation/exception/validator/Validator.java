@@ -33,6 +33,9 @@ public final class Validator {
         return isNull(value)? false : value.chars().anyMatch(letter -> Character.isUpperCase(letter));
     }
     public static boolean hasLength(int length, String value) {
+        return isNull(value)? false : value.length() == length;
+    }
+    public static boolean hasMore(int length, String value) {
         return isNull(value)? false : value.length() >= length;
     }
 }
