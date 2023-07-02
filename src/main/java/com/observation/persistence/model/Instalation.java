@@ -1,7 +1,6 @@
 package com.observation.persistence.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,5 +12,7 @@ import org.hibernate.envers.Audited;
 public class Instalation extends Structure {
 
     private String orderNumber;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "maintainer")
     private Maintainer maintainer;
 }
