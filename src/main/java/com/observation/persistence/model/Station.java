@@ -22,7 +22,7 @@ public class Station extends GenericEntity {
     private Integer wmoSquare;
     private Integer marsdenSubSquare_5;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "stationCategory")
     private StationCategory stationCategory;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
