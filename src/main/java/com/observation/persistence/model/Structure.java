@@ -1,9 +1,7 @@
 package com.observation.persistence.model;
 
 import com.observation.persistence.enumeration.EnumFormat;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,5 +24,6 @@ public class Structure extends GenericEntity {
     private boolean refletorRadar;//sem tradução conhecida
     private boolean visivelmenteConspicuo;//sem tradução conhecida
     private EnumFormat format;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     private Radar radar;
 }

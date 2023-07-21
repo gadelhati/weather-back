@@ -17,7 +17,7 @@ public class HarmonicConstant extends GenericEntity {
     private String g;
     private String h;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "component")
     private Component component;
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
