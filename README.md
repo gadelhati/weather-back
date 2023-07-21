@@ -228,7 +228,7 @@ jdbc:h2:mem:testdb
 Open `src/main/resources/application.properties`
 
 ```properties
-spring.datasource.url= jdbc:postgresql://localhost:5432/observation
+spring.datasource.url= jdbc:postgresql://localhost:5432/weather-back
 spring.datasource.username= postgres
 spring.datasource.password= password
 
