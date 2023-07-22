@@ -29,12 +29,12 @@ public class ControllerWeather {
 
     @PostMapping("") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseWeather> create(@RequestBody @Valid DTORequestWeather created){
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/synopticObservation").toUriString());
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/weather").toUriString());
         return ResponseEntity.created(uri).body(serviceWeather.create(created));
     }
     @PostMapping("/createAll") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
     public ResponseEntity<List<DTOResponseWeather>> create(@RequestBody @Valid List<DTORequestWeather> createds){
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/synopticObservation/createAll").toUriString());
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/weather/createAll").toUriString());
         return ResponseEntity.created(uri).body(serviceWeather.create(createds));
 //        List<DTOResponseSynopticObservation> dtoResponseSynopticObservationsCreated = new ArrayList<>();
 //        List<DTOResponseSynopticObservation> dtoResponseSynopticObservationsFailed = new ArrayList<>();
@@ -69,7 +69,7 @@ public class ControllerWeather {
     public ResponseEntity<Page<DTOResponseWeatherHistoricOnShore>> retrieveHistoricOnShore(@RequestParam(value = "filter", required = false) String filter, Pageable pageable){
         return ResponseEntity.ok().body(serviceWeather.retrieveHistoricOnShore(pageable, filter));
     }
-    @GetMapping(value = {"/{dateObservation}/{ii}/{iii}", "/{dateObservation}/{ddddddd}"}) @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
+    @GetMapping(value = {"/{dateObservation}/{ii}/{iii}", "/{dateObservation}/{ddddddd}"}) //@PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseWeather> retrieve(@PathVariable("dateObservation") LocalDateTime dateObservation, @PathVariable("ddddddd") String ddddddd, @PathVariable("ii") String ii, @PathVariable("iii") String iii){
         return ResponseEntity.ok().body(serviceWeather.retrieve(new WeatherId(dateObservation, ddddddd, ii, iii)));
     }
@@ -77,9 +77,9 @@ public class ControllerWeather {
     public ResponseEntity<DTOResponseWeather> update(@RequestBody @Valid DTORequestWeather updated){
         return ResponseEntity.accepted().body(serviceWeather.update(new WeatherId(updated.getDateObservation(), updated.getDdddddd(), updated.getIi(), updated.getIii()), updated));
     }
-    @DeleteMapping(value = {"/{dateObservation}/{ii}/{iii}", "/{dateObservation}/{ddddddd}"}) @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
-    public ResponseEntity<DTOResponseWeather> delete(@PathVariable("dateObservation") LocalDateTime dateObservation, @PathVariable("ddddddd") String ddddddd, @PathVariable("ii") String ii, @PathVariable("iii") String iii){
-        return ResponseEntity.accepted().body(serviceWeather.delete(new WeatherId(dateObservation, ddddddd, ii, iii)));
+    @DeleteMapping("/{dateObservation}/{ii}/{iii}") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
+    public ResponseEntity<DTOResponseWeather> delete(@PathVariable("dateObservation") LocalDateTime dateObservation, @PathVariable("ii") String ii, @PathVariable("iii") String iii){
+        return ResponseEntity.accepted().body(serviceWeather.delete(new WeatherId(dateObservation, "", ii, iii)));
     }
     @DeleteMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<HttpStatus> delete(){

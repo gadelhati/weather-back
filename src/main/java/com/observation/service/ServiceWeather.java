@@ -8,6 +8,7 @@ import com.observation.persistence.payload.response.DTOResponseWeatherHistoric;
 import com.observation.persistence.payload.response.DTOResponseWeatherHistoricOffShore;
 import com.observation.persistence.payload.response.DTOResponseWeatherHistoricOnShore;
 import com.observation.persistence.repository.*;
+import jakarta.transaction.Transactional;
 import jakarta.validation.ConstraintViolation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -69,13 +70,18 @@ public class ServiceWeather {
         updated.setDdddddd(updated.getEstacao());
         return MapStruct.MAPPER.toDTO(repositoryWeather.save(MapStruct.MAPPER.toObject(updated)));
     }
+    @Transactional
     public DTOResponseWeather delete(WeatherId weatherId){
-//        DTOResponseSynopticObservation dtoResponseSynopticObservation = MapStruct.MAPPER.toDTO(repositorySynopticObservation.findById(id).orElse(null));
-//        repositorySynopticObservation.deleteById(id);
-//        return dtoResponseSynopticObservation;
-
-        repositoryWeather.deleteById(weatherId);
-        return MapStruct.MAPPER.toDTO(repositoryWeather.findById(weatherId).orElse(null));
+        if(weatherId.getDdddddd() != null && !weatherId.getDdddddd().equals("")){
+            DTOResponseWeather dtoResponseWeather = MapStruct.MAPPER.toDTO(repositoryWeather.findByDateObservationAndDdddddd(weatherId.getDateObservation(), weatherId.getDdddddd()).orElse(null));
+            repositoryWeather.deleteByDateObservationAndDdddddd(weatherId.getDateObservation(), weatherId.getDdddddd());
+            return dtoResponseWeather;
+        } else if (weatherId.getIi() != null && weatherId.getIii() != null && !weatherId.getIi().equals("") && !weatherId.getIii().equals("")) {
+            DTOResponseWeather dtoResponseWeather = MapStruct.MAPPER.toDTO(repositoryWeather.findByDateObservationAndIiAndIii(weatherId.getDateObservation(), weatherId.getIi(), weatherId.getIii()).orElse(null));
+            repositoryWeather.deleteByDateObservationAndIiAndIii(weatherId.getDateObservation(), weatherId.getIi(), weatherId.getIii());
+            return dtoResponseWeather;
+        }
+        return null;
     }
     public void delete() {
         repositoryWeather.deleteAll();
