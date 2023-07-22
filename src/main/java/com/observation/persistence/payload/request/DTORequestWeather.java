@@ -20,7 +20,8 @@ import java.util.Date;
 @Setter @Getter @AllArgsConstructor @NoArgsConstructor @JsonIgnoreProperties(ignoreUnknown = true) @OnOrOffShore
 @ValidNhCLCM @ValidTTTTdTdTd @ValidAppp @ValidCLCM @ValidCMCH
 @ValidNCLCMCH
-@ValidNCLCMCHh @ValidNddff @ValidNh @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh
+//@ValidNCLCMCHh
+@ValidNddff @ValidNh @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh
 @ValidNW2 @ValidTTTTnTnTn @ValidTTT
 @ValidTxTxTx
 @ValidVVh @ValidVVWW @ValidW1W2
