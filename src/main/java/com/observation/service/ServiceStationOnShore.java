@@ -30,6 +30,9 @@ public class ServiceStationOnShore implements ServiceInterface<DTOResponseStatio
             case "id": {
                 return repositoryStationOnShorePage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
+            case "name": {
+                return repositoryStationOnShorePage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryStationOnShorePage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }

@@ -27,6 +27,9 @@ public class ServiceFederativeUnit implements ServiceInterface<DTOResponseFedera
             case "id": {
                 return repositoryFederativeUnitPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
+            case "name": {
+                return repositoryFederativeUnitPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryFederativeUnitPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }

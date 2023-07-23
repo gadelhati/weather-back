@@ -27,6 +27,9 @@ public class ServiceCommission implements ServiceInterface<DTOResponseCommission
             case "id": {
                 return repositoryCommissionPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
+            case "name": {
+                return repositoryCommissionPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryCommissionPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }

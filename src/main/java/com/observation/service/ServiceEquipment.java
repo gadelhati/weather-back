@@ -27,6 +27,9 @@ public class ServiceEquipment implements ServiceInterface<DTOResponseEquipment, 
             case "id": {
                 return repositoryEquipmentPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
+            case "name": {
+                return repositoryEquipmentPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryEquipmentPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }

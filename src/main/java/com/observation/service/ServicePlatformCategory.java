@@ -27,6 +27,9 @@ public class ServicePlatformCategory implements ServiceInterface<DTOResponsePlat
             case "id": {
                 return repositoryPlatformCategoryPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
+            case "name": {
+                return repositoryPlatformCategoryPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryPlatformCategoryPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }

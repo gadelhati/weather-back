@@ -27,6 +27,9 @@ public class ServicePrivilege implements ServiceInterface<DTOResponsePrivilege, 
             case "id": {
                 return repositoryPrivilegePage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
+            case "name": {
+                return repositoryPrivilegePage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryPrivilegePage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }

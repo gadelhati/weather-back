@@ -27,6 +27,9 @@ public class ServiceOM implements ServiceInterface<DTOResponseOM, DTORequestOM> 
             case "id": {
                 return repositoryOMPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
+            case "name": {
+                return repositoryOMPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryOMPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }

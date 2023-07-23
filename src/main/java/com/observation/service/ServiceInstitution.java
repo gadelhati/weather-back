@@ -27,6 +27,9 @@ public class ServiceInstitution implements ServiceInterface<DTOResponseInstituti
             case "id": {
                 return repositoryInstitutionPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
+            case "name": {
+                return repositoryInstitutionPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryInstitutionPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }

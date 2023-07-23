@@ -27,6 +27,9 @@ public class ServiceStationCategory implements ServiceInterface<DTOResponseStati
             case "id": {
                 return repositoryStationCategoryPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
+            case "name": {
+                return repositoryStationCategoryPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryStationCategoryPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }

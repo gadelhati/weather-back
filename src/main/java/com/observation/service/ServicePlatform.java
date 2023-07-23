@@ -27,6 +27,9 @@ public class ServicePlatform implements ServiceInterface<DTOResponsePlatform, DT
             case "id": {
                 return repositoryPlatformPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
+            case "name": {
+                return repositoryPlatformPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryPlatformPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }

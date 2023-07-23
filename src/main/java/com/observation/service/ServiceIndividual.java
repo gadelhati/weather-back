@@ -27,6 +27,9 @@ public class ServiceIndividual implements ServiceInterface<DTOResponseIndividual
             case "id": {
                 return repositoryIndividualPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
+            case "name": {
+                return repositoryIndividualPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryIndividualPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }

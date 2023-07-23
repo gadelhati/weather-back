@@ -27,6 +27,9 @@ public class ServiceManufacturer implements ServiceInterface<DTOResponseManufact
             case "id": {
                 return repositoryManufacturerPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
+            case "name": {
+                return repositoryManufacturerPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryManufacturerPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }

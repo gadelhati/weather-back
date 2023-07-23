@@ -27,6 +27,9 @@ public class ServiceResearcher implements ServiceInterface<DTOResponseResearcher
             case "id": {
                 return repositoryResearcherPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
+            case "name": {
+                return repositoryResearcherPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryResearcherPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }

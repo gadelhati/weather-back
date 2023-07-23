@@ -27,6 +27,9 @@ public class ServiceHarbor implements ServiceInterface<DTOResponseHarbor, DTOReq
             case "id": {
                 return repositoryHarborPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
+            case "name": {
+                return repositoryHarborPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryHarborPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }

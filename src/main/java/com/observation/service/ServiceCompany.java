@@ -27,6 +27,9 @@ public class ServiceCompany implements ServiceInterface<DTOResponseCompany, DTOR
             case "id": {
                 return repositoryCompanyPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
+            case "name": {
+                return repositoryCompanyPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryCompanyPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }

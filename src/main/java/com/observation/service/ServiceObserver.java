@@ -27,6 +27,9 @@ public class ServiceObserver implements ServiceInterface<DTOResponseObserver, DT
             case "id": {
                 return repositoryObserverPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
+            case "name": {
+                return repositoryObserverPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryObserverPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }

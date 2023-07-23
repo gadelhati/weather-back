@@ -35,10 +35,13 @@ public class ServiceStationOffShore implements ServiceInterface<DTOResponseStati
             }
         }
     }
-    public Page<DTOResponseStationHistoricOffShore> retrieveHistoric(Pageable pageable, String filter){
+    public Page<DTOResponseStationHistoricOffShore> retrieveHistoric(Pageable pageable, String value){
         switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
             case "id": {
-                return repositoryStationHistoricOffShorePage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
+                return repositoryStationHistoricOffShorePage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
+            }
+            case "telegraphicCallSign": {
+                return repositoryStationHistoricOffShorePage.findByTelegraphicCallSignContainingIgnoreCaseOrderByTelegraphicCallSignAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
             }
             default: {
                 return repositoryStationHistoricOffShorePage.findAll(pageable).map(MapStruct.MAPPER::toDTO);

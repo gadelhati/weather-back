@@ -27,6 +27,9 @@ public class ServiceCountry implements ServiceInterface<DTOResponseCountry, DTOR
             case "id": {
                 return repositoryCountryPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
+            case "name": {
+                return repositoryCountryPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryCountryPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }

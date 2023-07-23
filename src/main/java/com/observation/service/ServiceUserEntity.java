@@ -30,7 +30,7 @@ public class ServiceUserEntity implements ServiceInterface<DTOResponseUserEntity
         created.setRole(Collections.singletonList(repositoryRole.findByName("ROLE_USER")));
         return MapStruct.MAPPER.toDTO(repositoryUserEntity.save(MapStruct.MAPPER.toObject(created)));
     }
-//    @Override
+    @Override
     public Page<DTOResponseUserEntity> retrieve(Pageable pageable, String key, String value) {
         switch (key) {
             case "id": {
@@ -43,9 +43,6 @@ public class ServiceUserEntity implements ServiceInterface<DTOResponseUserEntity
                 return repositoryUserEntityPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
-    }
-    public Page<DTOResponseUserEntity> retrieve(Pageable pageable, String filte) {
-        return null;
     }
     @Override
     public DTOResponseUserEntity update(UUID id, DTORequestUserEntity updated){

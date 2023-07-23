@@ -27,6 +27,9 @@ public class ServiceSurveying implements ServiceInterface<DTOResponseSurveying, 
             case "id": {
                 return repositorySurveyingPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
+            case "name": {
+                return repositorySurveyingPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositorySurveyingPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
