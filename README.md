@@ -73,7 +73,7 @@ Type in intellij terminal tab
 
 ### how to clone the project and build locally
 ```
-git clone http://localhost:3120/nutrition/food
+git clone http://localhost:3120/weather-back
 ```
 
 ### how to install dependencies for this project
@@ -112,7 +112,7 @@ rm /opt/tomcat/webapps/<old_version>.war
 rm -Rfv /opt/tomcat/webapps/<old_version>
 cp /home/<user>/<application_name>.war /opt/tomcat/webapps/
 chown tomcat:tomcat /opt/tomcat/webapps/<application_name>.war
-chmod 755 <application_name>
+chmod 755 /opt/tomcat/webapps/<application_name>
 service tomcat start
 ```
 ## Change JDBC URL on h2:
@@ -126,35 +126,43 @@ jdbc:h2:mem:testdb
 ## Dependencies
 ```xml
 <dependencies>
+  <!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
+  <dependency>
+    <groupId>jakarta.servlet</groupId>
+    <artifactId>jakarta.servlet-api</artifactId>
+    <version>6.0.0</version>
+    <scope>provided</scope>
+  </dependency>
+  <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-undertow -->
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-undertow</artifactId>
+    <version>3.1.2</version>
+  </dependency>
   <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
   <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-web</artifactId>
-    <version>3.1.0</version>
+    <version>3.1.2</version>
   </dependency>
-  <!--		<dependency>-->
-  <!--			<groupId>org.springframework.boot</groupId>-->
-  <!--			<artifactId>spring-boot-starter-tomcat</artifactId>-->
-  <!--			<scope>provided</scope>-->
-  <!--		</dependency>-->
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-tomcat</artifactId>
+    <version>3.1.2</version>
+    <scope>provided</scope>
+  </dependency>
   <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
   <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-test</artifactId>
-    <version>3.1.0</version>
+    <version>3.1.2</version>
     <scope>test</scope>
-  </dependency>
-  <!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-websocket -->
-  <dependency>
-    <groupId>org.apache.tomcat.embed</groupId>
-    <artifactId>tomcat-embed-websocket</artifactId>
-    <version>11.0.0-M5</version>
   </dependency>
   <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
   <dependency>
     <groupId>org.projectlombok</groupId>
     <artifactId>lombok</artifactId>
-    <version>1.18.26</version>
+    <version>1.18.28</version>
     <scope>provided</scope>
   </dependency>
   <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
@@ -167,38 +175,38 @@ jdbc:h2:mem:testdb
   <dependency>
     <groupId>org.hibernate.orm</groupId>
     <artifactId>hibernate-envers</artifactId>
-    <version>6.2.3.Final</version>
+    <version>6.3.0.CR1</version>
   </dependency>
   <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation -->
   <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-validation</artifactId>
-    <version>3.1.1</version>
+    <version>3.1.2</version>
   </dependency>
   <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
   <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-data-jpa</artifactId>
-    <version>3.1.0</version>
+    <version>3.1.2</version>
   </dependency>
   <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
   <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-security</artifactId>
-    <version>3.1.0</version>
+    <version>3.1.2</version>
   </dependency>
   <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-test -->
   <dependency>
     <groupId>org.springframework.security</groupId>
     <artifactId>spring-security-test</artifactId>
-    <version>6.1.0</version>
+    <version>6.1.2</version>
     <scope>test</scope>
   </dependency>
   <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
   <dependency>
     <groupId>org.postgresql</groupId>
     <artifactId>postgresql</artifactId>
-    <version>42.5.1</version>
+    <version>42.6.0</version>
     <scope>runtime</scope>
   </dependency>
   <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api -->
@@ -222,6 +230,50 @@ jdbc:h2:mem:testdb
     <scope>runtime</scope>
   </dependency>
 </dependencies>
+
+<build>
+<finalName>${artifactId}</finalName>
+<plugins>
+  <plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <configuration>
+      <excludes>
+        <exclude>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+        </exclude>
+      </excludes>
+    </configuration>
+  </plugin>
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>${maven-compiler-plugin.version}</version>
+    <configuration>
+      <source>17</source>
+      <target>17</target>
+      <annotationProcessorPaths>
+        <path>
+          <groupId>org.mapstruct</groupId>
+          <artifactId>mapstruct-processor</artifactId>
+          <version>${org.mapstruct.version}</version>
+        </path>
+        <path>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <version>1.18.26</version>
+        </path>
+        <path>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok-mapstruct-binding</artifactId>
+          <version>0.2.0</version>
+        </path>
+      </annotationProcessorPaths>
+    </configuration>
+  </plugin>
+</plugins>
+</build>
 ```
 
 ## Configure Spring Datasource, JPA, App properties
@@ -232,7 +284,7 @@ spring.datasource.url= jdbc:postgresql://localhost:5432/weather-back
 spring.datasource.username= postgres
 spring.datasource.password= password
 
-spring.jpa.properties.hibernate.dialect= org.hibernate.spatial.dialect.postgis.PostgisDialect
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.hibernate.ddl-auto= create
 
 ```
