@@ -1,8 +1,8 @@
 package com.observation.exception.validator;
 
 import com.observation.exception.annotation.ValidJWT;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 public class ValidatorValidJWT implements ConstraintValidator<ValidJWT, String> {
 

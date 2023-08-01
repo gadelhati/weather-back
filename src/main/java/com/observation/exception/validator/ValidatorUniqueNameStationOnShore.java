@@ -3,8 +3,8 @@ package com.observation.exception.validator;
 import com.observation.exception.annotation.UniqueNameStationOnShore;
 import com.observation.persistence.payload.request.DTORequestStationOnShore;
 import com.observation.service.ServiceStationOnShore;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ValidatorUniqueNameStationOnShore implements ConstraintValidator<UniqueNameStationOnShore, DTORequestStationOnShore> {

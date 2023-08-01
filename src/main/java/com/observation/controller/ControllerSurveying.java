@@ -3,7 +3,7 @@ package com.observation.controller;
 import com.observation.persistence.payload.request.DTORequestSurveying;
 import com.observation.persistence.payload.response.DTOResponseSurveying;
 import com.observation.service.ServiceSurveying;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

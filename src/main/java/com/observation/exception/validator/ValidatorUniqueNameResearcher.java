@@ -5,8 +5,8 @@ import com.observation.persistence.payload.request.DTORequestResearcher;
 import com.observation.service.ServiceResearcher;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 public class ValidatorUniqueNameResearcher implements ConstraintValidator<UniqueNameResearcher, DTORequestResearcher> {
 

@@ -3,8 +3,8 @@ package com.observation.exception.validator;
 import com.observation.exception.annotation.UniqueNameUser;
 import com.observation.persistence.payload.request.DTORequestUserEntity;
 import com.observation.service.ServiceUserEntity;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static com.observation.exception.validator.Validator.isNull;

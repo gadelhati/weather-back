@@ -3,8 +3,8 @@ package com.observation.persistence.payload.request;
 import com.observation.exception.annotation.UniqueNameHarbor;
 import com.observation.persistence.model.Institution;
 import com.observation.persistence.model.Station;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.Getter;
 
 import java.util.UUID;

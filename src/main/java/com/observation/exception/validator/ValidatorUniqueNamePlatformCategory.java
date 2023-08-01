@@ -5,8 +5,8 @@ import com.observation.persistence.payload.request.DTORequestPlatformCategory;
 import com.observation.service.ServicePlatformCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 public class ValidatorUniqueNamePlatformCategory implements ConstraintValidator<UniqueNamePlatformCategory, DTORequestPlatformCategory> {
 

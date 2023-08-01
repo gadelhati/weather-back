@@ -4,7 +4,7 @@ import com.observation.persistence.payload.request.DTORequestStation;
 import com.observation.persistence.payload.response.DTOResponseStation;
 import com.observation.persistence.payload.response.DTOResponseStationHistoric;
 import com.observation.service.ServiceStation;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

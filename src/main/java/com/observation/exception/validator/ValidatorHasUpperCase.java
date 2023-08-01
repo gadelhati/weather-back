@@ -1,8 +1,8 @@
 package com.observation.exception.validator;
 
 import com.observation.exception.annotation.HasUpperCase;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 public class ValidatorHasUpperCase implements ConstraintValidator<HasUpperCase, String> {
 

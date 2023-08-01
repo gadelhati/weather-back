@@ -1,7 +1,7 @@
 package com.observation.persistence.model;
 
 import com.observation.persistence.enumeration.EnumFormat;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

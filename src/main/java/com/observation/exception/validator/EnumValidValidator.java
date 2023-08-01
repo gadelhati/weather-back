@@ -1,8 +1,8 @@
 package com.observation.exception.validator;
 
 import com.observation.exception.annotation.EnumValid;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 import java.util.List;
 import java.util.stream.Collectors;

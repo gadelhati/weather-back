@@ -1,8 +1,8 @@
 package com.observation.exception.validator;
 
 import com.observation.exception.annotation.HasLetter;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 public class ValidatorHasLetter implements ConstraintValidator<HasLetter, String> {
 

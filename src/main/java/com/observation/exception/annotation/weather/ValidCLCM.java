@@ -1,8 +1,8 @@
 package com.observation.exception.annotation.weather;
 
 import com.observation.exception.validator.weather.ValidatorValidCLCM;
-import jakarta.validation.Constraint;
-import jakarta.validation.Payload;
+import javax.validation.Constraint;
+import javax.validation.Payload;
 
 import java.lang.annotation.*;
 

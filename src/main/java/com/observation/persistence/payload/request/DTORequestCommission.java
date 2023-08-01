@@ -4,8 +4,8 @@ import com.observation.persistence.model.Harbor;
 import com.observation.persistence.model.Institution;
 import com.observation.persistence.model.Platform;
 import com.observation.persistence.model.Surveying;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.Getter;
 
 import java.util.Date;

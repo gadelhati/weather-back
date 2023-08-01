@@ -2,8 +2,8 @@ package com.observation.persistence.payload.request;
 
 import com.observation.exception.annotation.UniqueTelegraphicCallsignStationOffShore;
 import com.observation.persistence.model.Commission;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 

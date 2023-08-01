@@ -1,8 +1,8 @@
 package com.observation.exception.validator;
 
 import com.observation.exception.annotation.HasDigit;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 public class ValidatorHasDigit implements ConstraintValidator<HasDigit, String> {
 

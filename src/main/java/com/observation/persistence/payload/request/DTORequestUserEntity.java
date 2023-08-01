@@ -2,7 +2,7 @@ package com.observation.persistence.payload.request;
 
 import com.observation.exception.annotation.*;
 import com.observation.persistence.model.Role;
-import jakarta.validation.constraints.*;
+import javax.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 

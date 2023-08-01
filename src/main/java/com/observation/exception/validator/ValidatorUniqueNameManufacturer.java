@@ -5,8 +5,8 @@ import com.observation.persistence.payload.request.DTORequestManufacturer;
 import com.observation.service.ServiceManufacturer;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 public class ValidatorUniqueNameManufacturer implements ConstraintValidator<UniqueNameManufacturer, DTORequestManufacturer> {
 

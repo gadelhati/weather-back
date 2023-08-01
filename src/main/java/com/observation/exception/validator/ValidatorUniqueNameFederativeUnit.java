@@ -3,8 +3,8 @@ package com.observation.exception.validator;
 import com.observation.exception.annotation.UniqueNameFederativeUnit;
 import com.observation.persistence.payload.request.DTORequestFederativeUnit;
 import com.observation.service.ServiceFederativeUnit;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ValidatorUniqueNameFederativeUnit implements ConstraintValidator<UniqueNameFederativeUnit, DTORequestFederativeUnit> {

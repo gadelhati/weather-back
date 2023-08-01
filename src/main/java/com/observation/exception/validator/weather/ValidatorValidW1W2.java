@@ -2,8 +2,8 @@ package com.observation.exception.validator.weather;
 
 import com.observation.exception.annotation.weather.ValidW1W2;
 import com.observation.persistence.payload.request.DTORequestWeather;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 import static com.observation.exception.validator.GlobalValidation.isValidWithNumber;
 

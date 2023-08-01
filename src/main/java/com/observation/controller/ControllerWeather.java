@@ -7,7 +7,7 @@ import com.observation.persistence.payload.response.DTOResponseWeatherHistoric;
 import com.observation.persistence.payload.response.DTOResponseWeatherHistoricOffShore;
 import com.observation.persistence.payload.response.DTOResponseWeatherHistoricOnShore;
 import com.observation.service.ServiceWeather;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

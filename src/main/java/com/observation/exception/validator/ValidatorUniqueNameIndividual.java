@@ -5,8 +5,8 @@ import com.observation.persistence.payload.request.DTORequestIndividual;
 import com.observation.service.ServiceIndividual;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 public class ValidatorUniqueNameIndividual implements ConstraintValidator<UniqueNameIndividual, DTORequestIndividual> {
 

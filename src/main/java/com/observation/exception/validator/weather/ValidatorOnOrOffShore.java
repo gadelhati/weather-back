@@ -3,8 +3,8 @@ package com.observation.exception.validator.weather;
 import com.observation.exception.annotation.weather.OnOrOffShore;
 import com.observation.persistence.payload.request.DTORequestWeather;
 import com.observation.service.ServiceWeather;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static com.observation.exception.validator.Validator.isNull;

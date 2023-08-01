@@ -2,10 +2,9 @@ package com.observation.controller;
 
 import com.observation.persistence.payload.request.DTORequestStationOffShore;
 import com.observation.persistence.payload.response.DTOResponseStationHistoricOffShore;
-import com.observation.persistence.payload.response.DTOResponseStationHistoricOnShore;
 import com.observation.persistence.payload.response.DTOResponseStationOffShore;
 import com.observation.service.ServiceStationOffShore;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

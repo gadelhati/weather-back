@@ -1,6 +1,6 @@
 package com.observation.persistence.model;
 
-import jakarta.persistence.Entity;
+import javax.persistence.Entity;
 import lombok.*;
 import org.hibernate.envers.Audited;
 

@@ -2,8 +2,8 @@ package com.observation.persistence.payload.request;
 
 import com.observation.exception.annotation.UniqueNamePrivilege;
 import com.observation.persistence.model.Role;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.Getter;
 
 import java.util.HashSet;

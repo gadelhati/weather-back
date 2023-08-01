@@ -4,7 +4,7 @@ import com.observation.persistence.payload.request.DTORequestStationOnShore;
 import com.observation.persistence.payload.response.DTOResponseStationHistoricOnShore;
 import com.observation.persistence.payload.response.DTOResponseStationOnShore;
 import com.observation.service.ServiceStationOnShore;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
