@@ -1,6 +1,9 @@
 -- CREATING SCHEMA
 CREATE SCHEMA IF NOT EXISTS weather;
 
+-- CREATING SEQUENCE
+CREATE SEQUENCE IF NOT EXISTS weather.hibernate_sequence;
+
 -- POPULING weather.privilege
 --INSERT INTO weather.privilege(created_at, updated_at, id, name) VALUES(NOW(), NOW(), '82beb7a1-621c-4b9a-83eb-3ca196ed4345', 'READ_PRIVILEGE') ON CONFLICT DO NOTHING;
 --INSERT INTO weather.privilege(created_at, updated_at, id, name) VALUES(NOW(), NOW(), '3f2146a9-5d43-448e-a1eb-455766d3a14a', 'WRITE_PRIVILEGE') ON CONFLICT DO NOTHING;
