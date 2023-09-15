@@ -11,4 +11,5 @@ public interface RepositoryUserEntityPage extends PagingAndSortingRepository<Use
 
     Page<UserEntity> findByIdOrderByIdAsc(Pageable pageable, UUID id);
     Page<UserEntity> findByUsernameContainingIgnoreCaseOrderByUsernameAsc(Pageable pageable, String username);
+    Page<UserEntity> findByEmailContainingIgnoreCaseOrderByEmailAsc(Pageable pageable, String username);
 }

@@ -39,6 +39,9 @@ public class ServiceUserEntity implements ServiceInterface<DTOResponseUserEntity
             case "username": {
                 return repositoryUserEntityPage.findByUsernameContainingIgnoreCaseOrderByUsernameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
             }
+            case "email": {
+                return repositoryUserEntityPage.findByEmailContainingIgnoreCaseOrderByEmailAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryUserEntityPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
