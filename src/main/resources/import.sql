@@ -58,15 +58,6 @@ INSERT INTO weather.user_roles(user_id, role_id) VALUES ('21161d05-df8e-44fb-80b
 INSERT INTO weather.user_roles(user_id, role_id) VALUES ('1a3dbddf-d1e5-48f5-b28a-89ee779668d4', '8652ec73-0a53-433c-93be-420f1d90c681') ON CONFLICT DO NOTHING;
 INSERT INTO weather.user_roles(user_id, role_id) VALUES ('7d053026-0d47-4207-9c64-9c2a6035032d', '8652ec73-0a53-433c-93be-420f1d90c681') ON CONFLICT DO NOTHING;
 INSERT INTO weather.user_roles(user_id, role_id) VALUES ('3a0cb49f-c92a-4e44-9f48-58e165778414', '7c12004d-e843-4e00-be40-01845ad75834') ON CONFLICT DO NOTHING;
-INSERT INTO weather.user_roles(user_id, role_id) VALUES ('bb3f033f-8043-4514-b528-68571abc2607', '7c12004d-e843-4e00-be40-01845ad75834') ON CONFLICT DO NOTHING;
-INSERT INTO weather.user_roles(user_id, role_id) VALUES ('79a9d758-ee0e-44a9-bda5-ca3203567c03', '7c12004d-e843-4e00-be40-01845ad75834') ON CONFLICT DO NOTHING;
-INSERT INTO weather.user_roles(user_id, role_id) VALUES ('ddd6a3e9-a14c-490d-9193-2241901953a0', '7c12004d-e843-4e00-be40-01845ad75834') ON CONFLICT DO NOTHING;
-INSERT INTO weather.user_roles(user_id, role_id) VALUES ('350ff8b8-f0f8-469d-b9db-857d7bd4cfdd', '7c12004d-e843-4e00-be40-01845ad75834') ON CONFLICT DO NOTHING;
-INSERT INTO weather.user_roles(user_id, role_id) VALUES ('1f63f3a9-379c-46d7-b2ea-1401bc203bc2', '7c12004d-e843-4e00-be40-01845ad75834') ON CONFLICT DO NOTHING;
-INSERT INTO weather.user_roles(user_id, role_id) VALUES ('c85dc0a2-420f-41cc-988f-995ec5c3d6ee', '7c12004d-e843-4e00-be40-01845ad75834') ON CONFLICT DO NOTHING;
-INSERT INTO weather.user_roles(user_id, role_id) VALUES ('749fd144-257a-4f52-b86e-e17deb3adf50', '7c12004d-e843-4e00-be40-01845ad75834') ON CONFLICT DO NOTHING;
-INSERT INTO weather.user_roles(user_id, role_id) VALUES ('975aa04f-b735-46a8-83a1-8f05ada1d3e4', '7c12004d-e843-4e00-be40-01845ad75834') ON CONFLICT DO NOTHING;
-INSERT INTO weather.user_roles(user_id, role_id) VALUES ('e19656a6-a730-4f42-b658-5aee0abb0e41', '7c12004d-e843-4e00-be40-01845ad75834') ON CONFLICT DO NOTHING;
 
 -- POPULANDO weather.om
 INSERT INTO weather.om (created_at, updated_at, id, name) VALUES (NOW(), NOW(), 'da65d957-d0ab-426b-b53e-4b28e195c32f', 'CHM') ON CONFLICT DO NOTHING;
