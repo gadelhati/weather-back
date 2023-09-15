@@ -78,6 +78,7 @@ public class ServiceUserEntity implements ServiceInterface<DTOResponseUserEntity
 
     public DTOResponseUserEntity changePassword(DTORequestUserEntity updated){
         UserEntity user = repositoryUserEntity.findById(updated.getId()).orElse(null);
+        assert user != null;
         user.setPassword(passwordEncoder.encode(updated.getPassword()));
         return MapStruct.MAPPER.toDTO(repositoryUserEntity.save(user));
     }
