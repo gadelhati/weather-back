@@ -59,9 +59,6 @@ public class ServiceWeather {
 //            case "id": {
 //                return repositoryWeatherPage.findByIdOrderByIdAsc(pageable, new WeatherId(dateObservation, ddddddd, ii, iii)).map(MapStruct.MAPPER::toDTO);
 //            }
-            case "name": {
-                return repositoryWeatherPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
-            }
             default: {
                 return repositoryWeatherPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
@@ -69,12 +66,9 @@ public class ServiceWeather {
     }
     public Page<DTOResponseWeatherHistoric> retrieveHistoric(Pageable pageable, String key, String value){
         switch (key) {
-            case "id": {
-                return repositoryWeatherHistoricPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
-            }
-            case "name": {
-                return repositoryWeatherHistoricPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
-            }
+//            case "id": {
+//                return repositoryWeatherHistoricPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
+//            }
             default: {
                 return repositoryWeatherHistoricPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
@@ -83,12 +77,9 @@ public class ServiceWeather {
     public Page<DTOResponseWeatherHistoricOffShore> retrieveHistoricOffShore(Pageable pageable, String key, String value){
 //        return repositoryWeatherHistoricPageOffShore.findAll(pageable).map(MapStruct.MAPPER::toDTO);
         switch (key) {
-            case "id": {
-                return repositoryWeatherHistoricPageOffShore.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
-            }
-            case "name": {
-                return repositoryWeatherHistoricPageOffShore.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
-            }
+//            case "id": {
+//                return repositoryWeatherHistoricPageOffShore.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
+//            }
             default: {
                 return repositoryWeatherHistoricPageOffShore.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
@@ -96,12 +87,9 @@ public class ServiceWeather {
     }
     public Page<DTOResponseWeatherHistoricOnShore> retrieveHistoricOnShore(Pageable pageable, String key, String value){
         switch (key) {
-            case "id": {
-                return repositoryWeatherHistoricPageOnShore.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
-            }
-            case "name": {
-                return repositoryWeatherHistoricPageOnShore.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
-            }
+//            case "id": {
+//                return repositoryWeatherHistoricPageOnShore.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
+//            }
             default: {
                 return repositoryWeatherHistoricPageOnShore.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }

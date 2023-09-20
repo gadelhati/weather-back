@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
-import java.util.UUID;
 
 public interface RepositoryWeather extends JpaRepository<Weather, WeatherId> {
 
@@ -17,6 +16,4 @@ public interface RepositoryWeather extends JpaRepository<Weather, WeatherId> {
     Optional<Weather> findByDateObservationAndDdddddd(LocalDateTime dateObservation, String ddddddd);
     void deleteByDateObservationAndIiAndIii(LocalDateTime dateObservation, String ii, String iii);
     void deleteByDateObservationAndDdddddd(LocalDateTime dateObservation, String ddddddd);
-    Page<WeatherHistoric> findByIdOrderByIdAsc(Pageable pageable, UUID id);
-    Page<WeatherHistoric> findByNameContainingIgnoreCaseOrderByNameAsc(Pageable pageable, String name);
 }
