@@ -38,10 +38,10 @@ public class ServiceStationOnShore implements ServiceInterface<DTOResponseStatio
             }
         }
     }
-    public Page<DTOResponseStationHistoricOnShore> retrieveHistoric(Pageable pageable, String filter){
-        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+    public Page<DTOResponseStationHistoricOnShore> retrieveHistoric(Pageable pageable, String key, String value){
+        switch (key) {
             case "id": {
-                return repositoryStationHistoricOnShorePage.findByIdOrderByIdAsc(pageable, UUID.fromString(filter)).map(MapStruct.MAPPER::toDTO);
+                return repositoryStationHistoricOnShorePage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             default: {
                 return repositoryStationHistoricOnShorePage.findAll(pageable).map(MapStruct.MAPPER::toDTO);

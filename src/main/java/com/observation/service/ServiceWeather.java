@@ -49,21 +49,63 @@ public class ServiceWeather {
     public DTOResponseWeather retrieve(WeatherId weatherId){
         return MapStruct.MAPPER.toDTO(repositoryWeather.findById(weatherId).orElseGet(null));
     }
-    public Page<DTOResponseWeather> retrieve(Pageable pageable, String filter){
-        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+    public Page<DTOResponseWeather> retrieve(Pageable pageable, String key, String value){
+//        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+//            default: {
+//                return repositoryWeatherPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+//            }
+//        }
+        switch (key) {
+//            case "id": {
+//                return repositoryWeatherPage.findByIdOrderByIdAsc(pageable, new WeatherId(dateObservation, ddddddd, ii, iii)).map(MapStruct.MAPPER::toDTO);
+//            }
+            case "name": {
+                return repositoryWeatherPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryWeatherPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
     }
-    public Page<DTOResponseWeatherHistoric> retrieveHistoric(Pageable pageable, String filter){
-        return repositoryWeatherHistoricPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+    public Page<DTOResponseWeatherHistoric> retrieveHistoric(Pageable pageable, String key, String value){
+        switch (key) {
+            case "id": {
+                return repositoryWeatherHistoricPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
+            }
+            case "name": {
+                return repositoryWeatherHistoricPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
+            default: {
+                return repositoryWeatherHistoricPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+            }
+        }
     }
-    public Page<DTOResponseWeatherHistoricOffShore> retrieveHistoricOffShore(Pageable pageable, String filter){
-        return repositoryWeatherHistoricPageOffShore.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+    public Page<DTOResponseWeatherHistoricOffShore> retrieveHistoricOffShore(Pageable pageable, String key, String value){
+//        return repositoryWeatherHistoricPageOffShore.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+        switch (key) {
+            case "id": {
+                return repositoryWeatherHistoricPageOffShore.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
+            }
+            case "name": {
+                return repositoryWeatherHistoricPageOffShore.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
+            default: {
+                return repositoryWeatherHistoricPageOffShore.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+            }
+        }
     }
-    public Page<DTOResponseWeatherHistoricOnShore> retrieveHistoricOnShore(Pageable pageable, String filter){
-        return repositoryWeatherHistoricPageOnShore.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+    public Page<DTOResponseWeatherHistoricOnShore> retrieveHistoricOnShore(Pageable pageable, String key, String value){
+        switch (key) {
+            case "id": {
+                return repositoryWeatherHistoricPageOnShore.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
+            }
+            case "name": {
+                return repositoryWeatherHistoricPageOnShore.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
+            default: {
+                return repositoryWeatherHistoricPageOnShore.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+            }
+        }
     }
     public DTOResponseWeather update(WeatherId id, DTORequestWeather updated) {
         updated.setDateObservation(updated.getDataObservacao().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().withHour(Integer.parseInt(updated.getGg())));

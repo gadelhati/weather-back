@@ -35,8 +35,8 @@ public class ServiceStationOffShore implements ServiceInterface<DTOResponseStati
             }
         }
     }
-    public Page<DTOResponseStationHistoricOffShore> retrieveHistoric(Pageable pageable, String value){
-        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
+    public Page<DTOResponseStationHistoricOffShore> retrieveHistoric(Pageable pageable, String key, String value){
+        switch (key) {
             case "id": {
                 return repositoryStationHistoricOffShorePage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
