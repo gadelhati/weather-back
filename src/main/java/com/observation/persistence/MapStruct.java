@@ -35,6 +35,7 @@ public interface MapStruct {
     DTOResponseStationOnShore toDTO(StationOnShore stationOnShore);
     DTOResponseSurveying toDTO(Surveying surveying);
     DTOResponseWeather toDTO(Weather weather);
+    DTOResponseWeather12 toDTO(Weather12 weather12);
     DTOResponseWeatherHistoric toDTO(WeatherHistoric weatherHistoric);
     DTOResponseWeatherHistoricOffShore toDTO(WeatherHistoricOffShore weatherHistoricOffShore);
     DTOResponseWeatherHistoricOnShore toDTO(WeatherHistoricOnShore weatherHistoricOnShore);
@@ -66,6 +67,7 @@ public interface MapStruct {
     StationOnShore toObject(DTORequestStationOnShore dtoRequestStationOnShore);
     Surveying toObject(DTORequestSurveying dtoRequestSurveying);
     Weather toObject(DTORequestWeather dtoRequestWeather);
+    Weather12 toObject(DTORequestWeather12 dtoRequestWeather12);
     WeatherHistoric toObject(DTORequestWeatherHistoric dtoRequestWeatherHistoric);
     WeatherHistoricOffShore toObject(DTORequestWeatherHistoricOffShore dtoRequestWeatherHistoricOffShore);
     WeatherHistoricOnShore toObject(DTORequestWeatherHistoricOnShore dtoRequestWeatherHistoricOnShore);
