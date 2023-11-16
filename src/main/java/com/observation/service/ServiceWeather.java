@@ -49,14 +49,9 @@ public class ServiceWeather {
         return MapStruct.MAPPER.toDTO(repositoryWeather.findById(weatherId).orElseGet(null));
     }
     public Page<DTOResponseWeather> retrieve(Pageable pageable, String key, String value){
-//        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
-//            default: {
-//                return repositoryWeather.findAll(pageable).map(MapStruct.MAPPER::toDTO);
-//            }
-//        }
         switch (key) {
 //            case "id": {
-//                return repositoryWeather.findByIdOrderByIdAsc(pageable, new WeatherId(dateObservation, ddddddd, ii, iii)).map(MapStruct.MAPPER::toDTO);
+//                return repositoryWeather.findById(pageable, new WeatherId(dateObservation, ddddddd, ii, iii)).map(MapStruct.MAPPER::toDTO);
 //            }
             default: {
                 return repositoryWeather.findAll(pageable).map(MapStruct.MAPPER::toDTO);
@@ -74,7 +69,6 @@ public class ServiceWeather {
         }
     }
     public Page<DTOResponseWeatherHistoricOffShore> retrieveHistoricOffShore(Pageable pageable, String key, String value){
-//        return repositoryWeatherHistoricPageOffShore.findAll(pageable).map(MapStruct.MAPPER::toDTO);
         switch (key) {
 //            case "id": {
 //                return repositoryWeatherHistoricPageOffShore.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
