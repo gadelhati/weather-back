@@ -5,7 +5,6 @@ import com.observation.persistence.model.Equipment;
 import com.observation.persistence.payload.request.DTORequestEquipment;
 import com.observation.persistence.payload.response.DTOResponseEquipment;
 import com.observation.persistence.repository.RepositoryEquipment;
-import com.observation.persistence.repository.RepositoryEquipmentPage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +16,6 @@ import java.util.UUID;
 public class ServiceEquipment implements ServiceInterface<DTOResponseEquipment, DTORequestEquipment> {
 
     private final RepositoryEquipment repositoryEquipment;
-    private final RepositoryEquipmentPage repositoryEquipmentPage;
 
     public DTOResponseEquipment create(DTORequestEquipment created){
         return MapStruct.MAPPER.toDTO(repositoryEquipment.save(MapStruct.MAPPER.toObject(created)));
@@ -25,13 +23,13 @@ public class ServiceEquipment implements ServiceInterface<DTOResponseEquipment, 
     public Page<DTOResponseEquipment> retrieve(Pageable pageable, String key, String value){
         switch (key) {
             case "id": {
-                return repositoryEquipmentPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
+                return repositoryEquipment.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             case "name": {
-                return repositoryEquipmentPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+                return repositoryEquipment.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
             }
             default: {
-                return repositoryEquipmentPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+                return repositoryEquipment.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
     }

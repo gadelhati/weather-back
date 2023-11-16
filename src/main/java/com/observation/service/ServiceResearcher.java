@@ -5,7 +5,6 @@ import com.observation.persistence.model.Researcher;
 import com.observation.persistence.payload.request.DTORequestResearcher;
 import com.observation.persistence.payload.response.DTOResponseResearcher;
 import com.observation.persistence.repository.RepositoryResearcher;
-import com.observation.persistence.repository.RepositoryResearcherPage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +16,6 @@ import java.util.UUID;
 public class ServiceResearcher implements ServiceInterface<DTOResponseResearcher, DTORequestResearcher> {
 
     private final RepositoryResearcher repositoryResearcher;
-    private final RepositoryResearcherPage repositoryResearcherPage;
 
     public DTOResponseResearcher create(DTORequestResearcher created){
         return MapStruct.MAPPER.toDTO(repositoryResearcher.save(MapStruct.MAPPER.toObject(created)));
@@ -25,13 +23,13 @@ public class ServiceResearcher implements ServiceInterface<DTOResponseResearcher
     public Page<DTOResponseResearcher> retrieve(Pageable pageable, String key, String value){
         switch (key) {
             case "id": {
-                return repositoryResearcherPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
+                return repositoryResearcher.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             case "name": {
-                return repositoryResearcherPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+                return repositoryResearcher.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
             }
             default: {
-                return repositoryResearcherPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+                return repositoryResearcher.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
     }

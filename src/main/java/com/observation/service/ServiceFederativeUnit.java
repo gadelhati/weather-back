@@ -5,7 +5,6 @@ import com.observation.persistence.model.FederativeUnit;
 import com.observation.persistence.payload.request.DTORequestFederativeUnit;
 import com.observation.persistence.payload.response.DTOResponseFederativeUnit;
 import com.observation.persistence.repository.RepositoryFederativeUnit;
-import com.observation.persistence.repository.RepositoryFederativeUnitPage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +16,6 @@ import java.util.UUID;
 public class ServiceFederativeUnit implements ServiceInterface<DTOResponseFederativeUnit, DTORequestFederativeUnit> {
 
     private final RepositoryFederativeUnit repositoryFederativeUnit;
-    private final RepositoryFederativeUnitPage repositoryFederativeUnitPage;
 
     public DTOResponseFederativeUnit create(DTORequestFederativeUnit created){
         return MapStruct.MAPPER.toDTO(repositoryFederativeUnit.save(MapStruct.MAPPER.toObject(created)));
@@ -25,13 +23,13 @@ public class ServiceFederativeUnit implements ServiceInterface<DTOResponseFedera
     public Page<DTOResponseFederativeUnit> retrieve(Pageable pageable, String key, String value){
         switch (key) {
             case "id": {
-                return repositoryFederativeUnitPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
+                return repositoryFederativeUnit.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             case "name": {
-                return repositoryFederativeUnitPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+                return repositoryFederativeUnit.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
             }
             default: {
-                return repositoryFederativeUnitPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+                return repositoryFederativeUnit.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
     }

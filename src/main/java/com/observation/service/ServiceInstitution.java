@@ -5,7 +5,6 @@ import com.observation.persistence.model.Institution;
 import com.observation.persistence.payload.request.DTORequestInstitution;
 import com.observation.persistence.payload.response.DTOResponseInstitution;
 import com.observation.persistence.repository.RepositoryInstitution;
-import com.observation.persistence.repository.RepositoryInstitutionPage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +16,6 @@ import java.util.UUID;
 public class ServiceInstitution implements ServiceInterface<DTOResponseInstitution, DTORequestInstitution> {
 
     private final RepositoryInstitution repositoryInstitution;
-    private final RepositoryInstitutionPage repositoryInstitutionPage;
 
     public DTOResponseInstitution create(DTORequestInstitution created){
         return MapStruct.MAPPER.toDTO(repositoryInstitution.save(MapStruct.MAPPER.toObject(created)));
@@ -25,13 +23,13 @@ public class ServiceInstitution implements ServiceInterface<DTOResponseInstituti
     public Page<DTOResponseInstitution> retrieve(Pageable pageable, String key, String value){
         switch (key) {
             case "id": {
-                return repositoryInstitutionPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
+                return repositoryInstitution.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             case "name": {
-                return repositoryInstitutionPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+                return repositoryInstitution.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
             }
             default: {
-                return repositoryInstitutionPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+                return repositoryInstitution.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
     }

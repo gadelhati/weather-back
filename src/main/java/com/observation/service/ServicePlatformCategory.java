@@ -5,7 +5,6 @@ import com.observation.persistence.model.PlatformCategory;
 import com.observation.persistence.payload.request.DTORequestPlatformCategory;
 import com.observation.persistence.payload.response.DTOResponsePlatformCategory;
 import com.observation.persistence.repository.RepositoryPlatformCategory;
-import com.observation.persistence.repository.RepositoryPlatformCategoryPage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +16,6 @@ import java.util.UUID;
 public class ServicePlatformCategory implements ServiceInterface<DTOResponsePlatformCategory, DTORequestPlatformCategory> {
 
     private final RepositoryPlatformCategory repositoryPlatformCategory;
-    private final RepositoryPlatformCategoryPage repositoryPlatformCategoryPage;
 
     public DTOResponsePlatformCategory create(DTORequestPlatformCategory created){
         return MapStruct.MAPPER.toDTO(repositoryPlatformCategory.save(MapStruct.MAPPER.toObject(created)));
@@ -25,13 +23,13 @@ public class ServicePlatformCategory implements ServiceInterface<DTOResponsePlat
     public Page<DTOResponsePlatformCategory> retrieve(Pageable pageable, String key, String value){
         switch (key) {
             case "id": {
-                return repositoryPlatformCategoryPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
+                return repositoryPlatformCategory.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             case "name": {
-                return repositoryPlatformCategoryPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+                return repositoryPlatformCategory.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
             }
             default: {
-                return repositoryPlatformCategoryPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+                return repositoryPlatformCategory.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
     }

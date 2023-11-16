@@ -24,7 +24,6 @@ public class ServiceWeather {
     private final RepositoryWeather repositoryWeather;
     private final RepositoryStationOffShore repositoryStationOffShore;
     private final RepositoryObserver repositoryObserver;
-    private final RepositoryWeatherPage repositoryWeatherPage;
     private final RepositoryWeatherHistoricPage repositoryWeatherHistoricPage;
     private final RepositoryWeatherHistoricPageOffShore repositoryWeatherHistoricPageOffShore;
     private final RepositoryWeatherHistoricPageOnShore repositoryWeatherHistoricPageOnShore;
@@ -52,15 +51,15 @@ public class ServiceWeather {
     public Page<DTOResponseWeather> retrieve(Pageable pageable, String key, String value){
 //        switch (pageable.getSort().toString().substring(0, pageable.getSort().toString().length() - 5)) {
 //            default: {
-//                return repositoryWeatherPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+//                return repositoryWeather.findAll(pageable).map(MapStruct.MAPPER::toDTO);
 //            }
 //        }
         switch (key) {
 //            case "id": {
-//                return repositoryWeatherPage.findByIdOrderByIdAsc(pageable, new WeatherId(dateObservation, ddddddd, ii, iii)).map(MapStruct.MAPPER::toDTO);
+//                return repositoryWeather.findByIdOrderByIdAsc(pageable, new WeatherId(dateObservation, ddddddd, ii, iii)).map(MapStruct.MAPPER::toDTO);
 //            }
             default: {
-                return repositoryWeatherPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+                return repositoryWeather.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
     }

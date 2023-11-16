@@ -5,7 +5,6 @@ import com.observation.persistence.model.Manufacturer;
 import com.observation.persistence.payload.request.DTORequestManufacturer;
 import com.observation.persistence.payload.response.DTOResponseManufacturer;
 import com.observation.persistence.repository.RepositoryManufacturer;
-import com.observation.persistence.repository.RepositoryManufacturerPage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +16,6 @@ import java.util.UUID;
 public class ServiceManufacturer implements ServiceInterface<DTOResponseManufacturer, DTORequestManufacturer> {
 
     private final RepositoryManufacturer repositoryManufacturer;
-    private final RepositoryManufacturerPage repositoryManufacturerPage;
 
     public DTOResponseManufacturer create(DTORequestManufacturer created){
         return MapStruct.MAPPER.toDTO(repositoryManufacturer.save(MapStruct.MAPPER.toObject(created)));
@@ -25,13 +23,13 @@ public class ServiceManufacturer implements ServiceInterface<DTOResponseManufact
     public Page<DTOResponseManufacturer> retrieve(Pageable pageable, String key, String value){
         switch (key) {
             case "id": {
-                return repositoryManufacturerPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
+                return repositoryManufacturer.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             case "name": {
-                return repositoryManufacturerPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+                return repositoryManufacturer.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
             }
             default: {
-                return repositoryManufacturerPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+                return repositoryManufacturer.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
     }

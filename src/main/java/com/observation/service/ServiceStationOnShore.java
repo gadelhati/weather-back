@@ -7,7 +7,6 @@ import com.observation.persistence.payload.response.DTOResponseStationHistoricOn
 import com.observation.persistence.payload.response.DTOResponseStationOnShore;
 import com.observation.persistence.repository.RepositoryStationHistoricOnShorePage;
 import com.observation.persistence.repository.RepositoryStationOnShore;
-import com.observation.persistence.repository.RepositoryStationOnShorePage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +18,6 @@ import java.util.UUID;
 public class ServiceStationOnShore implements ServiceInterface<DTOResponseStationOnShore, DTORequestStationOnShore> {
 
     private final RepositoryStationOnShore repositoryStationOnShore;
-    private final RepositoryStationOnShorePage repositoryStationOnShorePage;
     private final RepositoryStationHistoricOnShorePage repositoryStationHistoricOnShorePage;
 
     public DTOResponseStationOnShore create(DTORequestStationOnShore created){
@@ -28,13 +26,13 @@ public class ServiceStationOnShore implements ServiceInterface<DTOResponseStatio
     public Page<DTOResponseStationOnShore> retrieve(Pageable pageable, String key, String value){
         switch (key) {
             case "id": {
-                return repositoryStationOnShorePage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
+                return repositoryStationOnShore.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             case "name": {
-                return repositoryStationOnShorePage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+                return repositoryStationOnShore.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
             }
             default: {
-                return repositoryStationOnShorePage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+                return repositoryStationOnShore.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
     }

@@ -5,7 +5,6 @@ import com.observation.persistence.model.Privilege;
 import com.observation.persistence.payload.request.DTORequestPrivilege;
 import com.observation.persistence.payload.response.DTOResponsePrivilege;
 import com.observation.persistence.repository.RepositoryPrivilege;
-import com.observation.persistence.repository.RepositoryPrivilegePage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +16,6 @@ import java.util.UUID;
 public class ServicePrivilege implements ServiceInterface<DTOResponsePrivilege, DTORequestPrivilege> {
 
     private final RepositoryPrivilege repositoryPrivilege;
-    private final RepositoryPrivilegePage repositoryPrivilegePage;
 
     public DTOResponsePrivilege create(DTORequestPrivilege created){
         return MapStruct.MAPPER.toDTO(repositoryPrivilege.save(MapStruct.MAPPER.toObject(created)));
@@ -25,13 +23,13 @@ public class ServicePrivilege implements ServiceInterface<DTOResponsePrivilege, 
     public Page<DTOResponsePrivilege> retrieve(Pageable pageable, String key, String value){
         switch (key) {
             case "id": {
-                return repositoryPrivilegePage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
+                return repositoryPrivilege.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             case "name": {
-                return repositoryPrivilegePage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+                return repositoryPrivilege.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
             }
             default: {
-                return repositoryPrivilegePage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+                return repositoryPrivilege.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
     }

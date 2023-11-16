@@ -6,7 +6,6 @@ import com.observation.persistence.payload.request.DTORequestUserEntity;
 import com.observation.persistence.payload.response.DTOResponseUserEntity;
 import com.observation.persistence.repository.RepositoryRole;
 import com.observation.persistence.repository.RepositoryUserEntity;
-import com.observation.persistence.repository.RepositoryUserEntityPage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +20,6 @@ public class ServiceUserEntity implements ServiceInterface<DTOResponseUserEntity
 
     private final RepositoryUserEntity repositoryUserEntity;
     private final RepositoryRole repositoryRole;
-    private final RepositoryUserEntityPage repositoryUserEntityPage;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -34,16 +32,16 @@ public class ServiceUserEntity implements ServiceInterface<DTOResponseUserEntity
     public Page<DTOResponseUserEntity> retrieve(Pageable pageable, String key, String value) {
         switch (key) {
             case "id": {
-                return repositoryUserEntityPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
+                return repositoryUserEntity.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             case "username": {
-                return repositoryUserEntityPage.findByUsernameContainingIgnoreCaseOrderByUsernameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+                return repositoryUserEntity.findByUsernameContainingIgnoreCaseOrderByUsernameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
             }
             case "email": {
-                return repositoryUserEntityPage.findByEmailContainingIgnoreCaseOrderByEmailAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+                return repositoryUserEntity.findByEmailContainingIgnoreCaseOrderByEmailAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
             }
             default: {
-                return repositoryUserEntityPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+                return repositoryUserEntity.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
     }

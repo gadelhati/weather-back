@@ -7,7 +7,6 @@ import com.observation.persistence.payload.response.DTOResponseStationHistoricOf
 import com.observation.persistence.payload.response.DTOResponseStationOffShore;
 import com.observation.persistence.repository.RepositoryStationHistoricOffShorePage;
 import com.observation.persistence.repository.RepositoryStationOffShore;
-import com.observation.persistence.repository.RepositoryStationOffShorePage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +18,6 @@ import java.util.UUID;
 public class ServiceStationOffShore implements ServiceInterface<DTOResponseStationOffShore, DTORequestStationOffShore> {
 
     private final RepositoryStationOffShore repositoryStationOffShore;
-    private final RepositoryStationOffShorePage repositoryStationOffShorePage;
     private final RepositoryStationHistoricOffShorePage repositoryStationHistoricOffShorePage;
 
     public DTOResponseStationOffShore create(DTORequestStationOffShore created){
@@ -28,10 +26,10 @@ public class ServiceStationOffShore implements ServiceInterface<DTOResponseStati
     public Page<DTOResponseStationOffShore> retrieve(Pageable pageable, String key, String value){
         switch (key) {
             case "id": {
-                return repositoryStationOffShorePage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
+                return repositoryStationOffShore.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             default: {
-                return repositoryStationOffShorePage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+                return repositoryStationOffShore.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
     }

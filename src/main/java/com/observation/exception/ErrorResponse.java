@@ -27,9 +27,9 @@ public class ErrorResponse {
         }
         errors.add(new ErrorObject(field, message));
     }
-    public ErrorResponse(HttpStatus httpStatusCode, String stackTrace, String description) {
+    public ErrorResponse(HttpStatus httpStatus, String stackTrace, String description) {
         this.timestamp = new Date();
-        this.statusCode = httpStatusCode.value();
+        this.statusCode = httpStatus.value();
         this.stackTrace = stackTrace;
         this.description = description;
     }

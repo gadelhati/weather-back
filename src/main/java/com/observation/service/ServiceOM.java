@@ -5,7 +5,6 @@ import com.observation.persistence.model.OM;
 import com.observation.persistence.payload.request.DTORequestOM;
 import com.observation.persistence.payload.response.DTOResponseOM;
 import com.observation.persistence.repository.RepositoryOM;
-import com.observation.persistence.repository.RepositoryOMPage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +16,6 @@ import java.util.UUID;
 public class ServiceOM implements ServiceInterface<DTOResponseOM, DTORequestOM> {
 
     private final RepositoryOM repositoryOM;
-    private final RepositoryOMPage repositoryOMPage;
 
     public DTOResponseOM create(DTORequestOM created){
         return MapStruct.MAPPER.toDTO(repositoryOM.save(MapStruct.MAPPER.toObject(created)));
@@ -25,13 +23,13 @@ public class ServiceOM implements ServiceInterface<DTOResponseOM, DTORequestOM> 
     public Page<DTOResponseOM> retrieve(Pageable pageable, String key, String value){
         switch (key) {
             case "id": {
-                return repositoryOMPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
+                return repositoryOM.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             case "name": {
-                return repositoryOMPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+                return repositoryOM.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
             }
             default: {
-                return repositoryOMPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+                return repositoryOM.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
     }

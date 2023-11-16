@@ -5,7 +5,6 @@ import com.observation.persistence.model.Country;
 import com.observation.persistence.payload.request.DTORequestCountry;
 import com.observation.persistence.payload.response.DTOResponseCountry;
 import com.observation.persistence.repository.RepositoryCountry;
-import com.observation.persistence.repository.RepositoryCountryPage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +16,6 @@ import java.util.UUID;
 public class ServiceCountry implements ServiceInterface<DTOResponseCountry, DTORequestCountry> {
 
     private final RepositoryCountry repositoryCountry;
-    private final RepositoryCountryPage repositoryCountryPage;
 
     public DTOResponseCountry create(DTORequestCountry created){
         return MapStruct.MAPPER.toDTO(repositoryCountry.save(MapStruct.MAPPER.toObject(created)));
@@ -25,13 +23,13 @@ public class ServiceCountry implements ServiceInterface<DTOResponseCountry, DTOR
     public Page<DTOResponseCountry> retrieve(Pageable pageable, String key, String value){
         switch (key) {
             case "id": {
-                return repositoryCountryPage.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
+                return repositoryCountry.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
             }
             case "name": {
-                return repositoryCountryPage.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+                return repositoryCountry.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
             }
             default: {
-                return repositoryCountryPage.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+                return repositoryCountry.findAll(pageable).map(MapStruct.MAPPER::toDTO);
             }
         }
     }
