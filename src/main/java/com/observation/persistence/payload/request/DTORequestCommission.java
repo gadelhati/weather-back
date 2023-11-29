@@ -23,10 +23,16 @@ public class DTORequestCommission {
     private Float latitudeMostTop;
     private Float longitudeMostRight;
     private Float longitudeMostLeft;
+    @NotNull(message = "{name.not.null}")
     private Harbor origin;
+    @NotNull(message = "{name.not.null}")
     private Harbor destination;
+    @NotNull(message = "{name.not.null}")
     private Institution responsible;
+    @NotNull(message = "{name.not.null}")
     private Institution coordinator;
+    @NotNull(message = "{name.not.null}")
     private Surveying surveying;
+    @NotNull(message = "{name.not.null}")
     private Platform platform;
 }

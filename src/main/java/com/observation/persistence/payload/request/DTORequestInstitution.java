@@ -14,5 +14,6 @@ public class DTORequestInstitution {
     private UUID id;
     @NotNull(message = "{name.not.null}") @NotBlank(message = "{name.not.blank}")
     private String name;
+    @NotNull(message = "{country.not.null}")
     private Country country;
 }
