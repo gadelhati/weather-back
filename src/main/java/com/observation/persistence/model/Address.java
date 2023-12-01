@@ -9,9 +9,10 @@ import org.hibernate.envers.Audited;
 
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Address extends GenericEntity {
+
+    private String street;
+    private int number;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "country")
     private Country country;
-    private String street;
-    private int number;
 }
