@@ -12,7 +12,7 @@ public class Equipment extends GenericEntity {
 
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "manufacturer")
     private Manufacturer manufacturer;
 }

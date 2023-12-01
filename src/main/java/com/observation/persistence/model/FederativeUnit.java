@@ -16,7 +16,7 @@ public class FederativeUnit extends GenericEntity {
     @NotNull
     private String initials;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "country")
     private Country country;
 }

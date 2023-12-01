@@ -12,7 +12,7 @@ public class StationOffShore extends Station {
 
     private String telegraphicCallSign;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "commission")
     private Commission commission;
 }
