@@ -20,10 +20,10 @@ public class Platform extends GenericEntity {
 //    private EnumTypeVessel type;
 //    private Date since;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "country")
 	private Country country;
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "platformCategory")
 	private PlatformCategory platformCategory;
 }

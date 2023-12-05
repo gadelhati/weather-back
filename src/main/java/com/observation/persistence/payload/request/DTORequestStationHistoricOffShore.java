@@ -11,6 +11,5 @@ import javax.validation.constraints.NotNull;
 public class DTORequestStationHistoricOffShore extends DTORequestStation {
 
     private String telegraphicCallsign;
-    @NotNull(message = "{name.not.null}")
     private Commission commission;
 }

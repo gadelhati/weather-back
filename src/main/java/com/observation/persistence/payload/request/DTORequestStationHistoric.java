@@ -22,18 +22,11 @@ public class DTORequestStationHistoric {
     private String platformCode;
     private String collectionDepth;
     private String commissionCode;
-    @NotNull(message = "{name.not.null}")
     private StationCategory stationCategory;
-    @NotNull(message = "{name.not.null}")
     private Equipment equipment;
-    @NotNull(message = "{name.not.null}")
     private Surveying surveying;
-    @NotNull(message = "{name.not.null}")
     private Institution institution;
-    @NotNull(message = "{name.not.null}")
     private Country country;
-    @NotNull(message = "{name.not.null}")
     private Commission commission;
-    @NotNull(message = "{name.not.null}")
     private PlatformCategory platformCategory;
 }

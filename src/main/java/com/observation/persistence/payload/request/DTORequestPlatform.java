@@ -17,8 +17,6 @@ public class DTORequestPlatform {
     private String internationalCallsign;
     private String name;
     private String internationalName;
-    @NotNull(message = "{name.not.null}")
     private Country country;
-    @NotNull(message = "{name.not.null}")
     private PlatformCategory platformCategory;
 }

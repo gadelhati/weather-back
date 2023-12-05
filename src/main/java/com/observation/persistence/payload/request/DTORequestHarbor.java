@@ -15,8 +15,6 @@ public class DTORequestHarbor {
     private UUID id;
     @NotNull(message = "{name.not.null}") @NotBlank(message = "{name.not.blank}")
     private String name;
-    @NotNull(message = "{name.not.null}")
     private Institution institution;
-    @NotNull(message = "{name.not.null}")
     private Station station;
 }

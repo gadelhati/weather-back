@@ -15,6 +15,5 @@ public class DTORequestFederativeUnit {
     private String name;
     @NotNull
     private String initials;
-    @NotNull(message = "{name.not.null}")
     private Country country;
 }

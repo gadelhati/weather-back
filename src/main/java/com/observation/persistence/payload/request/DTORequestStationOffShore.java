@@ -12,6 +12,5 @@ public class DTORequestStationOffShore extends DTORequestStation {
 
     @NotNull(message = "{telegraphic.callsign.off.shore.not.null}") @NotBlank(message = "{telegraphic.callsign.off.shore.not.blank}")
     private String telegraphicCallsign;
-    @NotNull(message = "{name.not.null}")
     private Commission commission;
 }

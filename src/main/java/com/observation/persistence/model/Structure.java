@@ -24,6 +24,6 @@ public class Structure extends GenericEntity {
     private boolean refletorRadar;//sem tradução conhecida
     private boolean visivelmenteConspicuo;//sem tradução conhecida
     private EnumFormat format;
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Radar radar;
 }

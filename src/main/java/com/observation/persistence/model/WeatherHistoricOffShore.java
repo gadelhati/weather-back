@@ -162,10 +162,10 @@ public class WeatherHistoricOffShore extends GenericEntity {
     //    @Transient
     private String observerName;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "stationHistoricOffShore")
     private StationHistoricOffShore stationHistoricOffShore;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "observer")
     private Observer observer;
 }

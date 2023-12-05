@@ -12,7 +12,7 @@ public class Address extends GenericEntity {
 
     private String street;
     private int number;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "country")
     private Country country;
 }

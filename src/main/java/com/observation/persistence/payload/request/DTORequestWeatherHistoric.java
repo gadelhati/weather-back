@@ -255,10 +255,6 @@ public class DTORequestWeatherHistoric {
     @NotNull(message = "{observerName.not.null}") @NotBlank(message = "{observerName.not.blank}")
     private String observerName;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "station")
     private StationHistoric stationHistoric;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "observer")
     private Observer observer;
 }

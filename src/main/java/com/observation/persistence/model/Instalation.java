@@ -12,7 +12,7 @@ import org.hibernate.envers.Audited;
 public class Instalation extends Structure {
 
     private String orderNumber;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "maintainer")
     private Maintainer maintainer;
 }
