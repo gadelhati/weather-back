@@ -15,8 +15,8 @@ public class ValidatorValidNW2 implements ConstraintValidator<ValidNW2, DTOReque
     @Override
     public boolean isValid(DTORequestWeather value, ConstraintValidatorContext context) {
         if(isValidWithNumber(value.getN())) {
-            if(isValidWithNumber(value.getW1w2()) && value.getW1w2().substring(1).equals("2") && Integer.parseInt(value.getN()) >= 0 && Integer.parseInt(value.getN()) <= 4 ||
-                    isValidWithNumber(value.getW1w2()) && value.getW1w2().substring(1).equals("0") && Integer.parseInt(value.getN()) >= 5 && Integer.parseInt(value.getN()) <= 8) {
+            if(isValidWithNumber(value.getW1W2()) && value.getW1W2().substring(1).equals("2") && Integer.parseInt(value.getN()) >= 0 && Integer.parseInt(value.getN()) <= 4 ||
+                    isValidWithNumber(value.getW1W2()) && value.getW1W2().substring(1).equals("0") && Integer.parseInt(value.getN()) >= 5 && Integer.parseInt(value.getN()) <= 8) {
                 return false;
             } else {
                 return true;

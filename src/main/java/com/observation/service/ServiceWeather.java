@@ -37,9 +37,9 @@ public class ServiceWeather {
         for(DTORequestWeather created : createds){
             created.setDateObservation(created.getDataObservacao().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().withHour(Integer.parseInt(created.getGg())));
             created.setDdddddd(created.getEstacao());
-//            created.setObserverName(created.getObservador());
-            created.setMimi(created.getAabbxx().substring(0,2));
-            created.setMjmj("XX");
+            created.setObserverName(created.getObservador());
+            created.setMiMi(created.getAabbxx().substring(0,2));
+            created.setMjMj("XX");
             repositoryWeather.save(MapStruct.MAPPER.toObject(created));
             list.add(MapStruct.MAPPER.toDTO(MapStruct.MAPPER.toObject(created)));
         }

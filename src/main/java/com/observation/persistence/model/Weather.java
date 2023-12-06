@@ -19,8 +19,8 @@ public class Weather implements Serializable {
 
     //AABB
     private String aabbxx;
-    private String mimi;
-    private String mjmj;
+    private String miMi;
+    private String mjMj;
     private String estacao;
     //DDDDDDD
     @Id
@@ -28,7 +28,7 @@ public class Weather implements Serializable {
     //A1bwnbnbnb
     private String a1;
     private String bw;
-    private String nbnbnb;
+    private String nbNbNb;
     //YYGGiw
     private String yy;
     private String gg;
@@ -39,10 +39,10 @@ public class Weather implements Serializable {
     @Id
     private String iii;
     //99LaLaLa
-    private String lalala;
+    private String laLaLa;
     //QcLoLOLOLO
     private String qc;
-    private String lolololo;
+    private String loLoLoLo;
 
     //SECTION 1
 
@@ -61,9 +61,9 @@ public class Weather implements Serializable {
     private String ttt;
     //2snTdTdTd (ou 29UUU)
     private String sn2_1;
-    private String tdtdtd;
+    private String tdTdTd;
     //3P0P0P0P0
-    private String p0p0p0p0;
+    private String poPoPoPo;//p0p0p0p0
     //4PPPP
     private String pppp;
     //4a3hhh
@@ -77,11 +77,11 @@ public class Weather implements Serializable {
     private String tr;
     //7wwW1W2
     private String ww;
-    private String w1w2;
+    private String w1W2;
     private String w1;
     private String w2;
     //7wawaWa1Wa2
-    private String wawa;
+    private String waWa;
     private String wa1;
     private String wa2;
     //8NhCLCMCH
@@ -99,31 +99,31 @@ public class Weather implements Serializable {
     private String vs;
     //0SsTwTwTw
     private String ss;
-    private String twtwtw;
+    private String twTwTw;
     //1PwaPwaHwaHwa
-    private String pwapwa;
-    private String hwahwa;
+    private String pwaPwa;
+    private String hwaHwa;
     //2PwPwHwHw
-    private String pwpw;
-    private String hwhw;
+    private String pwPw;
+    private String hwHw;
     //3dw1dw1dw2dw2
-    private String dw1dw1;
-    private String dw2dw2;
+    private String dw1Dw1;
+    private String dw2Dw2;
     //4Pw1Pw1Hw1Hw1
-    private String pw1pw1;
-    private String hw1hw1;
+    private String pw1Pw1;
+    private String hw1Hw1;
     //5Pw2Pw2Hw2Hw2
-    private String pw2pw2;
-    private String hw2hw2;
+    private String pw2Pw2;
+    private String hw2Hw2;
     //6IsEsEsRs (ou ICING + lig. clara)
     private String is_ice;
     private String eses;
     private String rs;
     //70HwaHwaHwa
-    private String hwahwahwa;
+    private String hwaHwaHwa;
     //8swTbTbTb
     private String sw;
-    private String tbtbtb;
+    private String tbTbTb;
     //ICE ciSibiDizi (ou ling. clara)
     private String ci;
     private String si;
@@ -136,24 +136,24 @@ public class Weather implements Serializable {
     //333
     //1snTxTxTx
     private String sn1_3;
-    private String txtxtx;
+    private String txTxTx;
     //2snTnTnTn
     private String sn2_3;
-    private String tntntn;
+    private String tnTnTn;
     //58/9P24P24P24
     private String ind89;
-    private String p24p24p24;
+    private String p24P24P24;
 
     //SECTION 5
 
     //555
     //chwicMcsicFicpicQ
-    private String ichw;
-    private String icm;
+    private String iChw;
+    private String iCm;
     private String cs;
-    private String icf;
-    private String icp;
-    private String icq;
+    private String iCf;
+    private String iCp;
+    private String iCq;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataObservacao;

@@ -32,9 +32,9 @@ public class DTORequestWeather {
     //AABB
     private String aabbxx;
     @Pattern(regexp = "AA||BB", message = "{mimi.valid}")
-    private String mimi;
+    private String miMi;
     @Pattern(regexp = "XX", message = "{mjmj.valid}")
-    private String mjmj;
+    private String mjMj;
     //DDDDDDD
     private String estacao;
     //    @NotNull(message = "{ddddddd.not.null}") @NotBlank(message = "{ddddddd.not.blank}")
@@ -45,7 +45,7 @@ public class DTORequestWeather {
 
     private String bw;
 
-    private String nbnbnb;
+    private String nbNbNb;
     //YYGGiw
     @Pattern(regexp = "[0-2][0-9]||3[0-1]", message = "{yy.valid}") @NotNull(message = "{yy.not.null}") @NotBlank(message = "{yy.not.blank}")
     private String yy;
@@ -60,12 +60,12 @@ public class DTORequestWeather {
     private String iii;
     //99LaLaLa
     @Pattern(regexp = "[0-8][0-9][0-9]||900", message = "{lalala.valid}")
-    private String lalala;
+    private String laLaLa;
     //QcLoLOLOLO
     @Pattern(regexp = "1||3||5||7", message = "{qc.valid}")
     private String qc;
     @Pattern(regexp = "[0-1][0-7][0-9][0-9]||1800", message = "{lolololo.valid}")
-    private String lolololo;
+    private String loLoLoLo;
 
     //SECTION 1
 
@@ -96,10 +96,10 @@ public class DTORequestWeather {
     @Pattern(regexp = "0||1||9", message = "{sn2_1.valid}")
     private String sn2_1;
     @Pattern(regexp = "[0-4][0-9][0-9]||500||\\/\\/\\/", message = "{tdtdtd.valid}") @JsonProperty("tdTdTd_UUU")
-    private String tdtdtd;
+    private String tdTdTd;
     //3P0P0P0P0
     @Pattern(regexp = "0[0-9][0-9][0-9]||1000||8[7-9][0-9][0-9]||9[0-9][0-9][0-9]", message = "{p0p0p0p0.valid}")
-    private String p0p0p0p0;
+    private String poPoPoPo;//p0P0P0P0
     //4PPPP
     @Pattern(regexp = "[0-9][0-9][0-9][0-9]||[0-9][0-9][0-9][0-9||\\/]", message = "{pppp.valid}") @NotNull(message = "{pppp.not.null}") @NotBlank(message = "{pppp.not.blank}")
     private String pppp;
@@ -122,14 +122,14 @@ public class DTORequestWeather {
     @Pattern(regexp = "[0-9][0-9]", message = "{ww.valid}") @NotNull(message = "{ww.not.null}") @NotBlank(message = "{ww.not.blank}")
     private String ww;
     @Pattern(regexp = "[0-9][0-9]||\\/\\/||[0-9]\\/||\\/[0-9]", message = "{w1w2.valid}") @NotNull @NotBlank
-    private String w1w2;
+    private String w1W2;
     //    @Pattern(regexp = "[0-9]||\\/", message = "{w1.valid}") @NotNull @NotBlank
 //    private String w1;
 //    @Pattern(regexp = "[0-9]||\\/", message = "{w2.valid}") @NotNull @NotBlank
 //    private String w2;
     //7wawaWa1Wa2
     //@Pattern(regexp = "[0-9][0-9]", message = "{wawa.valid}")
-    private String wawa;
+    private String waWa;
     @Pattern(regexp = "[0-9]||\\/", message = "{wa1.valid}")
     private String wa1;
     @Pattern(regexp = "[0-9]||\\/", message = "{wa2.valid}")
@@ -158,32 +158,32 @@ public class DTORequestWeather {
     @Pattern(regexp = "[0-7]||''", message = "{ss.valid}")
     private String ss;
     @Pattern(regexp = "[0-3][0-9][0-9]||400||''", message = "{twtwtw.valid}")
-    private String twtwtw;
+    private String twTwTw;
     //1PwaPwaHwaHwa
     @Pattern(regexp = "[0-2][0-9]||30||\\/\\/||''", message = "{pwapwa.valid}")
-    private String pwapwa;
+    private String pwaPwa;
     @Pattern(regexp = "0[0-9]||10||\\/\\/||''", message = "{hwahwa.valid}")
-    private String hwahwa;
+    private String hwaHwa;
     //2PwPwHwHw
     @Pattern(regexp = "[0-1][0-9]||20||99||\\/\\/||''", message = "{pwpw.valid}")
-    private String pwpw;
+    private String pwPw;
     @Pattern(regexp = "[0-2][0-9]||30||\\/\\/||''", message = "{hwhw.valid}")
-    private String hwhw;
+    private String hwHw;
     //3dw1dw1dw2dw2
     @Pattern(regexp = "[0-2][0-9]||3[0-6]||''", message = "{dw1dw1.valid}")
-    private String dw1dw1;
+    private String dw1Dw1;
     @Pattern(regexp = "[0-2][0-9]||3[0-6]||''", message = "{dw2dw2.valid}")
-    private String dw2dw2;
+    private String dw2Dw2;
     //4Pw1Pw1Hw1Hw1
     @Pattern(regexp = "[0-2][0-9]||30||''", message = "{pw1pw1.valid}")
-    private String pw1pw1;
+    private String pw1Pw1;
     @Pattern(regexp = "[0-2][0-9]||30||''", message = "{hw1hw1.valid}")
-    private String hw1hw1;
+    private String hw1Hw1;
     //5Pw2Pw2Hw2Hw2
     @Pattern(regexp = "[0-2][0-9]||30||''", message = "{pw2pw2.valid}")
-    private String pw2pw2;
+    private String pw2Pw2;
     @Pattern(regexp = "[0-2][0-9]||30||''", message = "{hw2hw2.valid}")
-    private String hw2hw2;
+    private String hw2Hw2;
     //6IsEsEsRs (ou ICING + lig. clara)
     @Pattern(regexp = "[1-5]||''", message = "{is_ice.valid}") @JsonProperty("is")
     private String is_ice;
@@ -193,12 +193,12 @@ public class DTORequestWeather {
     private String rs;
     //70HwaHwaHwa
     @Pattern(regexp = "[0-1][0-9][0-9]||200||''", message = "{hwahwahwa.valid}")
-    private String hwahwahwa;
+    private String hwaHwaHwa;
     //8swTbTbTb
     @Pattern(regexp = "[0-7]||''", message = "{sw.valid}")
     private String sw;
     @Pattern(regexp = "[0-3][0-9][0-9]||400||''", message = "{tbtbtb.valid}")
-    private String tbtbtb;
+    private String tbTbTb;
     //ICE ciSibiDizi (ou ling. clara)
     @Pattern(regexp = "[0-9]||\\/||''", message = "{ci.valid}")
     private String ci;
@@ -218,34 +218,34 @@ public class DTORequestWeather {
     @Pattern(regexp = "[0-1]||''", message = "{sn1_3.valid}")
     private String sn1_3;
     @Pattern(regexp = "[0-3][0-9][0-9]||4[0-4][0-9]||450||''", message = "{txtxtx.valid}")
-    private String txtxtx;
+    private String txTxTx;
     //2snTnTnTn
     @Pattern(regexp = "[0-1]||''", message = "{sn2_3.valid}")
     private String sn2_3;
     @Pattern(regexp = "[0-2][0-9][0-9]||3[0-4][0-9]||350||''", message = "{tntntn.valid}")
-    private String tntntn;
+    private String tnTnTn;
     //58/9P24P24P24
     @Pattern(regexp = "8||9||''", message = "{_89.valid}")
     private String ind89;
     @Pattern(regexp = "[0-1][0-9][0-9]||200||''", message = "{p24p24p24.valid}")
-    private String p24p24p24;
+    private String p24P24P24;
 
     //SECTION 5
 
     //555
     //chwicMcsicFicpicQ
     @Pattern(regexp = "[0-3]||''", message = "{ichw.valid}")
-    private String ichw;
+    private String iChw;
     @Pattern(regexp = "[0-7]||''", message = "{icm.valid}")
-    private String icm;
+    private String iCm;
     @Pattern(regexp = "[0-9]||''", message = "{cs.valid}")
     private String cs;
     @Pattern(regexp = "[0-6]||''", message = "{icf.valid}")
-    private String icf;
+    private String iCF;
     @Pattern(regexp = "[0-9]||''", message = "{icp.valid}")
-    private String icp;
+    private String iCP;
     @Pattern(regexp = "[0-9]||''", message = "{icq.valid}")
-    private String icq;
+    private String iCQ;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataObservacao;
