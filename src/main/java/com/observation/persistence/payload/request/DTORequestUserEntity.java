@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.util.Collection;
 import java.util.UUID;
 
-@Getter @Setter @UniqueNameUser
+@Getter @Setter @UniqueNameUser @UniqueEmailUser
 public class DTORequestUserEntity {
 
     private UUID id;

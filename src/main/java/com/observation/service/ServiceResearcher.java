@@ -50,4 +50,10 @@ public class ServiceResearcher implements ServiceInterface<DTOResponseResearcher
     public boolean existsByNameAndIdNot(String value, UUID id) {
         return repositoryResearcher.existsByNameIgnoreCaseAndIdNot(value, id);
     }
+    public boolean existsByEmail(String value) {
+        return repositoryResearcher.existsByEmailIgnoreCase(value);
+    }
+    public boolean existsByEmailAndIdNot(String value, UUID id) {
+        return repositoryResearcher.existsByEmailIgnoreCaseAndIdNot(value, id);
+    }
 }

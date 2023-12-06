@@ -18,8 +18,8 @@ public class ValidatorUniqueEmailResearcher implements ConstraintValidator<Uniqu
     }
     @Override
     public boolean isValid(DTORequestResearcher value, ConstraintValidatorContext context) {
-        if (!Validator.isNull(value.getName()) && !serviceResearcher.existsByName(value.getName()) ||
-                !Validator.isNull(value.getName()) && !Validator.isNull(value.getId()) && !serviceResearcher.existsByNameAndIdNot(value.getName(), value.getId()) ) {
+        if (!Validator.isNull(value.getEmail()) && !serviceResearcher.existsByEmail(value.getEmail()) ||
+                !Validator.isNull(value.getEmail()) && !Validator.isNull(value.getId()) && !serviceResearcher.existsByEmailAndIdNot(value.getEmail(), value.getId()) ) {
             return true;
         } else {
             return false;
