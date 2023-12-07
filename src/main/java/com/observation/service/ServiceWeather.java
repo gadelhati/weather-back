@@ -1,7 +1,6 @@
 package com.observation.service;
 
 import com.observation.persistence.MapStruct;
-import com.observation.persistence.model.WeatherId;
 import com.observation.persistence.payload.request.DTORequestWeather;
 import com.observation.persistence.payload.response.DTOResponseWeather;
 import com.observation.persistence.payload.response.DTOResponseWeatherHistoric;
@@ -36,7 +35,9 @@ public class ServiceWeather {
         Set<ConstraintViolation<DTORequestWeather>> violations = new HashSet<>();
         for(DTORequestWeather created : createds){
             created.setDateObservation(created.getDataObservacao().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().withHour(Integer.parseInt(created.getGg())));
-            created.setDdddddd(created.getEstacao());
+            created.setDdddddd(created.getDdddddd() == null ? created.getDdddddd() : "");
+            created.setDdddddd(created.getIi() == null ? created.getIi() : "");
+            created.setDdddddd(created.getIii() == null ? created.getIii() : "");
             created.setObserverName(created.getObservador());
             created.setMiMi(created.getAabbxx().substring(0,2));
             created.setMjMj("XX");
@@ -45,8 +46,8 @@ public class ServiceWeather {
         }
         return list;
     }
-    public DTOResponseWeather retrieve(WeatherId weatherId){
-        return MapStruct.MAPPER.toDTO(repositoryWeather.findById(weatherId).orElseGet(null));
+    public DTOResponseWeather retrieve(UUID id){
+        return MapStruct.MAPPER.toDTO(repositoryWeather.findById(id).orElseGet(null));
     }
     public Page<DTOResponseWeather> retrieve(Pageable pageable, String key, String value){
         switch (key) {
@@ -88,23 +89,15 @@ public class ServiceWeather {
             }
         }
     }
-    public DTOResponseWeather update(WeatherId id, DTORequestWeather updated) {
+    public DTOResponseWeather update(UUID id, DTORequestWeather updated) {
         updated.setDateObservation(updated.getDataObservacao().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().withHour(Integer.parseInt(updated.getGg())));
-        updated.setDdddddd(updated.getEstacao());
         return MapStruct.MAPPER.toDTO(repositoryWeather.save(MapStruct.MAPPER.toObject(updated)));
     }
     @Transactional
-    public DTOResponseWeather delete(WeatherId weatherId){
-        if(weatherId.getDdddddd() != null && !weatherId.getDdddddd().equals("")){
-            DTOResponseWeather dtoResponseWeather = MapStruct.MAPPER.toDTO(repositoryWeather.findByDateObservationAndDdddddd(weatherId.getDateObservation(), weatherId.getDdddddd()).orElse(null));
-            repositoryWeather.deleteByDateObservationAndDdddddd(weatherId.getDateObservation(), weatherId.getDdddddd());
-            return dtoResponseWeather;
-        } else if (weatherId.getIi() != null && weatherId.getIii() != null && !weatherId.getIi().equals("") && !weatherId.getIii().equals("")) {
-            DTOResponseWeather dtoResponseWeather = MapStruct.MAPPER.toDTO(repositoryWeather.findByDateObservationAndIiAndIii(weatherId.getDateObservation(), weatherId.getIi(), weatherId.getIii()).orElse(null));
-            repositoryWeather.deleteByDateObservationAndIiAndIii(weatherId.getDateObservation(), weatherId.getIi(), weatherId.getIii());
-            return dtoResponseWeather;
-        }
-        return null;
+    public DTOResponseWeather delete(UUID id){
+        DTOResponseWeather dtoResponseWeather = MapStruct.MAPPER.toDTO(repositoryWeather.findById(id).orElse(null));
+        repositoryWeather.deleteById(id);
+        return dtoResponseWeather;
     }
     public void delete() {
         repositoryWeather.deleteAll();

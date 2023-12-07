@@ -1,25 +1,20 @@
 package com.observation.controller;
 
-import com.observation.persistence.model.WeatherId;
 import com.observation.persistence.payload.request.DTORequestWeather;
-import com.observation.persistence.payload.response.DTOResponseWeather;
-import com.observation.persistence.payload.response.DTOResponseWeatherHistoric;
-import com.observation.persistence.payload.response.DTOResponseWeatherHistoricOffShore;
-import com.observation.persistence.payload.response.DTOResponseWeatherHistoricOnShore;
+import com.observation.persistence.payload.response.*;
 import com.observation.service.ServiceWeather;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @RestController @RequestMapping("/weather") @RequiredArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -69,25 +64,21 @@ public class ControllerWeather {
     public ResponseEntity<Page<DTOResponseWeatherHistoricOnShore>> retrieveHistoricOnShore(@RequestParam(name = "key", defaultValue = "", required = false) String key, @RequestParam(name="value", defaultValue = "", required = false) String value, Pageable pageable){
         return ResponseEntity.ok().body(serviceWeather.retrieveHistoricOnShore(pageable, key, value));
     }
-    @GetMapping(value = {"/{dateObservation}/{ii}/{iii}", "/{dateObservation}/{ddddddd}"}) //@PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
-    public ResponseEntity<DTOResponseWeather> retrieve(@PathVariable("dateObservation") LocalDateTime dateObservation, @PathVariable("ddddddd") String ddddddd, @PathVariable("ii") String ii, @PathVariable("iii") String iii){
-        return ResponseEntity.ok().body(serviceWeather.retrieve(new WeatherId(dateObservation, ddddddd, ii, iii)));
-    }
     @PutMapping("") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseWeather> update(@RequestBody @Valid DTORequestWeather updated){
-        return ResponseEntity.accepted().body(serviceWeather.update(new WeatherId(updated.getDateObservation(), updated.getDdddddd(), updated.getIi(), updated.getIii()), updated));
+        return ResponseEntity.accepted().body(serviceWeather.update(updated.getId(), updated));
     }
-    @DeleteMapping("/{dateObservation}/{ii}/{iii}") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
-    public ResponseEntity<DTOResponseWeather> delete(@PathVariable("dateObservation") LocalDateTime dateObservation, @PathVariable("ii") String ii, @PathVariable("iii") String iii){
-        return ResponseEntity.accepted().body(serviceWeather.delete(new WeatherId(dateObservation, "", ii, iii)));
+    @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
+    public ResponseEntity<DTOResponseWeather> delete(@PathVariable @Valid UUID id){
+        return ResponseEntity.accepted().body(serviceWeather.delete(id));
     }
-    @DeleteMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<HttpStatus> delete(){
-        try {
-            serviceWeather.delete();
-            return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+//    @DeleteMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+//    public ResponseEntity<HttpStatus> delete(){
+//        try {
+//            serviceWeather.delete();
+//            return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
+//        } catch (Exception e) {
+//            return ResponseEntity.badRequest().body(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 }

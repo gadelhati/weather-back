@@ -16,6 +16,7 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.UUID;
 
 @Setter @Getter @AllArgsConstructor @NoArgsConstructor @JsonIgnoreProperties(ignoreUnknown = true) @OnOrOffShore
 @ValidNhCLCM @ValidTTTTdTdTd @ValidAppp @ValidCLCM @ValidCMCH
@@ -27,6 +28,7 @@ import java.util.Date;
 @ValidVVh @ValidVVWW @ValidW1W2
 public class DTORequestWeather {
 
+    private UUID id;
     //SECTION 0
 
     //AABB

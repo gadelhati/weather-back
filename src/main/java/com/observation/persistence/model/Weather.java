@@ -7,13 +7,11 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-@IdClass(WeatherId.class)
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
-public class Weather implements Serializable {
+public class Weather extends GenericEntity {
 
     //SECTION 0
 
@@ -23,7 +21,6 @@ public class Weather implements Serializable {
     private String mjMj;
     private String estacao;
     //DDDDDDD
-    @Id
     private String ddddddd;
     //A1bwnbnbnb
     private String a1;
@@ -34,9 +31,7 @@ public class Weather implements Serializable {
     private String gg;
     private String iw;
     //IIiii
-    @Id
     private String ii;
-    @Id
     private String iii;
     //99LaLaLa
     private String laLaLa;
@@ -157,7 +152,6 @@ public class Weather implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataObservacao;
-    @Id
     private LocalDateTime dateObservation;
     private String observador;
     //    @Transient
