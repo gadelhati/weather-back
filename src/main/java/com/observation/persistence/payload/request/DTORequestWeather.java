@@ -2,6 +2,7 @@ package com.observation.persistence.payload.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.observation.exception.annotation.UniqueWeather;
 import com.observation.exception.annotation.weather.*;
 import com.observation.persistence.model.Observer;
 import com.observation.persistence.model.Station;
@@ -26,6 +27,7 @@ import java.util.UUID;
 @ValidNW2 @ValidTTTTnTnTn @ValidTTT
 @ValidTxTxTx
 @ValidVVh @ValidVVWW @ValidW1W2
+@UniqueWeather
 public class DTORequestWeather {
 
     private UUID id;

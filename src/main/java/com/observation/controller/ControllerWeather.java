@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -18,6 +19,7 @@ import java.util.UUID;
 
 @RestController @RequestMapping("/weather") @RequiredArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 3600)
+@Validated
 public class ControllerWeather {
 
     private final ServiceWeather serviceWeather;
