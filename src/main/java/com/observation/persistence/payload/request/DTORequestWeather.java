@@ -27,7 +27,7 @@ import java.util.UUID;
 @ValidNW2 @ValidTTTTnTnTn @ValidTTT
 @ValidTxTxTx
 @ValidVVh @ValidVVWW @ValidW1W2
-@UniqueWeather
+@UniqueWeather @NameNotNull @DateNotNull
 public class DTORequestWeather {
 
     private UUID id;
@@ -253,10 +253,8 @@ public class DTORequestWeather {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataObservacao;
-    @NotNull(message = "{dateObservation.not.null}")
     private LocalDateTime dateObservation;
     private String observador;
-    @NotNull(message = "{observerName.not.null}") @NotBlank(message = "{observerName.not.blank}")
     private String observerName;
 
     private Station station;

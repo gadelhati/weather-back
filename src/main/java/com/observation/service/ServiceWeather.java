@@ -103,10 +103,16 @@ public class ServiceWeather {
     public void delete() {
         repositoryWeather.deleteAll();
     };
-    public boolean existsByWeather(LocalDateTime dateObservation, String ii, String iii) {
+    public boolean existsByDateObservation(LocalDateTime dateObservation, String ii, String iii) {
         return repositoryWeather.existsByDateObservationAndIiIgnoreCaseAndIiiIgnoreCase(dateObservation, ii, iii);
     }
-    public boolean existsByWeatherAndIdNot(LocalDateTime dateObservation, String ii, String iii, UUID id) {
+    public boolean existsByDateObservationAndIdNot(LocalDateTime dateObservation, String ii, String iii, UUID id) {
         return repositoryWeather.existsByDateObservationAndIiIgnoreCaseAndIiiIgnoreCaseAndIdNot(dateObservation, ii, iii, id);
+    }
+    public boolean existsByDataObservacao(Date dataObservacao, String gg, String ii, String iii) {
+        return repositoryWeather.existsByDataObservacaoAndGgIgnoreCaseAndIiIgnoreCaseAndIiiIgnoreCase(dataObservacao, gg, ii, iii);
+    }
+    public boolean existsByDataObservacaoAndIdNot(Date dataObservacao, String gg, String ii, String iii, UUID id) {
+        return repositoryWeather.existsByDataObservacaoAndGgIgnoreCaseAndIiIgnoreCaseAndIiiIgnoreCaseAndIdNot(dataObservacao, gg, ii, iii, id);
     }
 }
