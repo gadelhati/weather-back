@@ -13,6 +13,8 @@ import java.util.UUID;
 
 public interface RepositoryWeather extends JpaRepository<Weather, UUID> {
 
+    boolean existsByDateObservationAndIiIgnoreCaseAndIiiIgnoreCaseAndIdNot(LocalDateTime dateObservation, String ii, String iii, UUID id);
+    boolean existsByDateObservationAndIiIgnoreCaseAndIiiIgnoreCase(LocalDateTime dateObservation, String ii, String iii);
     Optional<Weather> findByDateObservationAndIiAndIii(LocalDateTime dateObservation, String ii, String iii);
     Optional<Weather> findByDateObservationAndDdddddd(LocalDateTime dateObservation, String ddddddd);
     void deleteByDateObservationAndIiAndIii(LocalDateTime dateObservation, String ii, String iii);

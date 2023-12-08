@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
 
@@ -102,4 +103,10 @@ public class ServiceWeather {
     public void delete() {
         repositoryWeather.deleteAll();
     };
+    public boolean existsByWeather(LocalDateTime dateObservation, String ii, String iii) {
+        return repositoryWeather.existsByDateObservationAndIiIgnoreCaseAndIiiIgnoreCase(dateObservation, ii, iii);
+    }
+    public boolean existsByWeatherAndIdNot(LocalDateTime dateObservation, String ii, String iii, UUID id) {
+        return repositoryWeather.existsByDateObservationAndIiIgnoreCaseAndIiiIgnoreCaseAndIdNot(dateObservation, ii, iii, id);
+    }
 }
