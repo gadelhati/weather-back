@@ -19,7 +19,7 @@ public class DTOResponseWeather {
     private String miMi;
     private String mjMj;
     //DDDDDDD
-    private String estacao;
+//    private String estacao;
     private String ddddddd;
     //A1bwnbnbnb
     private String a1;
