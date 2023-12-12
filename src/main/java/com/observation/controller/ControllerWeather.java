@@ -1,5 +1,6 @@
 package com.observation.controller;
 
+import com.observation.persistence.MapStruct;
 import com.observation.persistence.payload.request.DTORequestWeather;
 import com.observation.persistence.payload.response.*;
 import com.observation.service.ServiceWeather;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,25 +32,24 @@ public class ControllerWeather {
         return ResponseEntity.created(uri).body(serviceWeather.create(created));
     }
     @PostMapping("/createAll") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
-    public ResponseEntity<List<DTOResponseWeather>> create(@RequestBody @Valid List<DTORequestWeather> createds){
+    public ResponseEntity<List<DTOResponseWeather>> create(@RequestBody List<DTORequestWeather> createds){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/weather/createAll").toUriString());
-        return ResponseEntity.created(uri).body(serviceWeather.create(createds));
-//        List<DTOResponseSynopticObservation> dtoResponseSynopticObservationsCreated = new ArrayList<>();
-//        List<DTOResponseSynopticObservation> dtoResponseSynopticObservationsFailed = new ArrayList<>();
-//        for(DTORequestSynopticObservation dtoRequestSynopticObservation : createds) {
-//            try {
-////                service.create(dtoRequestSynopticObservation);
-//                create(dtoRequestSynopticObservation);
-//                dtoResponseSynopticObservationsCreated.add(new DTOResponseSynopticObservation().toDTO(dtoRequestSynopticObservation.toObject()));
-//            } catch (Exception e) {
-//                dtoResponseSynopticObservationsFailed.add(new DTOResponseSynopticObservation().toDTO(dtoRequestSynopticObservation.toObject()));
-//            }
-//        }
-//        if(!dtoResponseSynopticObservationsCreated.isEmpty()){
-//            return new ResponseEntity<>(dtoResponseSynopticObservationsCreated, HttpStatus.CREATED);
-//        } else {
-//            return new ResponseEntity<>(dtoResponseSynopticObservationsFailed, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
+//        return ResponseEntity.created(uri).body(serviceWeather.create(createds));
+        List<DTOResponseWeather> dtoResponseWeathers = new ArrayList<>();
+        List<DTOResponseWeather> dtoResponseSynopticObservationsFailed = new ArrayList<>();
+        for(DTORequestWeather dtoRequestSynopticObservation : createds) {
+            try {
+                create(dtoRequestSynopticObservation);
+                dtoResponseWeathers.add(MapStruct.MAPPER.toDTO(MapStruct.MAPPER.toObject(dtoRequestSynopticObservation)));
+            } catch (Exception e) {
+                dtoResponseWeathers.add(null);
+            }
+        }
+        if(!dtoResponseWeathers.isEmpty()){
+            return ResponseEntity.ok().body(dtoResponseWeathers);
+        } else {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<Page<DTOResponseWeather>> retrieve(@RequestParam(name = "key", defaultValue = "", required = false) String key, @RequestParam(name="value", defaultValue = "", required = false) String value, Pageable pageable){
