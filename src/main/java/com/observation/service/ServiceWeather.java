@@ -29,16 +29,23 @@ public class ServiceWeather {
     private final RepositoryWeatherHistoricPageOnShore repositoryWeatherHistoricPageOnShore;
 
     public DTOResponseWeather create(DTORequestWeather created){
+        created.setDateObservation(created.getDataObservacao() == null ? null : created.getDataObservacao().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().withHour(Integer.parseInt(created.getGg())));
+        created.setDdddddd(created.getIi() == null && created.getIii() == null ? created.getEstacao() : created.getDdddddd());
+        created.setIi(created.getIi() == null ? "" : created.getIi());
+        created.setIii(created.getIii() == null ? "" : created.getIii());
+        created.setObserverName(created.getObservador());
+        created.setMiMi(created.getAabbxx().substring(0,2));
+        created.setMjMj("XX");
         return MapStruct.MAPPER.toDTO(repositoryWeather.save(MapStruct.MAPPER.toObject(created)));
     }
     public List<DTOResponseWeather> create(List<DTORequestWeather> createds){
         List<DTOResponseWeather> list = new ArrayList<>();
-        Set<ConstraintViolation<DTORequestWeather>> violations = new HashSet<>();
+//        Set<ConstraintViolation<DTORequestWeather>> violations = new HashSet<>();
         for(DTORequestWeather created : createds){
-            created.setDateObservation(created.getDataObservacao().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().withHour(Integer.parseInt(created.getGg())));
-            created.setDdddddd(created.getDdddddd() == null ? created.getDdddddd() : "");
-            created.setDdddddd(created.getIi() == null ? created.getIi() : "");
-            created.setDdddddd(created.getIii() == null ? created.getIii() : "");
+            created.setDateObservation(created.getDataObservacao() == null ? null : created.getDataObservacao().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().withHour(Integer.parseInt(created.getGg())));
+            created.setDdddddd(created.getIi() == null && created.getIii() == null ? created.getEstacao() : created.getDdddddd());
+            created.setIi(created.getIi() == null ? "" : created.getIi());
+            created.setIii(created.getIii() == null ? "" : created.getIii());
             created.setObserverName(created.getObservador());
             created.setMiMi(created.getAabbxx().substring(0,2));
             created.setMjMj("XX");
