@@ -8,12 +8,13 @@ import com.observation.persistence.payload.response.DTOResponseWeatherHistoricOf
 import com.observation.persistence.payload.response.DTOResponseWeatherHistoricOnShore;
 import com.observation.persistence.repository.*;
 import javax.transaction.Transactional;
-import javax.validation.ConstraintViolation;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
@@ -31,8 +32,8 @@ public class ServiceWeather {
     public DTOResponseWeather create(DTORequestWeather created){
         created.setDateObservation(created.getDataObservacao() == null ? null : created.getDataObservacao().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().withHour(Integer.parseInt(created.getGg())));
         created.setDdddddd(created.getIi() == null && created.getIii() == null ? created.getEstacao() : created.getDdddddd());
-        created.setIi(created.getIi() == null ? "" : created.getIi());
-        created.setIii(created.getIii() == null ? "" : created.getIii());
+//        created.setIi(created.getIi() == null ? "" : created.getIi());
+//        created.setIii(created.getIii() == null ? "" : created.getIii());
         created.setObserverName(created.getObservador());
         created.setMiMi(created.getAabbxx().substring(0,2));
         created.setMjMj("XX");
@@ -44,8 +45,6 @@ public class ServiceWeather {
         for(DTORequestWeather created : createds){
             created.setDateObservation(created.getDataObservacao() == null ? null : created.getDataObservacao().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().withHour(Integer.parseInt(created.getGg())));
             created.setDdddddd(created.getIi() == null && created.getIii() == null ? created.getEstacao() : created.getDdddddd());
-            created.setIi(created.getIi() == null ? "" : created.getIi());
-            created.setIii(created.getIii() == null ? "" : created.getIii());
             created.setObserverName(created.getObservador());
             created.setMiMi(created.getAabbxx().substring(0,2));
             created.setMjMj("XX");
@@ -98,7 +97,8 @@ public class ServiceWeather {
         }
     }
     public DTOResponseWeather update(UUID id, DTORequestWeather updated) {
-        updated.setDateObservation(updated.getDataObservacao().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().withHour(Integer.parseInt(updated.getGg())));
+        updated.setDataObservacao(Date.from(Instant.from(updated.getDateObservation().atZone(ZoneId.of("Z")))));
+        updated.setDateObservation(updated.getDataObservacao() == null ? null : updated.getDataObservacao().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().withHour(Integer.parseInt(updated.getGg())));
         return MapStruct.MAPPER.toDTO(repositoryWeather.save(MapStruct.MAPPER.toObject(updated)));
     }
     @Transactional
@@ -110,16 +110,16 @@ public class ServiceWeather {
     public void delete() {
         repositoryWeather.deleteAll();
     };
-    public boolean existsByDateObservation(LocalDateTime dateObservation, String ii, String iii) {
-        return repositoryWeather.existsByDateObservationAndIiIgnoreCaseAndIiiIgnoreCase(dateObservation, ii, iii);
+    public boolean existsByWeather(LocalDateTime dateObservation, String gg, String ii, String iii) {
+        return repositoryWeather.existsByDateObservationAndGgIgnoreCaseAndIiIgnoreCaseAndIiiIgnoreCase(dateObservation, gg, ii, iii);
     }
-    public boolean existsByDateObservationAndIdNot(LocalDateTime dateObservation, String ii, String iii, UUID id) {
-        return repositoryWeather.existsByDateObservationAndIiIgnoreCaseAndIiiIgnoreCaseAndIdNot(dateObservation, ii, iii, id);
+    public boolean existsByWeatherAndIdNot(LocalDateTime dateObservation, String gg, String ii, String iii, UUID id) {
+        return repositoryWeather.existsByDateObservationAndGgIgnoreCaseAndIiIgnoreCaseAndIiiIgnoreCaseAndIdNot(dateObservation, gg, ii, iii, id);
     }
-    public boolean existsByDataObservacao(Date dataObservacao, String gg, String ii, String iii) {
-        return repositoryWeather.existsByDataObservacaoAndGgIgnoreCaseAndIiIgnoreCaseAndIiiIgnoreCase(dataObservacao, gg, ii, iii);
+    public boolean existsByWeather(LocalDateTime dateObservation, String gg, String ddddddd) {
+        return repositoryWeather.existsByDateObservationAndGgIgnoreCaseAndDddddddIgnoreCase(dateObservation, gg, ddddddd);
     }
-    public boolean existsByDataObservacaoAndIdNot(Date dataObservacao, String gg, String ii, String iii, UUID id) {
-        return repositoryWeather.existsByDataObservacaoAndGgIgnoreCaseAndIiIgnoreCaseAndIiiIgnoreCaseAndIdNot(dataObservacao, gg, ii, iii, id);
+    public boolean existsByWeatherAndIdNot(LocalDateTime dateObservation, String gg, String ddddddd, UUID id) {
+        return repositoryWeather.existsByDateObservationAndGgIgnoreCaseAndDddddddIgnoreCaseAndIdNot(dateObservation, gg, ddddddd, id);
     }
 }

@@ -14,10 +14,10 @@ import java.util.UUID;
 
 public interface RepositoryWeather extends JpaRepository<Weather, UUID> {
 
-    boolean existsByDateObservationAndIiIgnoreCaseAndIiiIgnoreCaseAndIdNot(LocalDateTime dateObservation, String ii, String iii, UUID id);
-    boolean existsByDateObservationAndIiIgnoreCaseAndIiiIgnoreCase(LocalDateTime dateObservation, String ii, String iii);
-    boolean existsByDataObservacaoAndGgIgnoreCaseAndIiIgnoreCaseAndIiiIgnoreCaseAndIdNot(Date dataObservacao, String gg, String ii, String iii, UUID id);
-    boolean existsByDataObservacaoAndGgIgnoreCaseAndIiIgnoreCaseAndIiiIgnoreCase(Date dataObservacao, String gg, String ii, String iii);
+    boolean existsByDateObservationAndGgIgnoreCaseAndIiIgnoreCaseAndIiiIgnoreCase(LocalDateTime dataObservacao, String gg, String ii, String iii);
+    boolean existsByDateObservationAndGgIgnoreCaseAndIiIgnoreCaseAndIiiIgnoreCaseAndIdNot(LocalDateTime dataObservacao, String gg, String ii, String iii, UUID id);
+    boolean existsByDateObservationAndGgIgnoreCaseAndDddddddIgnoreCase(LocalDateTime dataObservacao, String gg, String ddddddd);
+    boolean existsByDateObservationAndGgIgnoreCaseAndDddddddIgnoreCaseAndIdNot(LocalDateTime dataObservacao, String gg, String ddddddd, UUID id);
     Optional<Weather> findByDateObservationAndIiAndIii(LocalDateTime dateObservation, String ii, String iii);
     Optional<Weather> findByDateObservationAndDdddddd(LocalDateTime dateObservation, String ddddddd);
     void deleteByDateObservationAndIiAndIii(LocalDateTime dateObservation, String ii, String iii);

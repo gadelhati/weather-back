@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import static com.observation.exception.validator.Validator.isNull;
-
 public class ValidatorUniqueWeather implements ConstraintValidator<UniqueWeather, DTORequestWeather> {
 
     @Autowired
@@ -20,12 +18,10 @@ public class ValidatorUniqueWeather implements ConstraintValidator<UniqueWeather
     }
     @Override
     public boolean isValid(DTORequestWeather value, ConstraintValidatorContext context) {
-        if (!isNull(value.getDataObservacao()) && !serviceWeather.existsByDataObservacao(value.getDataObservacao(), value.getGg(), value.getIi(), value.getIii()) ||
-                !isNull(value.getDateObservation()) && !serviceWeather.existsByDateObservation(value.getDateObservation(), value.getIi(), value.getIii()) ||
-                !isNull(value.getDataObservacao()) &&
-                !isNull(value.getId()) && !serviceWeather.existsByDataObservacaoAndIdNot(value.getDataObservacao(), value.getGg(), value.getIi(), value.getIii(), value.getId()) ||
-                !isNull(value.getDateObservation()) &&
-                !isNull(value.getId()) && !serviceWeather.existsByDateObservationAndIdNot(value.getDateObservation(), value.getIi(), value.getIii(), value.getId())
+        if (!serviceWeather.existsByWeather(value.getDateObservation(), value.getGg(), value.getIi(), value.getIii()) &&
+            !serviceWeather.existsByWeather(value.getDateObservation(), value.getGg(), value.getDdddddd()) ||
+                !serviceWeather.existsByWeatherAndIdNot(value.getDateObservation(), value.getGg(), value.getIi(), value.getIii(), value.getId()) &&
+                !serviceWeather.existsByWeatherAndIdNot(value.getDateObservation(), value.getGg(), value.getDdddddd(), value.getId())
         ) {
             return true;
         } else {

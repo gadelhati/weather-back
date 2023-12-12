@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import static com.observation.exception.validator.Validator.isNull;
 
 @RestController @RequestMapping("/weather") @RequiredArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -37,11 +40,18 @@ public class ControllerWeather {
 //        return ResponseEntity.created(uri).body(serviceWeather.create(createds));
         List<DTOResponseWeather> dtoResponseWeathers = new ArrayList<>();
         List<DTOResponseWeather> dtoResponseSynopticObservationsFailed = new ArrayList<>();
-        for(DTORequestWeather dtoRequestSynopticObservation : createds) {
+        for(DTORequestWeather dtoRequestWeather : createds) {
+            dtoRequestWeather.setDdddddd(dtoRequestWeather.getIi() == null && dtoRequestWeather.getIii() == null ? dtoRequestWeather.getEstacao() : dtoRequestWeather.getDdddddd());
             try {
-//                service.create(dtoRequestSynopticObservation);
-                create(dtoRequestSynopticObservation);
-                dtoResponseWeathers.add(MapStruct.MAPPER.toDTO(MapStruct.MAPPER.toObject(dtoRequestSynopticObservation)));
+//                service.create(dtoRequestWeather);
+                dtoRequestWeather.setDateObservation(dtoRequestWeather.getDataObservacao() == null ? null : dtoRequestWeather.getDataObservacao().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().withHour(Integer.parseInt(dtoRequestWeather.getGg())));
+                if(//!isNull(dtoRequestWeather.getDataObservacao()) &&
+                        !serviceWeather.existsByWeather(dtoRequestWeather.getDateObservation(), dtoRequestWeather.getGg(), dtoRequestWeather.getIi(), dtoRequestWeather.getIii()) &&
+                        !serviceWeather.existsByWeather(dtoRequestWeather.getDateObservation(), dtoRequestWeather.getGg(), dtoRequestWeather.getDdddddd())
+                ) {
+                    create(dtoRequestWeather);
+                    dtoResponseWeathers.add(MapStruct.MAPPER.toDTO(MapStruct.MAPPER.toObject(dtoRequestWeather)));
+                }
             } catch (Exception e) {
                 dtoResponseWeathers.add(null);
             }
