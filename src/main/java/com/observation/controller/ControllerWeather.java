@@ -39,6 +39,7 @@ public class ControllerWeather {
         List<DTOResponseWeather> dtoResponseSynopticObservationsFailed = new ArrayList<>();
         for(DTORequestWeather dtoRequestSynopticObservation : createds) {
             try {
+//                service.create(dtoRequestSynopticObservation);
                 create(dtoRequestSynopticObservation);
                 dtoResponseWeathers.add(MapStruct.MAPPER.toDTO(MapStruct.MAPPER.toObject(dtoRequestSynopticObservation)));
             } catch (Exception e) {
