@@ -62,7 +62,7 @@ public class ControllerWeather {
             return ResponseEntity.badRequest().body(null);
         }
     }
-    @GetMapping("") @PreAuthorize("hasAnyRole('ADMIN')")
+    @GetMapping("")
     public ResponseEntity<Page<DTOResponseWeather>> retrieve(@RequestParam(name = "key", defaultValue = "", required = false) String key, @RequestParam(name="value", defaultValue = "", required = false) String value, Pageable pageable){
         return ResponseEntity.ok().body(serviceWeather.retrieve(pageable, key, value));
     }
