@@ -35,7 +35,7 @@ public class ServiceWeather {
 //        created.setIi(created.getIi() == null ? "" : created.getIi());
 //        created.setIii(created.getIii() == null ? "" : created.getIii());
         created.setObserverName(created.getObservador());
-        created.setMiMi(created.getAabbxx().substring(0,2));
+        created.setMiMi(created.getMiMi() == null ? created.getAabbxx().substring(0,2) : created.getMiMi());
         created.setMjMj("XX");
         return MapStruct.MAPPER.toDTO(repositoryWeather.save(MapStruct.MAPPER.toObject(created)));
     }
