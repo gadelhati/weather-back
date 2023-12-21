@@ -14,12 +14,12 @@ public class ValidatorValidVVh implements ConstraintValidator<ValidVVh, DTOReque
     public boolean isValid(DTORequestWeather value, ConstraintValidatorContext context) {
         if(value.getVv() != null && value.getH() != null) {
             if(value.getVv().matches("9[8-9]") && value.getH().matches("[0-1]")) {
-                return false;
-            } else {
                 return true;
+            } else {
+                return false;
             }
         } else {
-            return true;
+            return false;
         }
     }
 }
