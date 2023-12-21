@@ -19,7 +19,9 @@ public class ValidatorOnOrOffShore implements ConstraintValidator<OnOrOffShore, 
     }
     @Override
     public boolean isValid(DTORequestWeather value, ConstraintValidatorContext context) {
-        if (!isNull(value.getDdddddd()) || !isNull(value.getIi()) && !isNull(value.getIii())) {
+        if (isNull(value.getDdddddd()) && !isNull(value.getIi()) && !isNull(value.getIii()) ||
+                !isNull(value.getDdddddd()) && isNull(value.getIi()) && isNull(value.getIii())
+        ) {
             return true;
         } else {
             return false;
