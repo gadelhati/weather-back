@@ -19,10 +19,11 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
-@Setter @Getter @AllArgsConstructor @NoArgsConstructor @JsonIgnoreProperties(ignoreUnknown = true)// @OnOrOffShore
+@Setter @Getter @AllArgsConstructor @NoArgsConstructor @JsonIgnoreProperties(ignoreUnknown = true)
+@OnOrOffShore
 @ValidNhCLCM @ValidTTTTdTdTd @ValidAppp @ValidCLCM @ValidCMCH
 @ValidNCLCMCH
-//@ValidNCLCMCHh
+@ValidNCLCMCHh
 @ValidNddff @ValidNh @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh
 @ValidNW2 @ValidTTTTnTnTn @ValidTTT
 @ValidTxTxTx
