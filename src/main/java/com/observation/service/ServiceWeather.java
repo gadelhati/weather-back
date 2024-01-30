@@ -1,6 +1,7 @@
 package com.observation.service;
 
 import com.observation.persistence.MapStruct;
+import com.observation.persistence.model.Weather;
 import com.observation.persistence.payload.request.DTORequestWeather;
 import com.observation.persistence.payload.response.*;
 import com.observation.persistence.repository.*;
@@ -83,6 +84,38 @@ public class ServiceWeather {
             default: {
                 return repositoryWeather.findAll(pageable).map(MapStruct.MAPPER::toDTOReduced);
             }
+        }
+    }
+    public String abbreviatedMsg(UUID id){
+        Weather weather = repositoryWeather.findById(id).get();
+        System.out.println(weather);
+        return baseMsg(id)+" "+"8"+weather.getNh()+weather.getCl()+weather.getCm()+weather.getCh()+" "+"222"+weather.getDs()+weather.getVs();
+    }
+    public String reducedMsg(UUID id){
+        Weather weather = repositoryWeather.findById(id).get();
+        return baseMsg(id)+" "+"222"+weather.getDs()+weather.getVs();
+    }
+    public String baseMsg(UUID id){
+        Weather weather = repositoryWeather.findById(id).get();
+        if(weather.getMiMi().equals("AA")){
+            return weather.getMiMi()+weather.getMjMj()+" "+
+                    weather.getIi()+weather.getIii()+" "+
+                    weather.getYy()+weather.getGg()+weather.getIw()+
+                    weather.getIr()+weather.getIx()+weather.getH()+weather.getVv()+
+                    weather.getN()+weather.getDd()+weather.getFf()+
+                    "1sn"+weather.getTtt()+" "+
+                    "4"+weather.getPpp()+" "+
+                    "7"+weather.getWw()+weather.getW1()+weather.getW2();
+        }else{
+            return weather.getMiMi()+weather.getMjMj()+" "+
+                    weather.getDdddddd()+" "+
+                    weather.getYy()+weather.getGg()+weather.getIw()+" "+
+                    "99"+weather.getLaLaLa()+" "+weather.getQc()+weather.getLoLoLoLo()+" "+
+                    weather.getIr()+weather.getIx()+weather.getH()+weather.getVv()+" "+
+                    weather.getN()+weather.getDd()+weather.getFf()+" "+
+                    "1sn"+weather.getTtt()+" "+
+                    "4"+weather.getPpp()+" "+
+                    "7"+weather.getWw()+weather.getW1()+weather.getW2();
         }
     }
     public Page<DTOResponseWeatherAbbreviated> abbreviated(Pageable pageable, String key, String value){
