@@ -22,4 +22,7 @@ public interface RepositoryWeather extends JpaRepository<Weather, UUID> {
     Optional<Weather> findByDateObservationAndDdddddd(LocalDateTime dateObservation, String ddddddd);
     void deleteByDateObservationAndIiAndIii(LocalDateTime dateObservation, String ii, String iii);
     void deleteByDateObservationAndDdddddd(LocalDateTime dateObservation, String ddddddd);
+    Page<Weather> findByDddddddContainingIgnoreCaseOrderByDddddddAsc(Pageable pageable, String ddddddd);
+    Page<Weather> findByIiContainingIgnoreCaseOrderByIiAsc(Pageable pageable, String Ii);
+    Page<Weather> findByIiiContainingIgnoreCaseOrderByIiiAsc(Pageable pageable, String Iii);
 }

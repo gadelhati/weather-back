@@ -2,10 +2,7 @@ package com.observation.service;
 
 import com.observation.persistence.MapStruct;
 import com.observation.persistence.payload.request.DTORequestWeather;
-import com.observation.persistence.payload.response.DTOResponseWeather;
-import com.observation.persistence.payload.response.DTOResponseWeatherHistoric;
-import com.observation.persistence.payload.response.DTOResponseWeatherHistoricOffShore;
-import com.observation.persistence.payload.response.DTOResponseWeatherHistoricOnShore;
+import com.observation.persistence.payload.response.*;
 import com.observation.persistence.repository.*;
 import javax.transaction.Transactional;
 
@@ -58,11 +55,49 @@ public class ServiceWeather {
     }
     public Page<DTOResponseWeather> retrieve(Pageable pageable, String key, String value){
         switch (key) {
-//            case "id": {
-//                return repositoryWeather.findById(pageable, new WeatherId(dateObservation, ddddddd, ii, iii)).map(MapStruct.MAPPER::toDTO);
-//            }
+            case "ddddddd": {
+                return repositoryWeather.findByDddddddContainingIgnoreCaseOrderByDddddddAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
+            case "ii": {
+                return repositoryWeather.findByIiContainingIgnoreCaseOrderByIiAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
+            case "iii": {
+                return repositoryWeather.findByIiiContainingIgnoreCaseOrderByIiiAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
+            }
             default: {
                 return repositoryWeather.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+            }
+        }
+    }
+    public Page<DTOResponseWeatherReduced> reduced(Pageable pageable, String key, String value){
+        switch (key) {
+            case "ddddddd": {
+                return repositoryWeather.findByDddddddContainingIgnoreCaseOrderByDddddddAsc(pageable, value).map(MapStruct.MAPPER::toDTOReduced);
+            }
+            case "ii": {
+                return repositoryWeather.findByIiContainingIgnoreCaseOrderByIiAsc(pageable, value).map(MapStruct.MAPPER::toDTOReduced);
+            }
+            case "iii": {
+                return repositoryWeather.findByIiiContainingIgnoreCaseOrderByIiiAsc(pageable, value).map(MapStruct.MAPPER::toDTOReduced);
+            }
+            default: {
+                return repositoryWeather.findAll(pageable).map(MapStruct.MAPPER::toDTOReduced);
+            }
+        }
+    }
+    public Page<DTOResponseWeatherAbbreviated> abbreviated(Pageable pageable, String key, String value){
+        switch (key) {
+            case "ddddddd": {
+                return repositoryWeather.findByDddddddContainingIgnoreCaseOrderByDddddddAsc(pageable, value).map(MapStruct.MAPPER::toDTOAbbreviated);
+            }
+            case "ii": {
+                return repositoryWeather.findByIiContainingIgnoreCaseOrderByIiAsc(pageable, value).map(MapStruct.MAPPER::toDTOAbbreviated);
+            }
+            case "iii": {
+                return repositoryWeather.findByIiiContainingIgnoreCaseOrderByIiiAsc(pageable, value).map(MapStruct.MAPPER::toDTOAbbreviated);
+            }
+            default: {
+                return repositoryWeather.findAll(pageable).map(MapStruct.MAPPER::toDTOAbbreviated);
             }
         }
     }

@@ -36,7 +36,7 @@ public class ConfigurationSecurity {
                 .exceptionHandling(Customizer.withDefaults())
                 .authorizeHttpRequests((authorize) -> authorize
                                 .requestMatchers(new AntPathRequestMatcher("/auth/**")).permitAll()
-                                .requestMatchers(new AntPathRequestMatcher("/weather12/**","GET")).permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/weather/**","GET")).permitAll()
                                 .anyRequest().authenticated()
                 );
         httpSecurity.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

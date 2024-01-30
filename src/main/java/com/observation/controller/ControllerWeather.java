@@ -62,6 +62,18 @@ public class ControllerWeather {
             return ResponseEntity.badRequest().body(null);
         }
     }
+    @GetMapping("/complete")
+    public ResponseEntity<Page<DTOResponseWeather>> complete(@RequestParam(name = "key", defaultValue = "", required = false) String key, @RequestParam(name="value", defaultValue = "", required = false) String value, Pageable pageable){
+        return ResponseEntity.ok().body(serviceWeather.retrieve(pageable, key, value));
+    }
+    @GetMapping("/abbreviated")
+    public ResponseEntity<Page<DTOResponseWeatherAbbreviated>> abbreviated(@RequestParam(name = "key", defaultValue = "", required = false) String key, @RequestParam(name="value", defaultValue = "", required = false) String value, Pageable pageable){
+        return ResponseEntity.ok().body(serviceWeather.abbreviated(pageable, key, value));
+    }
+    @GetMapping("/reduced")
+    public ResponseEntity<Page<DTOResponseWeatherReduced>> reduced(@RequestParam(name = "key", defaultValue = "", required = false) String key, @RequestParam(name="value", defaultValue = "", required = false) String value, Pageable pageable){
+        return ResponseEntity.ok().body(serviceWeather.reduced(pageable, key, value));
+    }
     @GetMapping("")
     public ResponseEntity<Page<DTOResponseWeather>> retrieve(@RequestParam(name = "key", defaultValue = "", required = false) String key, @RequestParam(name="value", defaultValue = "", required = false) String value, Pageable pageable){
         return ResponseEntity.ok().body(serviceWeather.retrieve(pageable, key, value));
