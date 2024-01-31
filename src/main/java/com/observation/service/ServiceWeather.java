@@ -55,7 +55,6 @@ public class ServiceWeather {
         return MapStruct.MAPPER.toDTO(repositoryWeather.findById(id).orElseGet(null));
     }
     public Page<DTOResponseWeather> retrieve(Pageable pageable, String key, String value){
-        System.out.println("value: "+value+"key: "+key);
         switch (key) {
             case "miMi": {
                 return repositoryWeather.findByMiMiContainingIgnoreCaseOrderByMiMiAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
@@ -64,7 +63,6 @@ public class ServiceWeather {
                 return repositoryWeather.findByDddddddContainingIgnoreCaseOrderByDddddddAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
             }
             case "yy": {
-                System.out.println(value);
                 return repositoryWeather.findByYyContainingIgnoreCaseOrderByYyAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
             }
             case "ii": {
