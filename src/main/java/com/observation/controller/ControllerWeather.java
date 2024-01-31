@@ -76,11 +76,11 @@ public class ControllerWeather {
     }
     @GetMapping("/abbreviated/msg")
     public String abbreviatedMsg(@RequestParam(name="id", defaultValue = "id") UUID id){
-        return serviceWeather.abbreviatedMsg(id);
+        return serviceWeather.abbreviatedMsg(id).toUpperCase();
     }
     @GetMapping("/reduced/msg")
     public String reducedMsg(@RequestParam(name="id", defaultValue = "id") UUID id){
-        return serviceWeather.reducedMsg(id);
+        return serviceWeather.reducedMsg(id).toUpperCase();
     }
     @GetMapping("")
     public ResponseEntity<Page<DTOResponseWeather>> retrieve(@RequestParam(name = "key", defaultValue = "", required = false) String key, @RequestParam(name="value", defaultValue = "", required = false) String value, Pageable pageable){
