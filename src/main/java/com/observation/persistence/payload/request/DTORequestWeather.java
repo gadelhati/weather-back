@@ -126,9 +126,9 @@ public class DTORequestWeather {
     //7wwW1W2
     @Pattern(regexp = "[0-9][0-9]", message = "{ww.valid}") @NotNull(message = "{ww.not.null}") @NotBlank(message = "{ww.not.blank}")
     private String ww;
-    @Pattern(regexp = "[0-9][0-9]||\\/\\/||[0-9]\\/||\\/[0-9]", message = "{w1w2.valid}") @NotNull @NotBlank
+    @Pattern(regexp = "[0-9][0-9]||\\/\\/||[0-9]\\/||\\/[0-9]", message = "{w1w2.valid}") @NotNull(message = "{w1w2.valid}") @NotBlank(message = "{w1w2.valid}")
     private String w1W2;
-    //    @Pattern(regexp = "[0-9]||\\/", message = "{w1.valid}") @NotNull @NotBlank
+//    @Pattern(regexp = "[0-9]||\\/", message = "{w1.valid}") @NotNull @NotBlank
 //    private String w1;
 //    @Pattern(regexp = "[0-9]||\\/", message = "{w2.valid}") @NotNull @NotBlank
 //    private String w2;
