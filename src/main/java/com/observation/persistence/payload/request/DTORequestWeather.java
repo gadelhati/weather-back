@@ -61,7 +61,7 @@ public class DTORequestWeather {
     //IIiii
     @Pattern(regexp = "82||83", message = "{ii.valid}")
     private String ii;
-    //    @Pattern(regexp = "[0-9][0-9][0-9]", message = "{iii.valid}")
+    @Pattern(regexp = "[0-9][0-9][0-9]", message = "{iii.valid}")
     private String iii;
     //99LaLaLa
     @Pattern(regexp = "[0-8][0-9][0-9]||900", message = "{lalala.valid}")
