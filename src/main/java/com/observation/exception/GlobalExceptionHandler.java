@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.util.Arrays;
+
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException exception, HttpHeaders httpHeaders, HttpStatus httpStatus, WebRequest webRequest) {
-        ErrorResponse errorResponse = new ErrorResponse(httpStatus, exception.getStackTrace().toString(), exception.getAllErrors().toString());
+        ErrorResponse errorResponse = new ErrorResponse(httpStatus, Arrays.toString(exception.getStackTrace()), exception.getAllErrors().toString());
         for (FieldError error : exception.getBindingResult().getFieldErrors()) {
             errorResponse.addValidationError(((FieldError) error).getField(), error.getDefaultMessage());
         }
