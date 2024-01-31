@@ -16,9 +16,9 @@ public class ValidatorValidTxTxTx implements ConstraintValidator<ValidTxTxTx, DT
     public boolean isValid(DTORequestWeather value, ConstraintValidatorContext context) {
         if(isValidWithNumber(value.getTxTxTx()) && isValidWithNumber(value.getTtt())) {
             if(Integer.parseInt(value.getTxTxTx()) < Integer.parseInt(value.getTtt())) {
-                return false;
-            } else {
                 return true;
+            } else {
+                return false;
             }
         } else {
             return true;
