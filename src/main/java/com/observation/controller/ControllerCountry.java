@@ -28,7 +28,7 @@ public class ControllerCountry implements ControllerInterface<DTOResponseCountry
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/country").toUriString());
         return ResponseEntity.created(uri).body(serviceCountry.create(created));
     }
-    @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @GetMapping("") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseCountry>> retrieve(@RequestParam(name = "key", defaultValue = "", required = false) String key, @RequestParam(name="value", defaultValue = "", required = false) String value, Pageable pageable){
         return ResponseEntity.ok().body(serviceCountry.retrieve(pageable, key, value));
     }
