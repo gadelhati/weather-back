@@ -16,16 +16,16 @@ public class DTOResponseWeatherHistoricOnShore {
     //SECTION 0
 
     //AABB
-    private String aabbxx;
+//    private String aabbxx;
     private String mimi;
-    private String mjmj;
+//    private String mjmj;
     //DDDDDDD
-    private String estacao;
+//    private String estacao;
     private String ddddddd;
     //A1bwnbnbnb
-    private String a1;
-    private String bw;
-    private String nbnbnb;
+//    private String a1;
+//    private String bw;
+//    private String nbnbnb;
     //YYGGiw
     private String yy;
     private String gg;
