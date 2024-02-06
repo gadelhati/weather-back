@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.observation.exception.annotation.weather.*;
 import com.observation.persistence.model.Observer;
-import com.observation.persistence.model.StationHistoricOnShore;
+import com.observation.persistence.model.StationHistoric;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -257,6 +257,6 @@ public class DTORequestWeatherHistoricOnShore {
     @NotNull(message = "{observerName.not.null}") @NotBlank(message = "{observerName.not.blank}")
     private String observerName;
 
-    private StationHistoricOnShore stationHistoricOnShore;
+    private StationHistoric stationHistoric;
     private Observer observer;
 }

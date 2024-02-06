@@ -90,11 +90,11 @@ public class ControllerWeather {
     public ResponseEntity<Page<DTOResponseWeatherHistoric>> retrieveHistoric(@RequestParam(name = "key", defaultValue = "", required = false) String key, @RequestParam(name="value", defaultValue = "", required = false) String value, Pageable pageable){
         return ResponseEntity.ok().body(serviceWeather.retrieveHistoric(pageable, key, value));
     }
-    @GetMapping("OffShore/historic") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
+    @GetMapping("/historic/offShore") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseWeatherHistoricOffShore>> retrieveHistoricOffshore(@RequestParam(name = "key", defaultValue = "", required = false) String key, @RequestParam(name="value", defaultValue = "", required = false) String value, Pageable pageable){
         return ResponseEntity.ok().body(serviceWeather.retrieveHistoricOffShore(pageable, key, value));
     }
-    @GetMapping("OnShore/historic") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
+    @GetMapping("/historic/onShore") //@PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseWeatherHistoricOnShore>> retrieveHistoricOnShore(@RequestParam(name = "key", defaultValue = "", required = false) String key, @RequestParam(name="value", defaultValue = "", required = false) String value, Pageable pageable){
         return ResponseEntity.ok().body(serviceWeather.retrieveHistoricOnShore(pageable, key, value));
     }
